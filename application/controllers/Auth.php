@@ -5,7 +5,7 @@ class Auth extends CI_Controller
 
     function login()
     {
-        // checklog();
+        checklog();
         $this->load->view('auth/login');
     }
 
@@ -77,6 +77,7 @@ class Auth extends CI_Controller
     function logout()
     {
         session_destroy();
+        $this->session->unset_userdata($data);
         redirect('auth/login');
     }
 }

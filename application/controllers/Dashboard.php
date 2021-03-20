@@ -2,11 +2,11 @@
 
 class Dashboard extends CI_Controller
 {
-    // function __construct()
-    // {
-    //     parent::__construct();
-    //     // checklogin();
-    // }
+    function __construct()
+    {
+        parent::__construct();
+        checklogin();
+    }
 
     public function index()
     {
