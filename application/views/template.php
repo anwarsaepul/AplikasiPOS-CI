@@ -134,12 +134,12 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<li>
-						<a href="<?= base_url() ?>dashboard">
+						<a href="<?= base_url('dashboard') ?>">
 							<i class="fa fa-dashboard"></i> <span>Dashboard</span>
 						</a>
 					</li>
 					<li>
-						<a href="<?= base_url() ?>supplier">
+						<a href="<?= base_url('supplier') ?>">
 							<i class="fa fa-truck"></i> <span>Supplier</span>
 						</a>
 					</li>
