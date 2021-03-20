@@ -43,41 +43,9 @@ class Auth extends CI_Controller
         }
     }
 
-    function ceklogin()
-    {
-
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-
-        $login = $this->Model_Auth->getlogin($username, $password);
-        $ceklogin = $login->num_rows();
-        $datalogin = $login->row_array();
-
-        // Menyimpan session Login
-        $data = array(
-            'id_user'       => $datalogin['id_user'],
-            'nama_lengkap'  => $datalogin['nama_lengkap'],
-            'username'      => $datalogin['username'],
-            'password'      => $datalogin['password'],
-            'level'         => $datalogin['level'],
-            'kode_cabang'   => $datalogin['kode_cabang']
-        );
-        $this->session->set_userdata($data);
-        if ($ceklogin == 1) {
-            redirect('dashboard');
-        } else {
-            $this->session->set_flashdata('msg', '
-            <div class="alert alert-warning" role="alert">
-            Username atau Password salah!
-            </div>');
-            redirect('auth/login');
-        }
-    }
-
     function logout()
     {
         session_destroy();
-        $this->session->unset_userdata($data);
         redirect('auth/login');
     }
 }

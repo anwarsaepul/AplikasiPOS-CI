@@ -82,11 +82,11 @@
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<i class="fa fa-bell-o"></i>
-								<span class="hidden-xs">Admin</span>
+								<span class="hidden-xs"><?= ucfirst($this->session_id->user_login()->username) ?></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="user-header">
-									<p>Saepul Anwar<small>Sukabumi, Jawa Barat</small></p>
+									<p><?= ucfirst($this->session_id->user_login()->nama_lengkap) ?><small>Sukabumi, Jawa Barat</small></p>
 								</li>
 								<li class="user-footer">
 									<div class="pull-left">
@@ -115,7 +115,7 @@
 						<img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Saepul Anwar</p>
+						<p><?= ucfirst($this->session_id->user_login()->username) ?></p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
