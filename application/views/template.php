@@ -144,7 +144,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="">
+						<a href="<?= base_url('customer') ?>">
 							<i class="fa fa-users"></i>
 							<span>Costumers</span>
 						</a>
