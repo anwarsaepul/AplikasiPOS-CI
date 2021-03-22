@@ -4,7 +4,11 @@ class item_model extends CI_Model
 {
     function get($id = null)
     {
+        $this->db->select('p_item.*, p_category.nama_category as nama_category, p_unit.nama_unit as nama_unit');
         $this->db->from('p_item');
+        // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
+        $this->db->join('p_category', 'p_category.category_id = p_item.category_id');
+        $this->db->join('p_unit', 'p_unit.unit_id = p_item.unit_id');
         if ($id != null) {
             $this->db->where('item_id', $id);
         }
