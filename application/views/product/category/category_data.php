@@ -1,14 +1,14 @@
 <!-- Main content -->
 <section class="content">
-	<?php $this->view('messages') ?>
+<?php $this->view('messages')  ?>
 	<div class="box">
 		<div class="box-header">
 			<div class="col-sm pt-3">
 				<ol class="float-sm-right">
-					<a href="<?= base_url('customer/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-user-plus"></i>Create
+					<a href="<?= base_url('category/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-user-plus"></i>Create
 					</a>
 				</ol>
-				<h3><i class="nav-icon fa fa-users"></i> Data customer</h3>
+				<h3><i class="nav-icon fa fa-object-group"></i> Data category</h3>
 			</div>
 		</div>
 		<div class="box-body table-responsive">
@@ -17,8 +17,6 @@
 					<tr>
 						<th>#</th>
 						<th>Nama</th>
-						<th>Telepon</th>
-						<th>Alamat</th>
 						<th>Aksi</th>
 					</tr>
 				</thead>
@@ -27,12 +25,10 @@
 					foreach ($row->result() as $key => $data) { ?>
 						<tr>
 							<td style="width: 5%;"><?= $no++ ?>.</td>
-							<td><?= $data->nama_customer ?></td>
-							<td><?= $data->phone ?></td>
-							<td><?= $data->alamat ?></td>
+							<td><?= $data->nama_category ?></td>
 							<td class="text-center" width="150px">
-								<a href="<?= base_url('customer/edit/' . $data->customer_id) ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
-								<a href="<?= base_url('customer/del/' . $data->customer_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+								<a href="<?= base_url('category/edit/' . $data->category_id) ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
+								<a href="<?= base_url('category/del/' . $data->category_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
 							</td>
 						</tr>
 

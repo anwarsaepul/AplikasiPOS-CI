@@ -97,7 +97,7 @@
             <li class="nav-item">
               <a href="<?= base_url('customer') ?>" class="nav-link">
                 <i class="nav-icon fa fa-users"></i>
-                <p>Costumers</p>
+                <p>Customers</p>
               </a>
             </li>
             <li class="nav-item">
@@ -110,13 +110,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="<?= base_url('category') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Categories</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="<?= base_url('unit') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Units</p>
                   </a>
