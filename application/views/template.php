@@ -78,25 +78,28 @@
         <nav class="mt-1">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-              <a href="<?= base_url('dashboard') ?>" class="nav-link">
+              <a href="<?= base_url('dashboard') ?>" class="nav-link <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('supplier') ?>" class="nav-link">
+              <a href="<?= base_url('supplier') ?>" class="nav-link <?= $this->uri->segment(1) == 'supplier' ? 'active' : '' ?>">
                 <i class="nav-icon fa fa-truck"></i>
                 <p>Supplier</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('customer') ?>" class="nav-link">
+              <a href="<?= base_url('customer') ?>" class="nav-link <?= $this->uri->segment(1) == 'customer' ? 'active' : '' ?>">
                 <i class="nav-icon fa fa-users"></i>
                 <p>Customers</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link 
+              <?= $this->uri->segment(1) == 'category' ||
+                $this->uri->segment(1) == 'unit' ||
+                $this->uri->segment(1) == 'item' ? 'active' : '' ?>">
                 <i class="nav-icon fa fa-archive"></i>
                 <p>
                   Products
@@ -105,19 +108,19 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?= base_url('category') ?>" class="nav-link">
+                  <a href="<?= base_url('category') ?>" class="nav-link <?= $this->uri->segment(1) == 'category' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Categories</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="<?= base_url('unit') ?>" class="nav-link">
+                  <a href="<?= base_url('unit') ?>" class="nav-link <?= $this->uri->segment(1) == 'unit' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Units</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="" class="nav-link <?= $this->uri->segment(1) == 'item' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Items</p>
                   </a>
