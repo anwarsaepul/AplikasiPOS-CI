@@ -41,9 +41,14 @@ class Item extends CI_Controller
         $query = $this->item_model->get($id);
         if ($query->num_rows() > 0) {
             $item = $query->row();
+            $query_category = $this->category_model->get();
+            $query_unit = $this->unit_model->get();
+
             $data = array(
-                'page'  => 'edit',
-                'row'   => $item
+                'page'      => 'edit',
+                'row'       => $item,
+                'category'  => $query_category,
+                'unit'      => $query_unit,
             );
             $this->template->load('template', 'product/item/item_form', $data);
         } else {
@@ -57,12 +62,12 @@ class Item extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->item_model->add($post);
-        }elseif (isset($_POST['edit'])) {
+        } elseif (isset($_POST['edit'])) {
             $this->item_model->edit($post);
         }
 
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Disimpan');
+            $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
         }
         redirect('item');
     }
@@ -71,7 +76,7 @@ class Item extends CI_Controller
     {
         $this->item_model->del($id);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Dihapus');
+            $this->session->set_flashdata('success', 'Data Berhasil Dihapus');
         }
         redirect('item');
     }
