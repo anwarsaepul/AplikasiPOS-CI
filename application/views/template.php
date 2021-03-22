@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
 </head>
 
@@ -27,12 +28,6 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
         </li>
       </ul>
 
@@ -165,6 +160,15 @@
   <script src="<?= base_url() ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url() ?>assets/dist/js/adminlte.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#table1').DataTable({
+        "lengthChange": false
+      });
+    });
+  </script>
 </body>
 
 </html>

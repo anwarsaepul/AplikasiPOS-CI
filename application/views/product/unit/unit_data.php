@@ -1,6 +1,6 @@
 <!-- Main content -->
 <section class="content">
-<?php $this->view('messages')  ?>
+	<?php $this->view('messages')  ?>
 	<div class="box">
 		<div class="box-header">
 			<div class="col-sm pt-3">
@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="box-body table-responsive">
-			<table class="table table-bordered text-center table-striped">
+			<table class="table table-bordered text-center table-striped" id="table1">
 				<thead class="thead-dark">
 					<tr>
 						<th>#</th>
