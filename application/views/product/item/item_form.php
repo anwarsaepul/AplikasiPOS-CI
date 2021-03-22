@@ -1,5 +1,6 @@
 <!-- Main content -->
 <section class="content">
+    <?php $this->view('messages')  ?>
     <div class="box">
         <div class="box-header">
             <div class="col-sm pt-3">
@@ -28,19 +29,19 @@
                         </div>
                         <div class="form-group">
                             <label>Category *</label>
-                            <select name="category" class="form-control" id="">
+                            <select name="category" class="form-control" required>
                                 <option value="">--Pilih Category--</option>
                                 <?php foreach ($category->result() as $key => $data) { ?>
-                                    <option value="<?= $data->category_id ?>"><?= $data->nama_category ?></option>
+                                    <option value="<?= $data->category_id ?>" <?= $data->category_id == $row->category_id ? "selected" : null ?>><?= $data->nama_category ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Unit *</label>
-                            <select name="unit" class="form-control" id="">
+                            <select name="unit" class="form-control" required>
                                 <option value="">--Pilih Unit--</option>
                                 <?php foreach ($unit->result() as $key => $data) { ?>
-                                    <option value="<?= $data->unit_id ?>"><?= $data->nama_unit ?></option>
+                                    <option value="<?= $data->unit_id ?>" <?= $data->unit_id == $row->unit_id ? "selected" : null ?>><?= $data->nama_unit ?></option>
                                 <?php } ?>
                             </select>
                         </div>
