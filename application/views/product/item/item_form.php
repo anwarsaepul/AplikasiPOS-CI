@@ -1,6 +1,5 @@
 <!-- Main content -->
 <section class="content">
-    <?php $this->view('messages')  ?>
     <div class="box">
         <div class="box-header">
             <div class="col-sm pt-3">
@@ -19,9 +18,9 @@
                             <h3 class="box-title text-center"><?= ucfirst($page) ?> Data Item</h3>
                         </div>
                         <div class="form-group">
-                            <label for="barcode">Barcode *</label>
+                            <label for="barcode">Kode Barang *</label>
                             <input type="hidden" name="id" value="<?= $row->item_id ?>">
-                            <input type="text" value="<?= $row->barcode ?>" class="form-control" id="barcode" name="barcode" required placeholder="Input barcode">
+                            <input type="text" value="<?= $row->barcode ?>" class="form-control" id="barcode" name="barcode" required placeholder="Input Kode Barang">
                         </div>
                         <div class="form-group">
                             <label for="nama_item">Nama Product *</label>

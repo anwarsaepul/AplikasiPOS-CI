@@ -20,18 +20,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no = 1;
-					foreach ($row->result() as $key => $data) { ?>
-						<tr>
-							<td style="width: 5%;"><?= $no++ ?>.</td>
-							<td><?= $data->nama_category ?></td>
-							<td class="text-center" width="150px">
-								<a href="<?= base_url('category/edit/' . $data->category_id) ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
-								<a href="<?= base_url('category/del/' . $data->category_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
-							</td>
-						</tr>
-
-					<?php } ?>
 				</tbody>
 
 			</table>

@@ -1,6 +1,5 @@
 <!-- Main content -->
 <section class="content">
-    <?php $this->view('messages')  ?>
     <div class="box">
         <div class="box-header">
             <div class="col-sm pt-3">
@@ -16,7 +15,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>#</th>
-                        <th>Barcode</th>
+                        <th>Kode Barang</th>
                         <th>Nama Item</th>
                         <th>Category</th>
                         <th>Unit</th>
