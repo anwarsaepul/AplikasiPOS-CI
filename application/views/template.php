@@ -120,7 +120,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="" class="nav-link <?= $this->uri->segment(1) == 'item' ? 'active' : '' ?>">
+                  <a href="<?= base_url('item') ?>" class="nav-link <?= $this->uri->segment(1) == 'item' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Items</p>
                   </a>
