@@ -64,32 +64,37 @@ class Item extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             if ($this->item_model->check_kode_barang($post['kode_barang'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "kode_barang $post[kode_barang] sudah diinput!");
-                redirect('item/add');
+                // $this->session->set_flashdata('error', "");
+                echo "<script>alert('kode_barang sudah diinput!');</script>";
+                echo "<script>window.location='" . base_url('item/add') . "';</script>";
             } else {
                 $this->item_model->add($post);
             }
         } elseif (isset($_POST['edit'])) {
             if ($this->item_model->check_kode_barang($post['kode_barang'], $post['id'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "kode_barang $post[kode_barang] sudah diinput!");
-                redirect('item/edit/' . $post['id']);
+                echo "<script>alert('kode_barang sudah diinput!');</script>";
+                echo "<script>window.location='" . base_url('item/edit/' . $post['id']) . "';</script>";
             } else {
                 $this->item_model->edit($post);
             }
         }
 
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
+            // $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
+            echo "<script>alert('Data Berhasil Disimpan');</script>";
         }
-        redirect('item');
+        echo "<script>window.location='" . base_url('item') . "';</script>";
+        // redirect('item');
     }
 
     function del($id)
     {
         $this->item_model->del($id);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'Data Berhasil Dihapus');
+            // $this->session->set_flashdata('success', 'Data Berhasil Dihapus');
+            echo "<script>alert('Data Berhasil Dihapus');</script>";
         }
-        redirect('item');
+        // redirect('item');
+        echo "<script>window.location='" . base_url('item') . "';</script>";
     }
 }

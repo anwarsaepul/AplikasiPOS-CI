@@ -21,6 +21,20 @@ class Stock extends CI_Controller
         $data = ['item' => $item, 'supplier' => $supplier];
         $this->template->load('template', 'transaction/stock_in/stock_in_form', $data);
     }
+
+    function stock_in_del()
+    {
+        $stock_id = $this->uri->segment(4);
+        $item_id = $this->uri->segment(5);
+        $qty = $this->stock_model->get($stock_id)->row()->qty;
+        $data = ['qty' => $qty, 'item_id' => $item_id];
+        $this->item_model->update_stock_out($data);
+        $this->stock_model->del($stock_id);
+        if ($this->db->affected_rows() > 0) {
+            echo "<script>alert('Data Stock Berhasil dihapus');</script>";
+        }
+        echo "<script>window.location='" . base_url('stock/in') . "';</script>";
+    }
     function process()
     {
         if (isset($_POST['in_add'])) {

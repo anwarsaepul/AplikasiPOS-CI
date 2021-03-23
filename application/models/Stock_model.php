@@ -2,6 +2,22 @@
 
 class Stock_model extends CI_Model
 {
+    function get($id = null)
+    {
+        $this->db->from('t_stock');
+        if ($id != null) {
+            $this->db->where('stock_id', $id);
+        }
+        return $query = $this->db->get();
+    }
+
+    function del($id)
+    {
+        $this->db->where('stock_id', $id);
+        $this->db->delete('t_stock');
+
+    }
+
     function get_stock_in()
     {
         $this->db->select('t_stock.stock_id, p_item.kode_barang, nama_item, qty, date, detail, nama_supplier, p_item.item_id');

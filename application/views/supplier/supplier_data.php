@@ -4,7 +4,7 @@
 		<div class="box-header">
 			<div class="col-sm pt-3">
 				<ol class="float-sm-right">
-					<a href="<?= base_url('supplier/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-user-plus"></i>Create
+					<a href="<?= base_url('supplier/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Tambah Supplier
 					</a>
 				</ol>
 				<h3><i class="nav-icon fa fa-truck"></i> Data Supplier</h3>

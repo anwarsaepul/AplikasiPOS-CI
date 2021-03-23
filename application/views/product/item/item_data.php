@@ -4,7 +4,7 @@
         <div class="box-header">
             <div class="col-sm pt-3">
                 <ol class="float-sm-right">
-                    <a href="<?= base_url('item/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-user-plus"></i>Create Item
+                    <a href="<?= base_url('item/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Tambah Item
                     </a>
                 </ol>
                 <h3><i class="nav-icon fa fa-object-group"></i> Produk Item</h3>
@@ -33,7 +33,7 @@
                             <td><?= $data->nama_item ?></td>
                             <td><?= $data->nama_category ?></td>
                             <td><?= $data->nama_unit ?></td>
-                            <td><?= $data->price ?></td>
+                            <td><?= indo_currency($data->price) ?></td>
                             <td><?= $data->stock ?></td>
                             <td class="text-center" width="150px">
                                 <a href="<?= base_url('item/edit/' . $data->item_id) ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>

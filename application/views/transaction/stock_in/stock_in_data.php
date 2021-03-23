@@ -32,10 +32,10 @@
 							<td><?= $data->qty  ?></td>
 							<td><?= indo_date($data->date)  ?></td>
 							<td>
-								<button class="btn btn-default btn-xs">
+								<a class="btn btn-default btn-xs">
 									<i class="fa fa-eye"></i> Detail
-								</button>
-								<button href="<?php base_url('stock/in/del/' .$data->stock_id) ?>" onclick="return confirm('Yakin hapus data <?= $data->kode_barang ?>?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</button>
+								</a>
+								<a href="<?= base_url('stock/in/del/' . $data->stock_id .'/'.$data->item_id) ?>" onclick="return confirm('Yakin hapus data <?= $data->item_id ?>?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
 							</td>
 						</tr>
 					<?php } ?>

@@ -4,7 +4,7 @@
 		<div class="box-header">
 			<div class="col-sm pt-3">
 				<ol class="float-sm-right">
-					<a href="<?= base_url('customer/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-user-plus"></i>Create
+					<a href="<?= base_url('customer/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Tambah Customer
 					</a>
 				</ol>
 				<h3><i class="nav-icon fa fa-users"></i> Data customer</h3>
