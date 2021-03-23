@@ -126,23 +126,23 @@
               <?= $this->uri->segment(1) == 'stock' ||
                 $this->uri->segment(1) == 'stock/in' ||
                 $this->uri->segment(1) == 'stock/out' ? 'active' : '' ?>">
-                <i class="nav-icon fa fa-archive"></i>
+                <i class="nav-icon fas fa-shopping-cart"></i>
                 <p>
-                  Stock
+                  Transaction
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?= base_url('stock/in') ?>" class="nav-link <?= $this->uri->segment(1) == 'category' ? 'active' : '' ?>">
+                  <a href="<?= base_url('stock/in') ?>" class="nav-link <?= $this->uri->segment(1) == 'stock' && $this->uri->segment(2) == 'in'  ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Stock Masuk</p>
+                    <p>Stock In</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="<?= base_url('stock/out') ?>" class="nav-link <?= $this->uri->segment(1) == 'unit' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Stok Keluar</p>
+                    <p>Stok Out</p>
                   </a>
                 </li>
               </ul>
