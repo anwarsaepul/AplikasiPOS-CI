@@ -57,6 +57,9 @@
                             <label for="supplier">Supplier *</label>
                             <select name="supplier" id="supplier" class="form-control">
                                 <option value="">--Pilih Supplier--</option>
+                                <?php foreach ($supplier as $s => $data) { ?>
+                                    <option value="<?= $data->supplier_id ?>" ><?= $data->nama_supplier ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -69,12 +72,58 @@
                             </button>
                             <button type="reset" class="btn btn-flat btn-warning"><i class="fas fa-sync-alt"></i> Reset</button>
                         </div>
-
                     </form>
-
                 </div>
             </div>
-
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="modal-item">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Select Product Item</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body table-responsive">
+                <table class="table table-bordered text-center table-striped" id="table1">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Kode Barang</th>
+                            <th>Nama Item</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1;
+                        foreach ($item as $i => $data) { ?>
+                            <tr>
+                                <td style="width: 5%;"><?= $no++ ?>.</td>
+                                <td><?= $data->kode_barang ?></td>
+                                <td><?= $data->nama_item ?></td>
+                                <td><?= $data->nama_unit ?></td>
+                                <td><?= indo_currency($data->price) ?></td>
+                                <td><?= $data->stock  ?></td>
+                                <td>
+                                    <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" data-kodebarang="<?= $data->kode_barang ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" data-stock="<?= $data->stock ?>">
+                                        <i class="fa fa-check"></i> Pilih</button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>

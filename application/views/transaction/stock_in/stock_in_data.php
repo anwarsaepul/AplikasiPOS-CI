@@ -4,10 +4,10 @@
 		<div class="box-header">
 			<div class="col-sm pt-3">
 				<ol class="float-sm-right">
-					<a href="<?= base_url('category/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-user-plus"></i>Create
+					<a href="<?= base_url('stock/in/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-user-plus"></i>Create
 					</a>
 				</ol>
-				<h3><i class="nav-icon fa fa-object-group"></i> Data category</h3>
+				<h3><i class="nav-icon fa fa-object-group"></i> Stock Barang</h3>
 			</div>
 		</div>
 		<div class="box-body table-responsive">

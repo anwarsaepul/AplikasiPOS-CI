@@ -19,11 +19,11 @@ class item_model extends CI_Model
     {
         $params = [
             // nama d db    => nama di inputan
-            'barcode'  => $post['barcode'],
-            'nama_item'  => $post['nama_item'],
-            'category_id'  => $post['category'],
-            'unit_id'  => $post['unit'],
-            'price'  => $post['price'],
+            'kode_barang'   => $post['kode_barang'],
+            'nama_item'     => $post['nama_item'],
+            'category_id'   => $post['category'],
+            'unit_id'       => $post['unit'],
+            'price'         => $post['price'],
         ];
         $this->db->insert('p_item', $params);
     }
@@ -32,7 +32,7 @@ class item_model extends CI_Model
     {
         $params = [
             // nama d db    => nama di inputan
-            'barcode'  => $post['barcode'],
+            'kode_barang'  => $post['kode_barang'],
             'nama_item'  => $post['nama_item'],
             'category_id'  => $post['category'],
             'unit_id'  => $post['unit'],
@@ -43,10 +43,10 @@ class item_model extends CI_Model
         $this->db->update('p_item', $params);
     }
 
-    function check_barcode($code, $id = null)
+    function check_kode_barang($code, $id = null)
     {
         $this->db->from('p_item');
-        $this->db->where('barcode', $code);
+        $this->db->where('kode_barang', $code);
         if ($id != null) {
             $this->db->where('item_id !=', $id);
         }

@@ -121,6 +121,32 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link 
+              <?= $this->uri->segment(1) == 'stock' ||
+                $this->uri->segment(1) == 'stock/in' ||
+                $this->uri->segment(1) == 'stock/out' ? 'active' : '' ?>">
+                <i class="nav-icon fa fa-archive"></i>
+                <p>
+                  Stock
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= base_url('stock/in') ?>" class="nav-link <?= $this->uri->segment(1) == 'category' ? 'active' : '' ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Stock Masuk</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('stock/out') ?>" class="nav-link <?= $this->uri->segment(1) == 'unit' ? 'active' : '' ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Stok Keluar</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
           </ul>
         </nav>
@@ -163,6 +189,20 @@
     $(document).ready(function() {
       $('#table1').DataTable({
         "lengthChange": false
+      });
+
+      $(document).on('click', '#select', function() {
+        let item_id = $(this).data('id');
+        let kodebarang = $(this).data('kodebarang');
+        let nama_item = $(this).data('nama_item');
+        let nama_unit = $(this).data('nama_unit');
+        let stock = $(this).data('stock');
+
+        $('#item_id').val(item_id);
+        $('#kodebarang').val(kodebarang);
+        $('#nama_item').val(nama_item);
+        $('#nama_unit').val(nama_unit);
+        $('#stock').val(stock);
       });
     });
   </script>

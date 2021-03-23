@@ -29,7 +29,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width: 5%;"><?= $no++ ?>.</td>
-                            <td><?= $data->barcode ?></td>
+                            <td><?= $data->kode_barang ?></td>
                             <td><?= $data->nama_item ?></td>
                             <td><?= $data->nama_category ?></td>
                             <td><?= $data->nama_unit ?></td>

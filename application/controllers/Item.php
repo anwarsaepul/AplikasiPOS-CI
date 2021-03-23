@@ -19,7 +19,7 @@ class Item extends CI_Controller
     {
         $item = new stdClass();
         $item->item_id      = null;
-        $item->barcode      = null;
+        $item->kode_barang  = null;
         $item->nama_item    = null;
         $item->price        = null;
         $item->category_id  = null;
@@ -63,15 +63,15 @@ class Item extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
-            if ($this->item_model->check_barcode($post['barcode'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Barcode $post[barcode] sudah diinput!");
+            if ($this->item_model->check_kode_barang($post['kode_barang'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "kode_barang $post[kode_barang] sudah diinput!");
                 redirect('item/add');
             } else {
                 $this->item_model->add($post);
             }
         } elseif (isset($_POST['edit'])) {
-            if ($this->item_model->check_barcode($post['barcode'], $post['id'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Barcode $post[barcode] sudah diinput!");
+            if ($this->item_model->check_kode_barang($post['kode_barang'], $post['id'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "kode_barang $post[kode_barang] sudah diinput!");
                 redirect('item/edit/' . $post['id']);
             } else {
                 $this->item_model->edit($post);
