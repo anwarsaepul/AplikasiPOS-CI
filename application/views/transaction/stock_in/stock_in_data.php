@@ -15,7 +15,7 @@
 				<thead class="thead-dark">
 					<tr>
 						<th>#</th>
-						<th>Kode Barang</th>
+						<th>Kode Product</th>
 						<th>Product Item</th>
 						<th>Qty</th>
 						<th>Date</th>
@@ -27,22 +27,72 @@
 					foreach ($row as $i => $data) { ?>
 						<tr>
 							<td style="width: 5%;"><?= $no++ ?>.</td>
-							<td><?= $data->kode_barang ?></td>
+							<td><?= $data->kode_product ?></td>
 							<td><?= $data->nama_item ?></td>
 							<td><?= $data->qty  ?></td>
 							<td><?= indo_date($data->date)  ?></td>
 							<td>
-								<a class="btn btn-default btn-xs">
+								<a class="btn btn-default btn-xs" id="set_detail" data-toggle="modal" data-target="#modal-detail" data-kodeproduct="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_supplier="<?= $data->nama_supplier ?>" 
+								data-qty="<?= $data->qty ?>" 
+								data-price="<?= indo_currency($data->price) ?>" 
+								data-detail="<?= $data->detail ?>" 
+								data-date="<?= indo_date($data->date) ?>">
 									<i class="fa fa-eye"></i> Detail
 								</a>
-								<a href="<?= base_url('stock/in/del/' . $data->stock_id .'/'.$data->item_id) ?>" onclick="return confirm('Yakin hapus data <?= $data->item_id ?>?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+								<a href="<?= base_url('stock/in/del/' . $data->stock_id . '/' . $data->item_id) ?>" onclick="return confirm('Yakin hapus data <?= $data->item_id ?>?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
 							</td>
 						</tr>
 					<?php } ?>
 				</tbody>
-
 			</table>
-
 		</div>
 	</div>
 </section>
+
+<div class="modal fade" id="modal-detail">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title text-center">Stock In Detail</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body table-responsive">
+				<table class="table table-bordered text-center table-striped">
+					<tbody>
+						<tr>
+							<th>Kode Product</th>
+							<td><span id="kodeproduct"></span></td>
+						</tr>
+						<tr>
+							<th>Nama Item</th>
+							<td><span id="nama_item"></span></td>
+						</tr>
+						<tr>
+							<th>Nama Suplier</th>
+							<td><span id="nama_supplier"></td>
+						</tr>
+						<tr>
+							<th>Qty</th>
+							<td><span id="qty"></td>
+						</tr>
+						
+						<tr>
+							<th>Harga</th>
+							<td><span id="price"></td>
+						</tr>
+						<tr>
+							<th>Detail</th>
+							<td><span id="detail"></td>
+						</tr>
+						<tr>
+							<th>Date</th>
+							<td><span id="date"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

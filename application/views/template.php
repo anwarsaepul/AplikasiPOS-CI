@@ -204,6 +204,26 @@
         $('#nama_unit').val(nama_unit);
         $('#stock').val(stock);
       });
+
+      $(document).on('click', '#set_detail', function() {
+        let kodeproduct = $(this).data('kodeproduct');
+        let nama_item = $(this).data('nama_item');
+        let nama_supplier = $(this).data('nama_supplier');
+        let qty = $(this).data('qty');
+        let detail = $(this).data('detail');
+        let price = $(this).data('price');
+        let date = $(this).data('date');
+        // alert(nama_supplier);
+
+        $('#kodeproduct').text(kodeproduct);
+        $('#nama_item').text(nama_item);
+        $('#nama_supplier').text(nama_supplier);
+        $('#qty').text(qty);
+        $('#detail').text(detail);
+        $('#price').text(price);
+        $('#date').text(date);
+        
+      });
     });
   </script>
 </body>

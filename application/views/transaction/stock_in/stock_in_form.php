@@ -106,13 +106,15 @@
                         foreach ($item as $i => $data) { ?>
                             <tr>
                                 <td style="width: 5%;"><?= $no++ ?>.</td>
-                                <td><?= $data->kode_barang ?></td>
+                                <td><?= $data->kode_product ?></td>
                                 <td><?= $data->nama_item ?></td>
                                 <td><?= $data->nama_unit ?></td>
                                 <td><?= indo_currency($data->price) ?></td>
                                 <td><?= $data->stock  ?></td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" data-kodebarang="<?= $data->kode_barang ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" data-stock="<?= $data->stock ?>">
+                                    <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" 
+                                    data-kodebarang="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" 
+                                    data-stock="<?= $data->stock ?>">
                                         <i class="fa fa-check"></i> Pilih</button>
                                 </td>
                             </tr>

@@ -15,7 +15,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>#</th>
-                        <th>Kode Barang</th>
+                        <th>Kode Product</th>
                         <th>Nama Item</th>
                         <th>Category</th>
                         <th>Unit</th>
@@ -29,7 +29,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width: 5%;"><?= $no++ ?>.</td>
-                            <td><?= $data->kode_barang ?></td>
+                            <td><?= $data->kode_product ?></td>
                             <td><?= $data->nama_item ?></td>
                             <td><?= $data->nama_category ?></td>
                             <td><?= $data->nama_unit ?></td>

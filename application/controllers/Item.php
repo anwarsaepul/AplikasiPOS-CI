@@ -19,7 +19,7 @@ class Item extends CI_Controller
     {
         $item = new stdClass();
         $item->item_id      = null;
-        $item->kode_barang  = null;
+        $item->kode_product  = null;
         $item->nama_item    = null;
         $item->price        = null;
         $item->category_id  = null;
@@ -63,16 +63,16 @@ class Item extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
-            if ($this->item_model->check_kode_barang($post['kode_barang'])->num_rows() > 0) {
+            if ($this->item_model->check_kode_product($post['kode_product'])->num_rows() > 0) {
                 // $this->session->set_flashdata('error', "");
-                echo "<script>alert('kode_barang sudah diinput!');</script>";
+                echo "<script>alert('kode_product sudah diinput!');</script>";
                 echo "<script>window.location='" . base_url('item/add') . "';</script>";
             } else {
                 $this->item_model->add($post);
             }
         } elseif (isset($_POST['edit'])) {
-            if ($this->item_model->check_kode_barang($post['kode_barang'], $post['id'])->num_rows() > 0) {
-                echo "<script>alert('kode_barang sudah diinput!');</script>";
+            if ($this->item_model->check_kode_product($post['kode_product'], $post['id'])->num_rows() > 0) {
+                echo "<script>alert('kode_product sudah diinput!');</script>";
                 echo "<script>window.location='" . base_url('item/edit/' . $post['id']) . "';</script>";
             } else {
                 $this->item_model->edit($post);

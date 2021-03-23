@@ -18,9 +18,9 @@
                             <h3 class="box-title text-center"><?= ucfirst($page) ?> Data Item</h3>
                         </div>
                         <div class="form-group">
-                            <label for="kode_barang">Kode Barang *</label>
+                            <label for="kode_product">Kode Product *</label>
                             <input type="hidden" name="id" value="<?= $row->item_id ?>">
-                            <input type="text" value="<?= $row->kode_barang ?>" class="form-control" id="kode_barang" name="kode_barang" required placeholder="Input Kode Barang">
+                            <input type="text" value="<?= $row->kode_product ?>" class="form-control" id="kode_product" name="kode_product" required placeholder="Input Kode Product">
                         </div>
                         <div class="form-group">
                             <label for="nama_item">Nama Product *</label>

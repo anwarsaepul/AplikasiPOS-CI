@@ -4,7 +4,7 @@ class item_model extends CI_Model
 {
     function get($id = null)
     {
-        $this->db->select('p_item.*, p_category.nama_category as nama_category, p_unit.nama_unit as nama_unit');
+        $this->db->select('p_item.*, nama_category, p_unit.nama_unit as nama_unit');
         $this->db->from('p_item');
         // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
         $this->db->join('p_category', 'p_category.category_id = p_item.category_id');
@@ -19,7 +19,7 @@ class item_model extends CI_Model
     {
         $params = [
             // nama d db    => nama di inputan
-            'kode_barang'   => $post['kode_barang'],
+            'kode_product'   => $post['kode_product'],
             'nama_item'     => $post['nama_item'],
             'category_id'   => $post['category'],
             'unit_id'       => $post['unit'],
@@ -32,7 +32,7 @@ class item_model extends CI_Model
     {
         $params = [
             // nama d db    => nama di inputan
-            'kode_barang'  => $post['kode_barang'],
+            'kode_product'  => $post['kode_product'],
             'nama_item'  => $post['nama_item'],
             'category_id'  => $post['category'],
             'unit_id'  => $post['unit'],
@@ -43,10 +43,10 @@ class item_model extends CI_Model
         $this->db->update('p_item', $params);
     }
 
-    function check_kode_barang($code, $id = null)
+    function check_kode_product($code, $id = null)
     {
         $this->db->from('p_item');
-        $this->db->where('kode_barang', $code);
+        $this->db->where('kode_product', $code);
         if ($id != null) {
             $this->db->where('item_id !=', $id);
         }

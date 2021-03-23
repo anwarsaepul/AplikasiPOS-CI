@@ -20,7 +20,7 @@ class Stock_model extends CI_Model
 
     function get_stock_in()
     {
-        $this->db->select('t_stock.stock_id, p_item.kode_barang, nama_item, qty, date, detail, nama_supplier, p_item.item_id');
+        $this->db->select('t_stock.stock_id, p_item.kode_product, price, nama_item, qty, date, detail, nama_supplier, p_item.item_id');
         $this->db->from('t_stock');
         // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
         $this->db->join('p_item', 't_stock.item_id = p_item.item_id');
