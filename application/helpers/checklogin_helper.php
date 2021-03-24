@@ -115,3 +115,4 @@ function tampil_sama($lokasi)
     </script>
 <?php
 }
+
