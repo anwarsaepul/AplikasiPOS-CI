@@ -5,6 +5,7 @@ class Unit extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        flashData();
         checklogin();
         $this->load->model('unit_model');
     }
@@ -39,8 +40,7 @@ class Unit extends CI_Controller
             );
             $this->template->load('template', 'product/unit/unit_form', $data);
         } else {
-            echo "<script>alert('Data Tidak ditemukan');</script>";
-            echo "<script>window.location='" . base_url('unit') . "';</script>";
+            tampil_error($lokasi = 'unit');
         }
     }
 
@@ -49,22 +49,16 @@ class Unit extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->unit_model->add($post);
-        }elseif (isset($_POST['edit'])) {
+            tampil_simpan($lokasi = 'unit');
+        } elseif (isset($_POST['edit'])) {
             $this->unit_model->edit($post);
+            tampil_edit($lokasi = 'unit');
         }
-
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Disimpan');
-        }
-        redirect('unit');
     }
 
     function del($id)
     {
         $this->unit_model->del($id);
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Dihapus');
-        }
-        redirect('unit');
+        tampil_hapus($lokasi = 'unit');
     }
 }

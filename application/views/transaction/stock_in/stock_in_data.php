@@ -39,7 +39,7 @@
 								data-date="<?= indo_date($data->date) ?>">
 									<i class="fa fa-eye"></i> Detail
 								</a>
-								<a href="<?= base_url('stock/in/del/' . $data->stock_id . '/' . $data->item_id) ?>" onclick="return confirm('Yakin hapus data <?= $data->item_id ?>?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+								<a href="<?= base_url('stock/in/del/' . $data->stock_id . '/' . $data->item_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
 							</td>
 						</tr>
 					<?php } ?>

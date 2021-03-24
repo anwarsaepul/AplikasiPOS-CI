@@ -5,6 +5,7 @@ class Item extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        flashData();
         checklogin();
         $this->load->model(['item_model', 'category_model', 'unit_model']);
     }
@@ -54,8 +55,7 @@ class Item extends CI_Controller
             );
             $this->template->load('template', 'product/item/item_form', $data);
         } else {
-            echo "<script>alert('Data Tidak ditemukan');</script>";
-            echo "<script>window.location='" . base_url('item') . "';</script>";
+            tampil_error($lokasi = 'item');
         }
     }
 
@@ -64,37 +64,24 @@ class Item extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             if ($this->item_model->check_kode_product($post['kode_product'])->num_rows() > 0) {
-                // $this->session->set_flashdata('error', "");
-                echo "<script>alert('kode_product sudah diinput!');</script>";
-                echo "<script>window.location='" . base_url('item/add') . "';</script>";
+                tampil_sama($lokasi = 'item/add');
             } else {
                 $this->item_model->add($post);
+                tampil_simpan($lokasi = 'item');
             }
         } elseif (isset($_POST['edit'])) {
             if ($this->item_model->check_kode_product($post['kode_product'], $post['id'])->num_rows() > 0) {
-                echo "<script>alert('kode_product sudah diinput!');</script>";
-                echo "<script>window.location='" . base_url('item/edit/' . $post['id']) . "';</script>";
+                tampil_sama($lokasi = 'item/edit/' . $post['id']);
             } else {
                 $this->item_model->edit($post);
+                tampil_edit($lokasi = 'item');
             }
         }
-
-        if ($this->db->affected_rows() > 0) {
-            // $this->session->set_flashdata('success', 'Data Berhasil Disimpan');
-            echo "<script>alert('Data Berhasil Disimpan');</script>";
-        }
-        echo "<script>window.location='" . base_url('item') . "';</script>";
-        // redirect('item');
     }
 
     function del($id)
     {
         $this->item_model->del($id);
-        if ($this->db->affected_rows() > 0) {
-            // $this->session->set_flashdata('success', 'Data Berhasil Dihapus');
-            echo "<script>alert('Data Berhasil Dihapus');</script>";
-        }
-        // redirect('item');
-        echo "<script>window.location='" . base_url('item') . "';</script>";
+        tampil_hapus($lokasi = 'item');
     }
 }

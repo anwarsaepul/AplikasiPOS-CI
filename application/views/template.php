@@ -16,6 +16,7 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.css">
 
 </head>
 
@@ -147,6 +148,13 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a href="<?= base_url('auth/logout') ?>" class="nav-link">
+                <i class="fas fa-sign-out-alt"></i></i>
+                <p>Logout</p>
+              </a>
+            </li>
+
 
           </ul>
         </nav>
@@ -184,6 +192,7 @@
   <!-- AdminLTE App -->
   <script src="<?= base_url() ?>assets/dist/js/adminlte.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -222,9 +231,46 @@
         $('#detail').text(detail);
         $('#price').text(price);
         $('#date').text(date);
-        
+
       });
     });
+    const flashData = $('.flash-data').data('flashdata');
+    if (flashData) {
+      Swal.fire({
+        icon: 'success',
+        text: 'Data Berhasil ' + flashData,
+        title: 'Data Category'
+      });
+    };
+
+    $(document).on('click', '#tmblhps' ,function(e) {
+      e.preventDefault();
+      const link = $(this).attr('href');
+      Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "data akan dihapus",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus data'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = link;
+        }
+      })
+
+    });
+    // console.log(flashData);
+    // const tbl_success = document.querySelector('#success_flash');
+    // tbl_success.addEventListener('click', function() {
+    //       Swal({
+    //         icon: 'success',
+    //         title: 'Success',
+    //         text: flash
+    //       });
+    //     });
+    // Swal.fire('Any fool can use a computer')
   </script>
 </body>
 

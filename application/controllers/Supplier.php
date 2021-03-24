@@ -5,6 +5,7 @@ class Supplier extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        flashData();
         checklogin();
         $this->load->model('supplier_model');
     }
@@ -42,8 +43,7 @@ class Supplier extends CI_Controller
             );
             $this->template->load('template', 'supplier/supplier_form', $data);
         } else {
-            echo "<script>alert('Data Tidak ditemukan');</script>";
-            echo "<script>window.location='" . base_url('supplier') . "';</script>";
+            tampil_error($lokasi = 'supplier');
         }
     }
 
@@ -52,22 +52,30 @@ class Supplier extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->supplier_model->add($post);
+            tampil_simpan($lokasi = 'supplier');
         }elseif (isset($_POST['edit'])) {
             $this->supplier_model->edit($post);
+            tampil_edit($lokasi = 'supplier');
         }
-
-        if ($this->db->affected_rows() > 0) {
-            echo "<script>alert('Data Berhasil disimpan');</script>";
-        }
-        echo "<script>window.location='" . base_url('supplier') . "';</script>";
     }
 
     function del($id)
     {
         $this->supplier_model->del($id);
-        if ($this->db->affected_rows() > 0) {
-            echo "<script>alert('Data Berhasil di Hapus');</script>";
+        $error = $this->db->error();
+        if($error['code'] != 0){
+            ?>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Data Tidak dapat dihapus (Sudah berelasi)'
+                    }).then((result) => {
+                    window.location='<?= site_url('supplier') ?>';
+                    })
+                </script>
+                <?php
+        }else{
+        tampil_hapus($lokasi = 'supplier');
         }
-        echo "<script>window.location='" . base_url('supplier') . "';</script>";
     }
 }

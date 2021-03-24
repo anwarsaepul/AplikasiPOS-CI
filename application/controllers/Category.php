@@ -5,6 +5,7 @@ class Category extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        flashData();
         checklogin();
         $this->load->model('category_model');
     }
@@ -39,8 +40,7 @@ class Category extends CI_Controller
             );
             $this->template->load('template', 'product/category/category_form', $data);
         } else {
-            echo "<script>alert('Data Tidak ditemukan');</script>";
-            echo "<script>window.location='" . base_url('category') . "';</script>";
+            tampil_error($lokasi = 'category');
         }
     }
 
@@ -49,22 +49,16 @@ class Category extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->category_model->add($post);
+            tampil_simpan($lokasi = 'category');
         }elseif (isset($_POST['edit'])) {
             $this->category_model->edit($post);
+            tampil_edit($lokasi = 'category');            
         }
-
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Disimpan');
-        }
-        redirect('category');
     }
 
     function del($id)
     {
         $this->category_model->del($id);
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Dihapus');
-        }
-        redirect('category');
+        tampil_hapus($lokasi = 'category');
     }
 }

@@ -12,6 +12,7 @@ class Auth extends CI_Controller
     function process()
     {
         $post = $this->input->post(null, TRUE);
+        flashData();
         if(isset($post['login'])){
             $this->load->model('user_model');
             $query = $this->user_model->login($post);
@@ -26,20 +27,33 @@ class Auth extends CI_Controller
                     'no_hp'         => $datalogin['no_hp'],
                     'password'      => $datalogin['password'],
                     'level'         => $datalogin['level'],
-
                 );
-                $this->session->set_userdata($data);
-                echo "<script>
-                    alert('Login Berhasil');
-                    window.location='".site_url('dashboard')."';
-                </script>";
+                $this->session->set_userdata($data); 
+                tampil_simpan($lokasi = 'dashboard')
+                ?>
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Success',
+                        title: 'Login Berhasil'
+                    }).then((result) => {
+                    window.location='<?= site_url() ?>';
+                    })
+                </script>
+                <?php
             }else{
-                echo "<script>
-                    alert('Login Gagal');
-                    window.location='".site_url('auth/login')."';
-                </script>";
+                ?>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Gagal',
+                        title: 'Login Gagal'
+                    }).then((result) => {
+                    window.location='<?= site_url('auth/login') ?>';
+                    })
+                </script>
+                <?php
             }
-            
         }
     }
 

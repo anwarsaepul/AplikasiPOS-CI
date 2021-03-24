@@ -33,7 +33,7 @@
 							<td><?= $data->deskripsi ?></td>
 							<td class="text-center" width="150px">
 								<a href="<?= base_url('supplier/edit/' . $data->supplier_id) ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
-								<a href="<?= base_url('supplier/del/' . $data->supplier_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+								<a href="<?= base_url('supplier/del/' . $data->supplier_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
 							</td>
 						</tr>
 

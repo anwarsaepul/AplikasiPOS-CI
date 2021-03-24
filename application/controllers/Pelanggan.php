@@ -5,6 +5,7 @@ class Pelanggan extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        flashData();
         checklogin();
         $this->load->model('customer_model');
     }
@@ -41,8 +42,7 @@ class Pelanggan extends CI_Controller
             );
             $this->template->load('template', 'customer/customer_form', $data);
         } else {
-            echo "<script>alert('Data Tidak ditemukan');</script>";
-            echo "<script>window.location='" . base_url('customer') . "';</script>";
+            tampil_error($lokasi = 'customer');
         }
     }
 
@@ -51,22 +51,18 @@ class Pelanggan extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->customer_model->add($post);
+            tampil_simpan($lokasi = 'customer');
         }elseif (isset($_POST['edit'])) {
             $this->customer_model->edit($post);
+            tampil_edit($lokasi = 'customer');
         }
-
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Disimpan');
-        }
-        redirect('customer');
     }
 
     function del($id)
     {
         $this->customer_model->del($id);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success','Data Berhasil Dihapus');
+            tampil_hapus($lokasi = 'customer');
         }
-        redirect('customer');
     }
 }
