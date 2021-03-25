@@ -10,7 +10,7 @@
                 <h3><i class="nav-icon fa fa-object-group"></i> Stock Barang</h3>
             </div>
         </div>
-        <div class="box-body">
+        <div class="box-body pb-3">
             <div class="box">
                 <div class="col-md-6 mx-auto col-md-offset-6">
                     <form action="<?= base_url('stock/process') ?>" method="POST">

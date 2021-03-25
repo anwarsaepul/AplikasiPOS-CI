@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed <?= $this->uri->segment(1) == 'sale' ? 'sidebar-collapse' : null ?>">
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -125,6 +125,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link 
               <?= $this->uri->segment(1) == 'stock' ||
+                $this->uri->segment(1) == 'sale' ||
                 $this->uri->segment(1) == 'stock/in' ||
                 $this->uri->segment(1) == 'stock/out' ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-shopping-cart"></i>
@@ -134,6 +135,12 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= base_url('sale') ?>" class="nav-link <?= $this->uri->segment(1) == 'sale' ? 'active' : '' ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Sales</p>
+                  </a>
+                </li>
                 <li class="nav-item">
                   <a href="<?= base_url('stock/in') ?>" class="nav-link <?= $this->uri->segment(1) == 'stock' && $this->uri->segment(2) == 'in'  ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
@@ -154,8 +161,6 @@
                 <p>Logout</p>
               </a>
             </li>
-
-
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -168,12 +173,12 @@
       <?= $contents ?>
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
+    <!-- <footer class="main-footer">
       <strong>Copyright &copy; 2021 <a href="https://adminlte.io">Saepul Anwar</a>.</strong> All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 3.1.0-rc
       </div>
-    </footer>
+    </footer> -->
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -243,7 +248,7 @@
       });
     };
 
-    $(document).on('click', '#tmblhps' ,function(e) {
+    $(document).on('click', '#tmblhps', function(e) {
       e.preventDefault();
       const link = $(this).attr('href');
       Swal.fire({

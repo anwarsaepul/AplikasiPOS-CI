@@ -1,17 +1,18 @@
 <!-- Main content -->
 <section class="content">
-    <div class="box">
-        <div class="box-header">
-            <div class="col-sm pt-3">
-                <ol class="float-sm-right">
-                    <a href="<?= base_url('stock/in') ?>" class="btn btn-warning btn-flat"><i class="nav-icon fa fa-undo"></i> Back
-                    </a>
-                </ol>
-                <h3><i class="nav-icon fa fa-object-group"></i> Stock Barang</h3>
+    <!-- <div class="jumbotron"> -->
+        <div class="box">
+            <div class="box-header">
+                <div class="col-sm">
+                    <ol class="float-sm-right">
+                        <a href="<?= base_url('stock/in') ?>" class="btn btn-warning btn-flat"><i class="nav-icon fa fa-undo"></i> Back
+                        </a>
+                    </ol>
+                    <h3><i class="nav-icon fa fa-object-group"></i> Stock Barang</h3>
+                </div>
             </div>
-        </div>
-        <div class="box-body">
-            <div class="box">
+            <div class="box-body pb-3">
+                <!-- <div class="box"> -->
                 <div class="col-md-6 mx-auto col-md-offset-6">
                     <form action="<?= base_url('stock/process') ?>" method="POST">
                         <div class="form-group">
@@ -22,7 +23,7 @@
                             <input type="date" value="<?= date('Y-m-d') ?>" class="form-control" name="date" required>
                         </div>
                         <div class="form-group">
-                            <label for="kodebarang">Kode Barang *</label>
+                            <label for="kodebarang">Kode Product *</label>
                             <div class="input-group">
                                 <input type="hidden" name="item_id" id="item_id">
                                 <input type="text" name="kodebarang" id="kodebarang" class="form-control" required autofocus>
@@ -58,7 +59,7 @@
                             <select name="supplier" id="supplier" class="form-control">
                                 <option value="">--Pilih Supplier--</option>
                                 <?php foreach ($supplier as $s => $data) { ?>
-                                    <option value="<?= $data->supplier_id ?>" ><?= $data->nama_supplier ?></option>
+                                    <option value="<?= $data->supplier_id ?>"><?= $data->nama_supplier ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -74,9 +75,10 @@
                         </div>
                     </form>
                 </div>
+                <!-- </div> -->
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </section>
 
 <div class="modal fade" id="modal-item">
@@ -112,9 +114,7 @@
                                 <td><?= indo_currency($data->price) ?></td>
                                 <td><?= $data->stock  ?></td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" 
-                                    data-kodebarang="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" 
-                                    data-stock="<?= $data->stock ?>">
+                                    <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" data-kodebarang="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" data-stock="<?= $data->stock ?>">
                                         <i class="fa fa-check"></i> Pilih</button>
                                 </td>
                             </tr>

@@ -49,3 +49,6 @@
         </div>
     </div>
 </section>
+<!-- <script>
+  window.addEventListener("load", window.print());
+</script> -->
