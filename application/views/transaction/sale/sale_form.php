@@ -31,8 +31,11 @@
                             </td>
                             <td>
                                 <div>
-                                    <select class="form-group" name="" id="customer">
+                                    <select class="form-control" id="customer">
                                         <option value="">Umum</option>
+                                        <?php foreach($customer as $cust => $data) {
+                                            echo'<option value="'.$data->$customer_id.'">'.$data->nama_customer.'</option>';
+                                        } ?>
                                     </select>
                                 </div>
                             </td>
@@ -79,7 +82,7 @@
                             <td></td>
                             <td>
                                 <div>
-                                    <button type="button" id="add_cart" class="btn btn-primary btn-flat">
+                                    <button type="button" id="add_cart" class="btn btn-primary">
                                         <i class="fa fa-cart-plus"></i>
                                     </button>
                                 </div>
@@ -95,7 +98,7 @@
                     <div class="col-md">
                         <div class="col-md-6 text-center mx-auto">
                             <!-- <table width="100%" class="border"> -->
-                            <h4>Invoice <b><span id="invoice">MP20210224</span></b></h4>
+                            <h4>Invoice <b><span id="invoice"><?= $invoice ?></span></b></h4>
                             <h1><b><span id="grand_total2" style="font-size: 50pt;">0</span></b></h1>
                         </div>
                         <!-- </table> -->
@@ -135,7 +138,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="box box-widget">
-                <div class="box-body">
+                <div class="box-body info-box">
                     <table>
                         <tr>
                             <td style="vertical-align: top; width: 30%;">
@@ -175,7 +178,7 @@
         </div>
         <div class="col-lg-3">
             <div class="box box-widget">
-                <div class="box-body">
+                <div class="box-body info-box">
                     <table>
                         <tr>
                             <td style="vertical-align: top; width: 30%;">
@@ -203,7 +206,7 @@
         </div>
         <div class="col-lg-3">
             <div class="box box-widget">
-                <div class="box-body">
+                <div class="box-body info-box">
                     <table>
                         <tr>
                             <td style="vertical-align: top; width: 30%;">
