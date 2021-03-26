@@ -19,7 +19,7 @@
                         <th>Nama Item</th>
                         <th>Category</th>
                         <th>Unit</th>
-                        <th>Price</th>
+                        <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
                     </tr>
@@ -33,7 +33,7 @@
                             <td><?= $data->nama_item ?></td>
                             <td><?= $data->nama_category ?></td>
                             <td><?= $data->nama_unit ?></td>
-                            <td><?= indo_currency($data->price) ?></td>
+                            <td><?= indo_currency($data->harga_jual) ?></td>
                             <td><?= $data->stock ?></td>
                             <td class="text-center" width="150px">
                                 <a href="<?= base_url('item/edit/' . $data->item_id) ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>

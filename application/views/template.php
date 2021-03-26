@@ -205,36 +205,79 @@
         "lengthChange": false
       });
 
+      $(document).on('click', '#add_cart', function() {
+        $('#cart-table').append(`
+        <tr>
+          <td style="width: 5%;">
+            <span name="no[]"></span>
+          </td>
+          <td>
+            <span name="kodeproduct[]"></span>
+          </td>
+          <td>
+            <span name="namaitem[]"></span>
+          </td>
+          <td>
+            <span name="price[]"></span>
+          </td>
+            <td>
+          <span name="qty[]"></span>
+            </td>
+          <td>
+            <span name=discount[]></span>
+          </td>
+          <td>
+            <span name="total[]"></span>
+          </td>
+          <td class="text-center">
+            <a href="" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
+            <a href="" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Deconste</a>
+          </td>
+        </tr>                
+        `)
+      });
+      $(document).on('click', '#tmblhps', function(e) {
+        e.preventDefault();
+        $(this).parent('tr').remove();
+
+
+      });
+
+
       $(document).on('click', '#select', function() {
-        let item_id = $(this).data('id');
-        let kodebarang = $(this).data('kodebarang');
-        let nama_item = $(this).data('nama_item');
-        let nama_unit = $(this).data('nama_unit');
-        let stock = $(this).data('stock');
+        const item_id = $(this).data('id');
+        const kode_product = $(this).data('kode_product');
+        const nama_item = $(this).data('nama_item');
+        const nama_unit = $(this).data('nama_unit');
+        const stock = $(this).data('stock');
 
         $('#item_id').val(item_id);
-        $('#kodebarang').val(kodebarang);
+        $('#kode_product').val(kode_product);
         $('#nama_item').val(nama_item);
         $('#nama_unit').val(nama_unit);
         $('#stock').val(stock);
       });
 
       $(document).on('click', '#set_detail', function() {
-        let kodeproduct = $(this).data('kodeproduct');
-        let nama_item = $(this).data('nama_item');
-        let nama_supplier = $(this).data('nama_supplier');
-        let qty = $(this).data('qty');
-        let detail = $(this).data('detail');
-        let price = $(this).data('price');
-        let date = $(this).data('date');
-        // alert(nama_supplier);
+        const kodeproduct = $(this).data('kodeproduct');
+        const nama_item = $(this).data('nama_item');
+        const nama_supplier = $(this).data('nama_supplier');
+        const qty = $(this).data('qty');
+        const detail = $(this).data('detail');
+        // const price = $(this).data('price');
+        const harga_beli = $(this).data('harga_beli');
+        const harga_jual = $(this).data('harga_jual');
+        const date = $(this).data('date');
+        // alert(kodeproduct);
 
         $('#kodeproduct').text(kodeproduct);
         $('#nama_item').text(nama_item);
         $('#nama_supplier').text(nama_supplier);
         $('#qty').text(qty);
         $('#detail').text(detail);
-        $('#price').text(price);
+        // $('#price').text(price);
+        $('#harga_beli').text(harga_beli);
+        $('#harga_jual').text(harga_jual);
         $('#date').text(date);
 
       });

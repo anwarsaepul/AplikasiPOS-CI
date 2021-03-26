@@ -4,11 +4,12 @@ class item_model extends CI_Model
 {
     function get($id = null)
     {
-        $this->db->select('p_item.*, nama_category, p_unit.nama_unit as nama_unit');
+        $this->db->select('p_item.*, t_stock.harga_beli as harga_beli , nama_category, p_unit.nama_unit as nama_unit');
         $this->db->from('p_item');
         // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
         $this->db->join('p_category', 'p_category.category_id = p_item.category_id');
         $this->db->join('p_unit', 'p_unit.unit_id = p_item.unit_id');
+        $this->db->join('t_stock', 't_stock.stock_id = p_item.item_id', 'left');
         if ($id != null) {
             $this->db->where('item_id', $id);
         }
@@ -23,7 +24,7 @@ class item_model extends CI_Model
             'nama_item'     => $post['nama_item'],
             'category_id'   => $post['category'],
             'unit_id'       => $post['unit'],
-            'price'         => $post['price'],
+            'harga_jual'    => $post['price'],
         ];
         $this->db->insert('p_item', $params);
     }
@@ -33,11 +34,11 @@ class item_model extends CI_Model
         $params = [
             // nama d db    => nama di inputan
             'kode_product'  => $post['kode_product'],
-            'nama_item'  => $post['nama_item'],
-            'category_id'  => $post['category'],
-            'unit_id'  => $post['unit'],
-            'price'  => $post['price'],
-            'updated'          => date('Y-m-d H:i:s'),
+            'nama_item'     => $post['nama_item'],
+            'category_id'   => $post['category'],
+            'unit_id'       => $post['unit'],
+            'harga_jual'    => $post['price'],
+            'updated'       => date('Y-m-d H:i:s'),
         ];
         $this->db->where('item_id', $post['id']);
         $this->db->update('p_item', $params);

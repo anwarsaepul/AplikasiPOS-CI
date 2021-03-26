@@ -20,9 +20,9 @@ class Item extends CI_Controller
     {
         $item = new stdClass();
         $item->item_id      = null;
-        $item->kode_product  = null;
+        $item->kode_product = null;
         $item->nama_item    = null;
-        $item->price        = null;
+        $item->harga_jual   = null;
         $item->category_id  = null;
         $item->unit_id      = null;
 
