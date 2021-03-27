@@ -6,10 +6,12 @@ class Sale extends CI_Controller
         parent::__construct();
         checklogin();
         $this->load->model(['sale_model', 'item_model', 'customer_model', 'stock_model', 'keranjang_model']);
+
     }
 
     function index()
     {
+
         $item  = $this->item_model->get()->result();
         $keranjang = $this->keranjang_model->get_keranjang()->result();
         $customer = $this->customer_model->get()->result();

@@ -35,8 +35,6 @@ class Auth extends CI_Controller
                     Swal.fire({
                         icon: 'success',
                         text: 'Success',
-                        showConfirmButton: false,
-                        timer: 1500,
                         title: 'Login Berhasil'
                     }).then((result) => {
                     window.location='<?= site_url() ?>';
@@ -49,8 +47,6 @@ class Auth extends CI_Controller
                     Swal.fire({
                         icon: 'error',
                         text: 'Gagal',
-                        showConfirmButton: false,
-                        timer: 1500,
                         title: 'Login Gagal'
                     }).then((result) => {
                     window.location='<?= site_url('auth/login') ?>';

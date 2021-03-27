@@ -34,8 +34,7 @@
 							<td>
 								<a class="btn btn-default btn-xs" id="set_detail" data-toggle="modal" data-target="#modal-detail" data-kodeproduct="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>"  
 								data-qty="<?= $data->qty ?>" 
-								data-harga_beli="<?= indo_currency($data->harga_beli) ?>" 
-								data-harga_jual="<?= indo_currency($data->harga_jual) ?>"
+								data-price="<?= indo_currency($data->price) ?>" 
 								data-detail="<?= $data->detail ?>" 
 								data-date="<?= indo_date($data->date) ?>">
 									<i class="fa fa-eye"></i> Detail
@@ -74,9 +73,10 @@
 							<th>Qty</th>
 							<td><span id="qty"></td>
 						</tr>
+						
 						<tr>
-							<th>Harga Jual</th>
-							<td><span id="harga_jual"></td>
+							<th>Harga</th>
+							<td><span id="price"></td>
 						</tr>
 						<tr>
 							<th>Detail</th>

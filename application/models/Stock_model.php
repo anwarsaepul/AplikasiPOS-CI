@@ -20,7 +20,7 @@ class Stock_model extends CI_Model
 
     function get_stock_in()
     {
-        $this->db->select('t_stock.stock_id, p_item.kode_product, harga_beli, harga_jual, nama_item, qty, date, detail, nama_supplier, p_item.item_id');
+        $this->db->select('t_stock.stock_id, p_item.kode_product, price, nama_item, qty, date, detail, nama_supplier, p_item.item_id');
         $this->db->from('t_stock');
         // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
         $this->db->join('p_item', 't_stock.item_id = p_item.item_id');
@@ -32,7 +32,7 @@ class Stock_model extends CI_Model
 
     function get_stock_out()
     {
-        $this->db->select('t_stock.stock_id, p_item.kode_product, harga_beli, harga_jual, nama_item, qty, date, detail, nama_supplier, p_item.item_id');
+        $this->db->select('t_stock.stock_id, p_item.kode_product, price, nama_item, qty, date, detail, nama_supplier, p_item.item_id');
         $this->db->from('t_stock');
         // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
         $this->db->join('p_item', 't_stock.item_id = p_item.item_id');
@@ -51,7 +51,6 @@ class Stock_model extends CI_Model
             'detail'        => $post['detail'],
             'supplier_id'   => $post['supplier'] == '' ? null : $post['supplier'],
             'qty'           => $post['qty'],
-            'harga_beli'    => $post['harga_beli'],
             'date'          => $post['date'],
             'user_id'       => $this->session->userdata('user_id'),
         ];
@@ -66,7 +65,6 @@ class Stock_model extends CI_Model
             'type'          => 'out',
             'detail'        => $post['detail'],
             'qty'           => $post['qty'],
-            // 'harga_beli'    => $post['harga_beli'],
             'date'          => $post['date'],
             'user_id'       => $this->session->userdata('user_id'),
         ];

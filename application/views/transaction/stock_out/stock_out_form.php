@@ -22,10 +22,10 @@
                             <input type="date" value="<?= date('Y-m-d') ?>" class="form-control" name="date" required>
                         </div>
                         <div class="form-group">
-                            <label for="kode_product">Kode Product *</label>
+                            <label for="kodebarang">Kode Barang *</label>
                             <div class="input-group">
                                 <input type="hidden" name="item_id" id="item_id">
-                                <input type="text" name="kode_product" id="kode_product" class="form-control" required autofocus placeholder="Pilih Kode Barang">
+                                <input type="text" name="kodebarang" id="kodebarang" class="form-control" required autofocus placeholder="Pilih Kode Barang">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
                                         <i class="fa fa-search"></i>
@@ -87,7 +87,7 @@
                             <th>Kode Barang</th>
                             <th>Nama Item</th>
                             <th>Unit</th>
-                            <th>Harga Jual</th>
+                            <th>Price</th>
                             <th>Stock</th>
                             <th>Aksi</th>
                         </tr>
@@ -100,11 +100,11 @@
                                 <td><?= $data->kode_product ?></td>
                                 <td><?= $data->nama_item ?></td>
                                 <td><?= $data->nama_unit ?></td>
-                                <td><?= indo_currency($data->harga_jual) ?></td>
+                                <td><?= indo_currency($data->price) ?></td>
                                 <td><?= $data->stock  ?></td>
                                 <td>
                                     <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" 
-                                    data-kode_product="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" 
+                                    data-kodebarang="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" 
                                     data-stock="<?= $data->stock ?>">
                                         <i class="fa fa-check"></i> Pilih</button>
                                 </td>

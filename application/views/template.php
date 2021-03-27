@@ -205,6 +205,7 @@
         "lengthChange": false
       });
 
+<<<<<<< HEAD
       $(document).on('click', '#add_cart', function() {
         $('#cart-table').append(`
         <tr>
@@ -264,9 +265,17 @@
         
         
         $('#harga_jual').text(harga_jual);
+=======
+      $(document).on('click', '#select', function() {
+        let item_id = $(this).data('id');
+        let kodebarang = $(this).data('kodebarang');
+        let nama_item = $(this).data('nama_item');
+        let nama_unit = $(this).data('nama_unit');
+        let stock = $(this).data('stock');
+>>>>>>> parent of d72649b (Menambahkan harga beli supplier)
 
         $('#item_id').val(item_id);
-        $('#kode_product').val(kode_product);
+        $('#kodebarang').val(kodebarang);
         $('#nama_item').val(nama_item);
         $('#nama_unit').val(nama_unit);
         $('#stock').val(stock);
@@ -363,6 +372,7 @@
 
 
       $(document).on('click', '#set_detail', function() {
+<<<<<<< HEAD
         const kodeproduct = $(this).data('kodeproduct');
         const nama_item = $(this).data('nama_item');
         const nama_supplier = $(this).data('nama_supplier');
@@ -372,14 +382,28 @@
         const harga_jual = $(this).data('harga_jual');
         const date = $(this).data('date');
         // alert(kodeproduct);
+=======
+        let kodeproduct = $(this).data('kodeproduct');
+        let nama_item = $(this).data('nama_item');
+        let nama_supplier = $(this).data('nama_supplier');
+        let qty = $(this).data('qty');
+        let detail = $(this).data('detail');
+        let price = $(this).data('price');
+        let date = $(this).data('date');
+        // alert(nama_supplier);
+>>>>>>> parent of d72649b (Menambahkan harga beli supplier)
 
         $('#kodeproduct').text(kodeproduct);
         $('#nama_item').text(nama_item);
         $('#nama_supplier').text(nama_supplier);
         $('#qty').text(qty);
         $('#detail').text(detail);
+<<<<<<< HEAD
         $('#harga_beli').text(harga_beli);
         $('#harga_jual').text(harga_jual);
+=======
+        $('#price').text(price);
+>>>>>>> parent of d72649b (Menambahkan harga beli supplier)
         $('#date').text(date);
       });
     });
