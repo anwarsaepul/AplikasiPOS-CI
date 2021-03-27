@@ -231,7 +231,7 @@
           </td>
           <td class="text-center">
             <a href="" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
-            <a href="" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Deconste</a>
+            <a href="" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
           </td>
         </tr>                
         `)
@@ -250,13 +250,117 @@
         const nama_item = $(this).data('nama_item');
         const nama_unit = $(this).data('nama_unit');
         const stock = $(this).data('stock');
+        const harga_jual = $(this).data('harga_jual');
+        const qty = $(this).data('qty');
+
+        const qtysale = $('#qty').val();
+        const discount = $('#discount').val();
+
+        const keranjang_id = $(this).data('keranjang_id');
+        alert(keranjang_id);
+
+
+        
+        
+        
+        $('#harga_jual').text(harga_jual);
 
         $('#item_id').val(item_id);
         $('#kode_product').val(kode_product);
         $('#nama_item').val(nama_item);
         $('#nama_unit').val(nama_unit);
         $('#stock').val(stock);
+
+
+        var grand_total = parseInt(harga_jual) * parseInt(qtysale);
+        var diskon = (discount/100) * grand_total;
+        var total_akhir = parseInt(grand_total) - parseInt(diskon);
+        
+        $('#sub_total').val(total_akhir);
+
+
+          // alert();
+        $('#note').text('harga :'+ harga_jual +
+                ' Qty :' + qtysale +
+                ' Total ' + grand_total +
+                ' diskon : ' + discount + '%' +
+                ' = ' + diskon +
+                ' Total Akhir = ' + total_akhir);
+
+                $(document).on('click', '#addcart', function() {
+        // const harga_jual = $(this).data('harga_jual');
+        const discount  = $("#discount").val();
+        const qtysale = $('#qtysale').val();
+
+
+        // alert(harga_jual);
+        
+
+
       });
+
+          
+
+ 
+      });
+
+      // $(function() {
+        $('document').on('click', '#qty', function() {
+            // let total = $('#sub_total').val();
+            // let discount = $('#discount').val();
+            // let uang = $(this).val();
+
+            // $('#sub_total').val(discount);
+            alert('ok');
+        });
+
+      // $('.hitung').keyup(function() {
+      //   const qtysale = parseInt($('#qty').val());
+      //   const harga_jual = parseInt($('#harga_jual').val());
+
+
+
+        // var grand_total = parseInt(harga_jual) * parseInt(qtysale);
+        // var diskon = (discount / 100) * grand_total;
+        // var total_akhir = parseInt(grand_total) - parseInt(diskon);
+    //     var total_akhir = qtysale * harga_jual;
+
+    //     $('#sub_total').attr('value',total_akhir);
+    // });
+
+      
+
+
+      $(document).on('keyup','#sub_total', function(){
+        alert('OK');
+        // var discount  = $("#discount2").val();
+        //     var sub_total = $("#sub_total").val();
+        //     var total = parseInt(discount) * parseInt(sub_total);
+
+        //     $('#sub_total').val(total);
+        
+      });
+
+      // $("#discount2, sub_total").keyup(function() {
+      //       var discount  = $("#discount2").val();
+      //       var sub_total = $("#sub_total").val();
+      //       // var qtysale = $("#qtysale").val();
+
+      //       var total = parseInt(discount) * parseInt(sub_total);
+
+
+      //       // var grand_total = parseInt(harga_jual) * parseInt(qtysale);
+      //       // var diskon = (discount/100) * grand_total;
+      //       // var total_akhir = parseInt(grand_total) - parseInt(diskon);
+      //       $('#sub_total').val(total);
+
+
+      //       // $("#total").val(total);
+      //   });
+
+      
+
+
 
       $(document).on('click', '#set_detail', function() {
         const kodeproduct = $(this).data('kodeproduct');
@@ -264,7 +368,6 @@
         const nama_supplier = $(this).data('nama_supplier');
         const qty = $(this).data('qty');
         const detail = $(this).data('detail');
-        // const price = $(this).data('price');
         const harga_beli = $(this).data('harga_beli');
         const harga_jual = $(this).data('harga_jual');
         const date = $(this).data('date');
@@ -275,13 +378,12 @@
         $('#nama_supplier').text(nama_supplier);
         $('#qty').text(qty);
         $('#detail').text(detail);
-        // $('#price').text(price);
         $('#harga_beli').text(harga_beli);
         $('#harga_jual').text(harga_jual);
         $('#date').text(date);
-
       });
     });
+
     const flashData = $('.flash-data').data('flashdata');
     if (flashData) {
       Swal.fire({

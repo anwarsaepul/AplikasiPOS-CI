@@ -16,4 +16,10 @@ class Sale_model extends CI_Model
         }
         return $invoice = "ID".date('ymd').$no;
     }
+
+    function keranjang()
+    {
+        
+        
+    }
 }

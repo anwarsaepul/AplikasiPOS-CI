@@ -75,4 +75,5 @@ class item_model extends CI_Model
         $sql = "UPDATE p_item SET stock = stock - '$qty' WHERE item_id = '$id'";
         $this->db->query($sql);
     }
+    
 }

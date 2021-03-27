@@ -15,7 +15,7 @@
                 <div class="col-md-6 mx-auto col-md-offset-6">
                     <form action="<?= base_url('stock/process') ?>" method="POST">
                         <div class="form-group">
-                            <h3 class="box-title text-center"> Data Stock Masuk</h3>
+                            <h3 class="box-title text-center"> Data Stock Keluar</h3>
                         </div>
                         <div class="form-group">
                             <label for="">Tanggal *</label>

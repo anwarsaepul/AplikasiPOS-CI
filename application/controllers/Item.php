@@ -39,10 +39,11 @@ class Item extends CI_Controller
     }
 
 
-    function edit($id)
+    public function edit($id)
     {
         $query = $this->item_model->get($id);
-        if ($query->num_rows() > 0) {
+        if($query !== FALSE && $query->num_rows() >= 1){
+        // if ($query->num_rows() > 0) {
             $item = $query->row();
             $query_category = $this->category_model->get();
             $query_unit = $this->unit_model->get();
@@ -54,9 +55,10 @@ class Item extends CI_Controller
                 'unit'      => $query_unit,
             );
             $this->template->load('template', 'product/item/item_form', $data);
-        } else {
-            tampil_error($lokasi = 'item');
         }
+        //  else {
+        //     tampil_error($lokasi = 'item');
+        // }
     }
 
     function process()

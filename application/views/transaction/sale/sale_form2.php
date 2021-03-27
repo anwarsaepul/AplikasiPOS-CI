@@ -41,77 +41,54 @@
                             </td>
                         </tr>
                     </table>
-                    </form>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="box box-widget">
-                <div class="box-body info-box hitung">
-                    <form action="<?= base_url('sale/process') ?>" method="POST">
-                        <table width="100%">
-                            <tr>
-                                <td style="vertical-align: top; width: 30%;">
-                                    <label for="kode_product">Kode Product</label>
-                                </td>
-                                <td>
-                                    <div class="form-group input-group">
-                                        <input type="hidden" name="keranjang_id" id="keranjang_id">
-                                        <input type="hidden" name="item_id" id="item_id">
-                                        <input type="hidden" name="harga_jual" id="harga_jual">
-                                        <input type="hidden" name="stock" id="stock">
-                                        <input type="text" name="kode_product" id="kode_product" class="form-control" required autofocus>
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;">
-                                    <label for="qty">QTY</label>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div class="form-group">
-                                            <input type="number" name="qty" id="qty" value="1" min="1" class="form-control">
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top; width: 30%;">
-                                    <label for="discount">Discount</label>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" name="discount" id="discount" value="0" min="0" class="form-control">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top; width: 30%;">
-                                    <label for="sub_total">Sub Total</label>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" id="sub_total" name="sub_total" value="0" class="form-control" readonly>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <div class="">
-                                        <button type="submit" id="addcart" name="add_cart" class="btn btn-block btn-primary">
-                                            <i class="fa fa-cart-plus"></i>
+                <div class="box-body info-box">
+                    <table width="100%">
+                        <tr>
+                            <td style="vertical-align: top; width: 30%;">
+                                <label for="kode_product">Kode Product</label>
+                            </td>
+                            <td>
+                                <div class="form-group input-group">
+                                    <input type="hidden" id="item_id">
+                                    <input type="hidden" id="price">
+                                    <input type="hidden" id="stock">
+                                    <input type="text" name="kode_product" id="kode_product" class="form-control" required autofocus>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
+                                            <i class="fa fa-search"></i>
                                         </button>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <label for="qty">QTY</label>
+                            </td>
+                            <td>
+                                <div>
+                                    <div class="form-group">
+                                        <input type="number" id="qty" value="1" min="1" class="form-control">
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div>
+                                    <button type="button" id="add_cart" class="btn btn-primary">
+                                        <i class="fa fa-cart-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -135,37 +112,26 @@
         <div class="col-lg-12">
             <div class="box box-widget">
                 <div class="box-body table responsive">
-                    <table class="table table-bordered border text-center table-striped" id="table1">
+                    <table class="table table-bordered text-center table-striped" id="table1">
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
                                 <th>Kode Product</th>
                                 <th>Nama Item</th>
-                                <th>Harga</th>
-                                <th>QTY</th>
-                                <th>Discount Item</th>
-                                <th>Total</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th width="10%">Discount Item</th>
+                                <th width="15%">Total</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <?php $no = 1;
-                        foreach ($keranjang as $i => $data) { ?>
+                        <tbody id="cart-table">
                             <tr>
-                                <td><?= $no++ ?>.</td>
-                                <td><?= $data->kode_product ?></td>
-                                <td><?= $data->nama_item ?></td>
-                                <td><?= $data->harga_jual ?></td>
-                                <td><?= $data->qty ?></td>
-                                <td><?= $data->discount ?></td>
-                                <td><?= $data->total ?></td>
-                                <td>
-                                    <a href="<?= base_url('sale/del/' . $data->keranjang_id . '/' . $data->item_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
-                                    <a href="<?= base_url('sale/del/' . $data->item_id) ?>" class="btn btn-danger btn-xs" id="tmblhps"><i class="fa fa-trash"></i>Delete</a>
-                                </td>
+                                <td>Input</td>
                             </tr>
-                        <?php } ?>
-                        <!-- <tbody id="cart-table"> -->
-
+                            <!-- <tr>
+                                <td colspan="9" class="text-center">Tidak ada Item</td>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -180,6 +146,26 @@
                     <table>
                         <tr>
                             <td style="vertical-align: top; width: 30%;">
+                                <label for="sub_total">Sub Total</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="number" id="sub_total" value="" readonly class="form-control">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top; width: 30%;">
+                                <label for="discount">Discount</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="number" id="discount" value="0" min="0" class="form-control">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top; width: 30%;">
                                 <label for="grand_total">Grand Total</label>
                             </td>
                             <td>
@@ -189,6 +175,15 @@
                             </td>
                         </tr>
 
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="box box-widget">
+                <div class="box-body info-box">
+                    <table>
                         <tr>
                             <td style="vertical-align: top; width: 30%;">
                                 <label for="cash">Cash</label>
@@ -213,9 +208,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="col-lg"> -->
-        <div class="col-lg-6">
+        <div class="col-lg-3">
             <div class="box box-widget">
                 <div class="box-body info-box">
                     <table>
@@ -233,24 +226,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-
-            <div class="row ">
-                <div class="col text-center border">
-                    <button id="cancel-payment" class="btn btn-flat btn-warning">
-                        <i class="fa fa-refresh"></i>Cancel
-                    </button>
-                </div>
-                <div class="col text-center border">
-                    <button id="process-payment" class="btn btn-flat btn-success">
-                        <i class="fa fa-paper-plane-o"></i>Process Payment
-                    </button>
-                </div>
+        <div class="col-lg-3">
+            <div>
+                <button id="cancel-payment" class="btn btn-flat btn-warning">
+                    <i class="fa fa-refresh"></i>Cancel
+                </button><br><br>
+                <button id="process-payment" class="btn btn-flat btn-lg btn-success">
+                    <i class="fa fa-paper-plane-o"></i>Process Payment
+                </button>
             </div>
         </div>
-        <!-- </div> -->
-
-        </form>
+    </div>
 </section>
 
 <div class="modal fade" id="modal-item">
@@ -267,10 +253,10 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>Kode Product</th>
+                            <th>Kode Barang</th>
                             <th>Nama Item</th>
                             <th>Unit</th>
-                            <th>Harga</th>
+                            <th>Price</th>
                             <th>Stock</th>
                             <th>Aksi</th>
                         </tr>
@@ -283,10 +269,10 @@
                                 <td><?= $data->kode_product ?></td>
                                 <td><?= $data->nama_item ?></td>
                                 <td><?= $data->nama_unit ?></td>
-                                <td><?= indo_currency($data->harga_jual) ?></td>
+                                <td><?= indo_currency($data->price) ?></td>
                                 <td><?= $data->stock  ?></td>
                                 <td>
-                                    <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" data-kode_product="<?= $data->kode_product ?>" data-harga_jual="<?= $data->harga_jual ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" data-stock="<?= $data->stock ?>">
+                                    <button class="btn btn-primary btn-xs" data-dismiss="modal" aria-label="Close" id="select" data-id="<?= $data->item_id ?>" data-kode_product="<?= $data->kode_product ?>" data-nama_item="<?= $data->nama_item ?>" data-nama_unit="<?= $data->nama_unit ?>" data-stock="<?= $data->stock ?>">
                                         <i class="fa fa-check"></i> Pilih</button>
                                 </td>
                             </tr>
@@ -297,16 +283,3 @@
         </div>
     </div>
 </div>
-
-<!-- <script>
-    $(function() {
-        $('body').on('keyup', '#qty', function() {
-            // let total = $('#sub_total').val();
-            // let discount = $('#discount').val();
-            // let uang = $(this).val();
-
-            // $('#sub_total').val(total * discount);
-            alert('ok');
-        });
-    });
-</script> -->
