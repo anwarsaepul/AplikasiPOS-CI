@@ -1,7 +1,7 @@
 <!-- Main content -->
 <section class="content p-2">
-    <div class="row pt-2">
-        <div class="col-lg-6 mx-auto">
+    <div class="row p-2">
+        <div class="col-md-6 mx-auto">
             <div class="box box-widget">
                 <div class="box-body info-box p-4 hitung">
                     <div class="col-md mx-auto">
@@ -150,8 +150,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg">
+    <div class="row p-2">
+        <div class="col-md">
             <div class="box box-widget">
                 <div class="box-body table-responsive">
                     <table class="table table-bordered border text-center table-striped" id="table1">
@@ -177,12 +177,12 @@
                                 <td><?= $data->nama_item ?></td>
                                 <td><?= indo_currency($data->harga_jual) ?></td>
                                 <td><?= $data->qty ?></td>
-                                <td><?= $data->sub_total ?></td>
+                                <td><?= indo_currency($data->sub_total) ?></td>
                                 <td><?= $data->discount ?>%</td>
-                                <td><?= $data->potongan_diskon ?></td>
-                                <td><?= $data->total_akhir ?></td>
+                                <td><?= indo_currency($data->potongan_diskon) ?></td>
+                                <td><?= indo_currency($data->total_akhir) ?></td>
                                 <td>
-                                    <a href="<?= base_url('sale/del/' . $data->keranjang_id . '/' . $data->item_id) ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+                                    <a href="<?= base_url('sale/del/' . $data->keranjang_id . '/' . $data->item_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
                                 </td>
                             </tr>
                         <?php } ?>

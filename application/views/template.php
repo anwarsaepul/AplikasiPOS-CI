@@ -225,7 +225,7 @@
         const keranjang_id = $(this).data('keranjang_id');
         // alert(keranjang_id);
 
-        $('#harga_jual').text(harga_jual);
+        $('#harga_jual').val(harga_jual);
         $('#item_id').val(item_id);
         $('#kode_product').val(kode_product);
         $('#nama_item').val(nama_item);

@@ -35,9 +35,52 @@ class Keranjang_model extends CI_Model
         $this->db->insert('t_keranjang', $params);
     }
 
+    function add_keranjang_sama($post)
+    {
+        $params = [
+            // nama d db        => nama di inputan
+            'item_id'           => $post['item_id'],
+            'qty'               => $post['qty'],
+            'discount'          => $post['discount'] == '' ? null : $post['discount'],
+            'sub_total'         => $post['sub_total'],
+            'potongan_diskon'   => $post['potongan_diskon'],
+            'total_akhir'       => $post['total_akhir'],
+        ];
+        $this->db->insert('t_keranjang', $params);
+    }
+
+    function update_stock_keranjang($data)
+    {
+        $id                 = $data['item_id'];
+        $qty                = $data['qty'];
+        $discount           = $data['discount'];
+        $harga_jual         = $data['harga_jual'];
+
+        $sql = "UPDATE t_keranjang SET qty = qty + '$qty', 
+                sub_total = '$harga_jual' * qty, 
+                discount = '$discount', 
+                potongan_diskon = (discount/100) * sub_total, 
+                total_akhir = sub_total - potongan_diskon 
+                WHERE item_id = '$id'";
+        $this->db->query($sql);
+    }
+
     function del($id)
     {
         $this->db->where('keranjang_id', $id);
         $this->db->delete('t_keranjang');
+    }
+
+    function check_id_product($code, $id = null)
+    {
+        // nama table
+        $this->db->from('t_keranjang');
+        // yg di cek
+        $this->db->where('item_id', $code);
+        if ($id != null) {
+            // primary
+            $this->db->where('keranjang_id !=', $id);
+        }
+        return $query =  $this->db->get();
     }
 }

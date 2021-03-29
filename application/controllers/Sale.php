@@ -27,9 +27,16 @@ class Sale extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add_cart'])) {
-            $this->keranjang_model->add_keranjang($post);
-            $this->item_model->update_stock_out($post);
-            tampil_simpan('sale');
+
+            if ($this->keranjang_model->check_id_product($post['item_id'])->num_rows() > 0) {
+                // tampil_sama($lokasi = 'sale');
+                $this->keranjang_model->update_stock_keranjang($post);
+                tampil_simpan('sale');
+            } else {
+                $this->keranjang_model->add_keranjang($post);
+                $this->item_model->update_stock_out($post);
+                tampil_simpan('sale');
+            }
         }
     }
 
