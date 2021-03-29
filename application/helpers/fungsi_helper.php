@@ -48,6 +48,8 @@ function tampil_hapus($lokasi)
         Swal.fire({
             icon: 'success',
             text: 'Success',
+            showConfirmButton: false,
+            timer: 1500,
             title: 'Data Berhasil Dihapus'
         }).then((result) => {
             window.location = '<?= site_url($lokasi) ?>';
@@ -63,7 +65,9 @@ function tampil_edit($lokasi)
         Swal.fire({
             icon: 'success',
             text: 'Success',
-            title: 'Data Berhasil Diedit'
+            showConfirmButton: false,
+            title: 'Data Berhasil Diedit',
+            timer: 1500
         }).then((result) => {
             window.location = '<?= site_url($lokasi) ?>';
         })
@@ -78,7 +82,9 @@ function tampil_simpan($lokasi)
         Swal.fire({
             icon: 'success',
             text: 'Success',
-            title: 'Data Berhasil Disimpan'
+            title: 'Data Berhasil Disimpan',
+            showConfirmButton: false,
+            timer: 1500
         }).then((result) => {
             window.location = '<?= site_url($lokasi) ?>';
         })
@@ -93,6 +99,8 @@ function tampil_error($lokasi)
         Swal.fire({
             icon: 'error',
             text: 'Error',
+            showConfirmButton: false,
+            timer: 1500,
             title: 'Data tidak ditemukan'
         }).then((result) => {
             window.location = '<?= site_url($lokasi) ?>';
@@ -108,6 +116,8 @@ function tampil_sama($lokasi)
         Swal.fire({
             icon: 'error',
             text: 'Error',
+            showConfirmButton: false,
+            timer: 1500,
             title: 'kode product sudah diinput'
         }).then((result) => {
             window.location = '<?= site_url($lokasi) ?>';
@@ -115,4 +125,3 @@ function tampil_sama($lokasi)
     </script>
 <?php
 }
-

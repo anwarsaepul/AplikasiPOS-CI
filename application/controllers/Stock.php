@@ -73,6 +73,8 @@ class Stock extends CI_Controller
                     Swal.fire({
                         icon: 'error',
                         text: 'Gagal',
+                        showConfirmButton: false,
+                        timer: 1500,
                         title: 'Melebihi Stok yang ada'
                     }).then((result) => {
                     window.location='<?= site_url('stock/out/add') ?>';

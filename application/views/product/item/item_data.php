@@ -19,7 +19,7 @@
                         <th>Nama Item</th>
                         <th>Category</th>
                         <th>Unit</th>
-                        <th>Price</th>
+                        <th>Harga Jual</th>
                         <th>Stock</th>
                         <th>Aksi</th>
                     </tr>

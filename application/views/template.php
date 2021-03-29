@@ -205,45 +205,10 @@
         "lengthChange": false
       });
 
-<<<<<<< HEAD
-      $(document).on('click', '#add_cart', function() {
-        $('#cart-table').append(`
-        <tr>
-          <td style="width: 5%;">
-            <span name="no[]"></span>
-          </td>
-          <td>
-            <span name="kodeproduct[]"></span>
-          </td>
-          <td>
-            <span name="namaitem[]"></span>
-          </td>
-          <td>
-            <span name="price[]"></span>
-          </td>
-            <td>
-          <span name="qty[]"></span>
-            </td>
-          <td>
-            <span name=discount[]></span>
-          </td>
-          <td>
-            <span name="total[]"></span>
-          </td>
-          <td class="text-center">
-            <a href="" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
-            <a href="" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
-          </td>
-        </tr>                
-        `)
-      });
       $(document).on('click', '#tmblhps', function(e) {
         e.preventDefault();
         $(this).parent('tr').remove();
-
-
       });
-
 
       $(document).on('click', '#select', function() {
         const item_id = $(this).data('id');
@@ -258,121 +223,60 @@
         const discount = $('#discount').val();
 
         const keranjang_id = $(this).data('keranjang_id');
-        alert(keranjang_id);
+        // alert(keranjang_id);
 
-
-        
-        
-        
         $('#harga_jual').text(harga_jual);
-=======
-      $(document).on('click', '#select', function() {
-        let item_id = $(this).data('id');
-        let kodebarang = $(this).data('kodebarang');
-        let nama_item = $(this).data('nama_item');
-        let nama_unit = $(this).data('nama_unit');
-        let stock = $(this).data('stock');
->>>>>>> parent of d72649b (Menambahkan harga beli supplier)
-
         $('#item_id').val(item_id);
-        $('#kodebarang').val(kodebarang);
+        $('#kode_product').val(kode_product);
         $('#nama_item').val(nama_item);
         $('#nama_unit').val(nama_unit);
         $('#stock').val(stock);
 
+        const grand_total = parseInt(harga_jual) * parseInt(qtysale);
+        const diskon = (discount / 100) * grand_total;
+        const total_akhir = parseInt(grand_total) - parseInt(diskon);
 
-        var grand_total = parseInt(harga_jual) * parseInt(qtysale);
-        var diskon = (discount/100) * grand_total;
-        var total_akhir = parseInt(grand_total) - parseInt(diskon);
-        
-        $('#sub_total').val(total_akhir);
+        $('#sub_total').val(grand_total);
+        $('#potongan_diskon').val(diskon);
+        $('#total_akhir').val(total_akhir);
 
-
-          // alert();
-        $('#note').text('harga :'+ harga_jual +
-                ' Qty :' + qtysale +
-                ' Total ' + grand_total +
-                ' diskon : ' + discount + '%' +
-                ' = ' + diskon +
-                ' Total Akhir = ' + total_akhir);
-
-                $(document).on('click', '#addcart', function() {
-        // const harga_jual = $(this).data('harga_jual');
-        const discount  = $("#discount").val();
-        const qtysale = $('#qtysale').val();
-
-
-        // alert(harga_jual);
-        
-
-
-      });
-
-          
-
- 
-      });
-
-      // $(function() {
-        $('document').on('click', '#qty', function() {
-            // let total = $('#sub_total').val();
-            // let discount = $('#discount').val();
-            // let uang = $(this).val();
-
-            // $('#sub_total').val(discount);
-            alert('ok');
+        $(document).on('click', '#addcart', function() {
+          const discount = $("#discount").val();
+          const qtysale = $('#qtysale').val();
         });
-
-      // $('.hitung').keyup(function() {
-      //   const qtysale = parseInt($('#qty').val());
-      //   const harga_jual = parseInt($('#harga_jual').val());
-
-
-
-        // var grand_total = parseInt(harga_jual) * parseInt(qtysale);
-        // var diskon = (discount / 100) * grand_total;
-        // var total_akhir = parseInt(grand_total) - parseInt(diskon);
-    //     var total_akhir = qtysale * harga_jual;
-
-    //     $('#sub_total').attr('value',total_akhir);
-    // });
-
-      
-
-
-      $(document).on('keyup','#sub_total', function(){
-        alert('OK');
-        // var discount  = $("#discount2").val();
-        //     var sub_total = $("#sub_total").val();
-        //     var total = parseInt(discount) * parseInt(sub_total);
-
-        //     $('#sub_total').val(total);
-        
       });
 
-      // $("#discount2, sub_total").keyup(function() {
-      //       var discount  = $("#discount2").val();
-      //       var sub_total = $("#sub_total").val();
-      //       // var qtysale = $("#qtysale").val();
+      $('#qty').keyup(function() {
+        const harga_jual = $('#harga_jual').text();
+        const qty = $(this).val();
+        const discount = $('#discount').val();
 
-      //       var total = parseInt(discount) * parseInt(sub_total);
+        const sub_total = parseInt(harga_jual) * parseInt(qty);
+        const diskon = (discount / 100) * sub_total;
+        const total_akhir = parseInt(sub_total) - parseInt(diskon);
 
-
-      //       // var grand_total = parseInt(harga_jual) * parseInt(qtysale);
-      //       // var diskon = (discount/100) * grand_total;
-      //       // var total_akhir = parseInt(grand_total) - parseInt(diskon);
-      //       $('#sub_total').val(total);
-
-
-      //       // $("#total").val(total);
-      //   });
-
-      
+        $('#sub_total').val(sub_total);
+        $('#potongan_diskon').val(diskon);
+        $('#total_akhir').val(total_akhir);
+      });
 
 
+      $('#discount').keyup(function() {
+        const harga_jual = $('#harga_jual').text();
+        const qty = $('#qty').val();
+        const sub_total = $('#sub_total').val();
+        const discount = $(this).val();
+
+        const diskon = (discount / 100) * sub_total;
+        const total_akhir = parseInt(sub_total) - parseInt(diskon);
+
+        $('#sub_total').val(sub_total);
+        $('#potongan_diskon').val(diskon);
+        $('#total_akhir').val(total_akhir)
+
+      });
 
       $(document).on('click', '#set_detail', function() {
-<<<<<<< HEAD
         const kodeproduct = $(this).data('kodeproduct');
         const nama_item = $(this).data('nama_item');
         const nama_supplier = $(this).data('nama_supplier');
@@ -382,42 +286,18 @@
         const harga_jual = $(this).data('harga_jual');
         const date = $(this).data('date');
         // alert(kodeproduct);
-=======
-        let kodeproduct = $(this).data('kodeproduct');
-        let nama_item = $(this).data('nama_item');
-        let nama_supplier = $(this).data('nama_supplier');
-        let qty = $(this).data('qty');
-        let detail = $(this).data('detail');
-        let price = $(this).data('price');
-        let date = $(this).data('date');
-        // alert(nama_supplier);
->>>>>>> parent of d72649b (Menambahkan harga beli supplier)
 
         $('#kodeproduct').text(kodeproduct);
         $('#nama_item').text(nama_item);
         $('#nama_supplier').text(nama_supplier);
         $('#qty').text(qty);
         $('#detail').text(detail);
-<<<<<<< HEAD
         $('#harga_beli').text(harga_beli);
         $('#harga_jual').text(harga_jual);
-=======
-        $('#price').text(price);
->>>>>>> parent of d72649b (Menambahkan harga beli supplier)
         $('#date').text(date);
       });
-    });
 
-    const flashData = $('.flash-data').data('flashdata');
-    if (flashData) {
-      Swal.fire({
-        icon: 'success',
-        text: 'Data Berhasil ' + flashData,
-        title: 'Data Category'
-      });
-    };
-
-    $(document).on('click', '#tmblhps', function(e) {
+      $(document).on('click', '#tmblhps', function(e) {
       e.preventDefault();
       const link = $(this).attr('href');
       Swal.fire({
@@ -435,16 +315,7 @@
       })
 
     });
-    // console.log(flashData);
-    // const tbl_success = document.querySelector('#success_flash');
-    // tbl_success.addEventListener('click', function() {
-    //       Swal({
-    //         icon: 'success',
-    //         title: 'Success',
-    //         text: flash
-    //       });
-    //     });
-    // Swal.fire('Any fool can use a computer')
+    });
   </script>
 </body>
 

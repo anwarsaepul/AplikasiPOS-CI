@@ -45,7 +45,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="price">Harga *</label>
+                            <label for="price">Harga Jual*</label>
                             <input type="number" value="<?= $row->harga_jual ?>" class="form-control" id="price" name="price" required placeholder="Input harga product">
                         </div>
                         <div class="form-group text-center">

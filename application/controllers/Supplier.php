@@ -5,7 +5,6 @@ class Supplier extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        flashData();
         checklogin();
         $this->load->model('supplier_model');
     }

@@ -4,14 +4,13 @@ class Sale extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        flashData();
         checklogin();
         $this->load->model(['sale_model', 'item_model', 'customer_model', 'stock_model', 'keranjang_model']);
-
     }
 
     function index()
     {
-
         $item  = $this->item_model->get()->result();
         $keranjang = $this->keranjang_model->get_keranjang()->result();
         $customer = $this->customer_model->get()->result();
@@ -30,7 +29,7 @@ class Sale extends CI_Controller
         if (isset($_POST['add_cart'])) {
             $this->keranjang_model->add_keranjang($post);
             $this->item_model->update_stock_out($post);
-            redirect('sale');
+            tampil_simpan('sale');
         }
     }
 
@@ -42,9 +41,8 @@ class Sale extends CI_Controller
         $data = ['qty' => $qty, 'item_id' => $item_id];
         $this->item_model->update_stock_in($data);
         $this->keranjang_model->del($id);
-        redirect('sale');
         if ($this->db->affected_rows() > 0) {
-            redirect('sale');
+            tampil_hapus($lokasi = 'sale');
         }
     }
 }

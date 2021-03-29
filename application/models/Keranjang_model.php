@@ -24,11 +24,13 @@ class Keranjang_model extends CI_Model
     function add_keranjang($post)
     {
         $params = [
-            // nama d db    => nama di inputan
-            'item_id'       => $post['item_id'],
-            'qty'           => $post['qty'],
-            'discount'      => $post['discount'] == '' ? null : $post['discount'],
-            'total'         => $post['sub_total'],
+            // nama d db        => nama di inputan
+            'item_id'           => $post['item_id'],
+            'qty'               => $post['qty'],
+            'discount'          => $post['discount'] == '' ? null : $post['discount'],
+            'sub_total'         => $post['sub_total'],
+            'potongan_diskon'   => $post['potongan_diskon'],
+            'total_akhir'       => $post['total_akhir'],
         ];
         $this->db->insert('t_keranjang', $params);
     }
