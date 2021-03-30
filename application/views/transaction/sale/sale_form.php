@@ -17,6 +17,7 @@
                                             <input type="hidden" name="item_id" id="item_id">
                                             <input type="hidden" name="harga_jual" id="harga_jual">
                                             <input type="hidden" name="stock" id="stock">
+                                            <input type="hidden" name="invoice" id="invoice" value="<?= $invoice ?>">
                                             <input type="text" name="kode_product" id="kode_product" class="form-control" required autofocus>
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
@@ -141,7 +142,7 @@
                 <div class="box-body info-box p-4">
                     <div class="col-md">
                         <div class="col-md-6 text-center mx-auto">
-                            <h4>Invoice <b><span id="invoice"><br></span><?= $invoice ?></b></h4>
+                            <h4>Invoice <b><br><span name="invoice" id="invoice"><?= $invoice ?></span></b></h4>
                             <h1><b><span id="grand_total2" style="font-size: 50pt;">0</span></b></h1>
                         </div>
                     </div>
