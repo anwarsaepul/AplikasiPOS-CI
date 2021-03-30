@@ -17,6 +17,7 @@ class Keranjang_model extends CI_Model
         $this->db->from('t_keranjang');
         // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
         $this->db->join('p_item', 't_keranjang.item_id = p_item.item_id');
+        // $this->db->where('status', '0');
         $this->db->order_by('keranjang_id', 'desc');
         return $query = $this->db->get();
     }
@@ -26,6 +27,7 @@ class Keranjang_model extends CI_Model
         $params = [
             // nama d db        => nama di inputan
             'item_id'           => $post['item_id'],
+            'harga'             => $post['harga_jual'],
             'qty'               => $post['qty'],
             'discount'          => $post['discount'] == '' ? null : $post['discount'],
             'sub_total'         => $post['sub_total'],
@@ -43,6 +45,7 @@ class Keranjang_model extends CI_Model
         $discount   = $data['discount'];
         $harga_jual = $data['harga_jual'];
         $invoice    = $data['invoice'];
+        $status     = 0;
 
         $sql = "UPDATE t_keranjang SET qty = qty + '$qty', 
                 sub_total = '$harga_jual' * qty, 
@@ -50,7 +53,7 @@ class Keranjang_model extends CI_Model
                 potongan_diskon = (discount/100) * sub_total, 
                 total_akhir = sub_total - potongan_diskon, 
                 invoice = '$invoice' 
-                WHERE item_id = '$id'";
+                WHERE item_id = '$id' and status = '$status'";
         $this->db->query($sql);
     }
 
@@ -66,17 +69,28 @@ class Keranjang_model extends CI_Model
         $this->db->from('t_keranjang');
         // yg di cek
         $this->db->where('item_id', $code);
+        // jika id tdk null
         if ($id != null) {
-            // primary
+            // cek keranjang_id tdk sama dgn $id
             $this->db->where('keranjang_id !=', $id);
         }
         return $query =  $this->db->get();
     }
 
+
     function hitung_total()
     {
         $this->db->select_sum('total_akhir', 'jumlah');
         $this->db->from('t_keranjang');
+        $this->db->where('status', '0');
         return $this->db->get('')->row();
+    }
+
+    function update_status_keranjang($data)
+    {
+        $status    = '1';
+        $invoice    = $data['invoice2'];
+        $sql = "UPDATE t_keranjang SET status = '$status' WHERE invoice = '$invoice'";
+        $this->db->query($sql);
     }
 }

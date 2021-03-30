@@ -6,7 +6,7 @@ class Sale extends CI_Controller
         parent::__construct();
         flashData();
         checklogin();
-        $this->load->model(['sale_model', 'item_model', 'customer_model', 'stock_model', 'keranjang_model']);
+        $this->load->model(['sale_model', 'item_model', 'customer_model', 'stock_model', 'keranjang_model', 'order_model']);
     }
 
     function index()
@@ -15,14 +15,16 @@ class Sale extends CI_Controller
         $keranjang = $this->keranjang_model->get_keranjang()->result();
         $hitung_total = $this->keranjang_model->hitung_total();
         $customer = $this->customer_model->get()->result();
+
         $data = array(
-            'item'      => $item,
-            'keranjang' => $keranjang,
-            'customer'  => $customer,
-            'hitung_total' => $hitung_total,
-            'invoice'   => $this->sale_model->invoice_no(),
+            'item'          => $item,
+            'keranjang'     => $keranjang,
+            'customer'      => $customer,
+            'hitung_total'  => $hitung_total,
+            'invoice'       => $this->sale_model->invoice_no(),
         );
         $this->template->load('template', 'transaction/sale/sale_form', $data);
+        $this->cart->insert($data);
     }
 
     function process()
@@ -33,26 +35,28 @@ class Sale extends CI_Controller
                 // validasi stok
                 tampil_melebihi_stok($lokasi = 'sale');
             } else {
-                // validasi jika produk sama, maka jumlahkan qty nya
-                if ($this->keranjang_model->check_id_product($post['item_id'])->num_rows() > 0) {
-                    // mengupdate qty 
+                if ($this->keranjang_model->check_status()->num_rows() > 0) {
                     $this->keranjang_model->update_stock_keranjang($post);
+                    $this->order_model->update_stock_order($post);
                     // menghitung total
                     $data['total'] = $this->keranjang_model->hitung_total();
                     // tampil_simpan('sale');
                     redirect('sale');
                 } else {
                     $this->keranjang_model->add_keranjang($post);
+                    $this->order_model->add_order($post);
                     $this->item_model->update_stock_out($post);
-                    // tampil_simpan('sale');
                     redirect('sale');
                 }
             }
+        } else if (isset($_POST['process-payment'])) {
+            $this->sale_model->add_transaksi($post);
+            $this->keranjang_model->update_status_keranjang($post);
+            $this->order_model->update_status_order($post);
+            $this->db->empty_table('t_keranjang');
+            redirect('sale');
         }
     }
-    // if (isset($_POST['process-payment'])) {
-    //     echo 'ok';
-    // }
 
 
     function del($id)

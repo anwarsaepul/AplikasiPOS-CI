@@ -1,6 +1,19 @@
 <?php
 class Sale_model extends CI_Model
 {
+    function get($id = null)
+    {
+      
+        // $this->db->select('t_sale.*, nama_customer');
+        $this->db->from('t_sale');
+        // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
+        // $this->db->join('customer', 'customer.customer_id = t_sale.customer_id');
+        if ($id != null) {
+            $this->db->where('sale_id', $id);
+        }
+        return $query = $this->db->get();
+    }
+
     function invoice_no()
     {
         $sql = "SELECT MAX(MID(invoice,9,4)) AS invoice_no 
@@ -14,12 +27,22 @@ class Sale_model extends CI_Model
         } else {
             $no = "0001";
         }
-        return $invoice = "ID".date('ymd').$no;
+        return $invoice = "ID" . date('ymd') . $no;
     }
 
-    function keranjang()
+    function add_transaksi($post)
     {
-        
-        
+        $params = [
+            // nama d db    => nama di inputan
+            'invoice'       => $post['invoice2'],
+            'customer_id'   => $post['customer'],
+            'cash'          => $post['cash'],
+            'kembalian'     => $post['kembalian'],
+            'catatan'       => $post['catatan'] == '' ? null : $post['catatan'],
+            'date'          => $post['date'],
+            'user_id'       => $this->session->userdata('user_id'),
+        ];
+        $this->db->insert('t_sale', $params);
     }
+
 }
