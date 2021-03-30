@@ -143,7 +143,7 @@
                     <div class="col-md">
                         <div class="col-md-6 text-center mx-auto">
                             <h4>Invoice <b><br><span name="invoice" id="invoice"><?= $invoice ?></span></b></h4>
-                            <h1><b><span id="grand_total2" style="font-size: 50pt;">0</span></b></h1>
+                            <h1><b><span id="grand_total2"><?= indo_currency($hitung_total->jumlah) ?></span></b></h1>
                         </div>
                     </div>
                 </div>

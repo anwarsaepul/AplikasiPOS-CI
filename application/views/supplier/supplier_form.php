@@ -4,7 +4,7 @@
         <div class="box-header">
             <div class="col-sm pt-3">
                 <ol class="float-sm-right">
-                    <a href="<?= base_url('category') ?>" class="btn btn-warning btn-flat"><i class="nav-icon fa fa-undo"></i> Back
+                    <a href="<?= base_url('supplier') ?>" class="btn btn-warning btn-flat"><i class="nav-icon fa fa-undo"></i> Back
                     </a>
                 </ol>
                 <h3><i class="nav-icon fa fa-truck"></i> Supplier</h3>

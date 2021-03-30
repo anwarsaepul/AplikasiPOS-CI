@@ -4,7 +4,7 @@
 		<div class="box-header">
 			<div class="col-sm pt-3">
 				<ol class="float-sm-right">
-					<a href="<?= base_url('stock/out/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Add Stok
+					<a href="<?= base_url('stock/out/add') ?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Add Data
 					</a>
 				</ol>
 				<h3><i class="nav-icon fa fa-object-group"></i> Stock Out Barang</h3>
