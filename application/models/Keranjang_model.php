@@ -83,4 +83,11 @@ class Keranjang_model extends CI_Model
         }
         return $query =  $this->db->get();
     }
+
+    function hitung_total()
+    {
+        $this->db->select_sum('total_akhir', 'jumlah');
+        $this->db->from('t_keranjang');
+        return $this->db->get('')->row();
+    }
 }

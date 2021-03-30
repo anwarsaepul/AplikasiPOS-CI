@@ -33,7 +33,7 @@
                                     <td>
                                         <div>
                                             <div class="form-group">
-                                                <input type="number" name="qty" id="qty" value="1" min="1" class="form-control">
+                                                <input type="number" name="qty" id="qtysale" value="1" min="1" class="form-control">
                                             </div>
                                         </div>
                                     </td>
@@ -154,7 +154,7 @@
         <div class="col-md">
             <div class="box box-widget">
                 <div class="box-body table-responsive">
-                    <table class="table table-bordered border text-center table-striped" id="table1">
+                    <table class="table table-sm table-bordered border text-center table-striped" id="table1">
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
@@ -169,7 +169,12 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <?php $no = 1;
+                        <?php
+                        $no = 1;
+                        $qty = 0;
+                        $sub_total = 0;
+                        $potongan_diskon = 0;
+
                         foreach ($keranjang as $i => $data) { ?>
                             <tr>
                                 <td><?= $no++ ?>.</td>
@@ -185,8 +190,28 @@
                                     <a href="<?= base_url('sale/del/' . $data->keranjang_id . '/' . $data->item_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
                                 </td>
                             </tr>
-                        <?php } ?>
-                        <!-- <tbody id="cart-table"> -->
+                        <?php
+
+                            $qty += $data->qty;
+                            $sub_total += $data->sub_total;
+                            $potongan_diskon += $data->potongan_diskon;
+                        }
+
+                        ?>
+
+
+                        <tr style="font-weight: bold;">
+                            <td class="text-left table-borderless">Jumlah</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><?= $qty; ?></td>
+                            <td><?= indo_currency($sub_total); ?></td>
+                            <td></td>
+                            <td><?= indo_currency($potongan_diskon); ?></td>
+                            <td><?= indo_currency($hitung_total->jumlah) ?></td>
+                            <td></td>
+                        </tr>
 
                         </tbody>
                     </table>
@@ -203,11 +228,13 @@
                         <table width="100%">
                             <tr>
                                 <td style="vertical-align: top; width: 30%;">
-                                    <label for="grand_total">Grand Total</label>
+                                    <label for="grand_total_v">Grand Total</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="grand_total" value="0" readonly class="form-control">
+                                        <!-- <input name="stock" id="stock"> -->
+                                        <input type="hidden" id="grand_total" name="grand_total" value="<?= $hitung_total->jumlah ?>" readonly class="form-control">
+                                        <input id="grand_total_v" value="<?= indo_currency($hitung_total->jumlah) ?>" class="form-control">
                                     </div>
                                 </td>
                             </tr>
@@ -224,11 +251,12 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <label for="change">Change</label>
+                                    <label for="kembalian">Kembalian</label>
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" id="change" readonly class="form-control">
+                                        <input type="number" id="kembalian_v" readonly class="form-control">
+                                        <input type="hidden" id="kembalian" readonly class="form-control">
                                     </div>
                                 </td>
                             </tr>
@@ -256,7 +284,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-md-8">
-                                                <button id="process-payment" class="btn btn-flat btn-success">
+                                                <button id="process-payment" name="process-payment" class="btn btn-flat btn-success">
                                                     <i class="fa fa-paper-plane-o"></i>Process Payment
                                                 </button>
                                             </div>

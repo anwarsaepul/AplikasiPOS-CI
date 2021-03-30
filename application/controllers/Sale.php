@@ -13,11 +13,13 @@ class Sale extends CI_Controller
     {
         $item  = $this->item_model->get()->result();
         $keranjang = $this->keranjang_model->get_keranjang()->result();
+        $hitung_total = $this->keranjang_model->hitung_total();
         $customer = $this->customer_model->get()->result();
         $data = array(
             'item'      => $item,
             'keranjang' => $keranjang,
             'customer'  => $customer,
+            'hitung_total' => $hitung_total,
             'invoice'   => $this->sale_model->invoice_no(),
         );
         $this->template->load('template', 'transaction/sale/sale_form', $data);
@@ -27,18 +29,31 @@ class Sale extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add_cart'])) {
-
-            if ($this->keranjang_model->check_id_product($post['item_id'])->num_rows() > 0) {
-                // tampil_sama($lokasi = 'sale');
-                $this->keranjang_model->update_stock_keranjang($post);
-                tampil_simpan('sale');
+            if ($post['qty'] > $post['stock']) {
+                // validasi stok
+                tampil_melebihi_stok($lokasi = 'sale');
             } else {
-                $this->keranjang_model->add_keranjang($post);
-                $this->item_model->update_stock_out($post);
-                tampil_simpan('sale');
+                // validasi jika produk sama, maka jumlahkan qty nya
+                if ($this->keranjang_model->check_id_product($post['item_id'])->num_rows() > 0) {
+                    // mengupdate qty 
+                    $this->keranjang_model->update_stock_keranjang($post);
+                    // menghitung total
+                    $data['total'] = $this->keranjang_model->hitung_total();
+                    // tampil_simpan('sale');
+                    redirect('sale');
+                } else {
+                    $this->keranjang_model->add_keranjang($post);
+                    $this->item_model->update_stock_out($post);
+                    // tampil_simpan('sale');
+                    redirect('sale');
+                }
             }
         }
     }
+    // if (isset($_POST['process-payment'])) {
+    //     echo 'ok';
+    // }
+
 
     function del($id)
     {

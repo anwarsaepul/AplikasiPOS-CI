@@ -125,3 +125,20 @@ function tampil_sama($lokasi)
     </script>
 <?php
 }
+
+function tampil_melebihi_stok($lokasi)
+{
+?>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            text: 'Tidak bisa dilakukan',
+            showConfirmButton: false,
+            timer: 1500,
+            title: 'Melebihi Stok yang ada'
+        }).then((result) => {
+            window.location = '<?= site_url($lokasi) ?>';
+        })
+    </script>
+<?php
+}

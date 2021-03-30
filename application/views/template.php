@@ -219,7 +219,7 @@
         const harga_jual = $(this).data('harga_jual');
         const qty = $(this).data('qty');
 
-        const qtysale = $('#qty').val();
+        const qtysale = $('#qtysale').val();
         const discount = $('#discount').val();
 
         const keranjang_id = $(this).data('keranjang_id');
@@ -239,17 +239,24 @@
         $('#sub_total').val(grand_total);
         $('#potongan_diskon').val(diskon);
         $('#total_akhir').val(total_akhir);
-
-        $(document).on('click', '#addcart', function() {
-          const discount = $("#discount").val();
-          const qtysale = $('#qtysale').val();
-        });
       });
 
-      $('#qty').keyup(function() {
-        const harga_jual = $('#harga_jual').text();
-        const qty = $(this).val();
+
+      $('#qtysale').keyup(function() {
+        const harga_jual = $('#harga_jual').val();
         const discount = $('#discount').val();
+        const qty = $('#qtysale').val();
+        const stock = $('#stock').val();
+
+        if (parseInt(qty) >= parseInt(stock)) {
+          Swal.fire({
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500,
+            title: 'Melebihi Stok yang ada'
+          })
+        }
+
 
         const sub_total = parseInt(harga_jual) * parseInt(qty);
         const diskon = (discount / 100) * sub_total;
@@ -262,7 +269,7 @@
 
 
       $('#discount').keyup(function() {
-        const harga_jual = $('#harga_jual').text();
+        const harga_jual = $('#harga_jual').val();
         const qty = $('#qty').val();
         const sub_total = $('#sub_total').val();
         const discount = $(this).val();
@@ -272,9 +279,23 @@
 
         $('#sub_total').val(sub_total);
         $('#potongan_diskon').val(diskon);
-        $('#total_akhir').val(total_akhir)
+        $('#total_akhir').val(total_akhir);
+
 
       });
+
+      $('#cash').keyup(function() {
+        const grand_total = $('#grand_total').val();
+        const cash = $('#cash').val();
+        const total = parseInt(cash) - parseInt(grand_total);
+        $('#kembalian').val(total);
+        $('#kembalian_v').val(total);
+      });
+
+
+
+
+
 
       $(document).on('click', '#set_detail', function() {
         const kodeproduct = $(this).data('kodeproduct');
@@ -298,23 +319,23 @@
       });
 
       $(document).on('click', '#tmblhps', function(e) {
-      e.preventDefault();
-      const link = $(this).attr('href');
-      Swal.fire({
-        title: 'Apakah anda yakin?',
-        text: "data akan dihapus",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Hapus data'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location = link;
-        }
-      })
+        e.preventDefault();
+        const link = $(this).attr('href');
+        Swal.fire({
+          title: 'Apakah anda yakin?',
+          text: "data akan dihapus",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Hapus data'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location = link;
+          }
+        })
 
-    });
+      });
     });
   </script>
 </body>
