@@ -43,12 +43,4 @@ class Order_model extends CI_Model
                 WHERE item_id = '$id'";
         $this->db->query($sql);
     }
-
-    function update_status_order($data)
-    {
-        $status    = '1';
-        $invoice    = $data['invoice2'];
-        $sql = "UPDATE t_order SET status = '$status' WHERE invoice = '$invoice'";
-        $this->db->query($sql);
-    }
 }

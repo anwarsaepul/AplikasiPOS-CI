@@ -35,7 +35,8 @@ class Sale extends CI_Controller
                 // validasi stok
                 tampil_melebihi_stok($lokasi = 'sale');
             } else {
-                if ($this->keranjang_model->check_status()->num_rows() > 0) {
+                // validasi produk jika kode produk sama, maka datanya akan di update
+                if ($this->keranjang_model->check_id_product($post['item_id'])->num_rows() > 0) {
                     $this->keranjang_model->update_stock_keranjang($post);
                     $this->order_model->update_stock_order($post);
                     // menghitung total
@@ -51,8 +52,6 @@ class Sale extends CI_Controller
             }
         } else if (isset($_POST['process-payment'])) {
             $this->sale_model->add_transaksi($post);
-            $this->keranjang_model->update_status_keranjang($post);
-            $this->order_model->update_status_order($post);
             $this->db->empty_table('t_keranjang');
             redirect('sale');
         }
