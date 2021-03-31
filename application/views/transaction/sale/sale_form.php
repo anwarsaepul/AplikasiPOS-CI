@@ -1,10 +1,10 @@
 <!-- Main content -->
-<section class="content p-2">
+<section class="container-fluid bg-light p-2">
     <div class="row p-2">
         <div class="col-md-6 mx-auto">
             <div class="box box-widget">
-                <div class="box-body info-box p-4 hitung">
-                    <div class="col-md mx-auto">
+                <div class="box-body mx-auto info-box p-4">
+                    <div class="col-md mt-2 mb-1">
                         <form action="<?= base_url('sale/process') ?>" method="POST">
                             <table width="100%">
                                 <tr>
@@ -98,7 +98,7 @@
         </div>
         <div class="col-lg-6 mx-auto">
             <div class="box box-widget">
-                <div class="box-body info-box p-4">
+                <div class="box-body info-box pt-4 pl-4 pr-4">
                     <div class="col-md mx-auto">
                         <form action="<?= base_url('sale/process') ?>" method="POST">
                             <table width="100%">
@@ -124,10 +124,20 @@
                                 </tr>
                                 <tr>
                                     <td style="vertical-align: top;">
+                                    <label for="kasir">Sales</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" id="kasir" value="<?= $this->session->userdata('nama_lengkap') ?>" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
                                         <label for="user">Customer</label>
                                     </td>
                                     <td>
-                                        <div>
+                                        <div class="form-group">
                                             <select name="customer" class="form-control" id="customer">
                                                 <option>Umum</option>
                                                 <?php foreach ($customer as $cust => $data) { ?>
@@ -138,6 +148,7 @@
                                         </div>
                                     </td>
                                 </tr>
+
                             </table>
                     </div>
                 </div>
@@ -224,7 +235,7 @@
         <div class="col-lg">
             <div class="box box-widget">
                 <div class="box-body">
-                    <div class="info-box p-3 col-md-6 mx-auto">
+                    <div class="info-box p-4 col-md-6 mx-auto">
                         <table width="100%">
                             <tr>
                                 <td style="vertical-align: top; width: 30%;">
@@ -245,7 +256,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" name="cash" id="cash" value="0" min="0" class="form-control">
+                                        <input type="number" name="cash" id="cash" min="0" class="form-control" required>
                                     </div>
                                 </td>
                             </tr>
@@ -292,6 +303,7 @@
         </div>
 </section>
 
+<?= footerku() ?>
 <div class="modal fade" id="modal-item">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">

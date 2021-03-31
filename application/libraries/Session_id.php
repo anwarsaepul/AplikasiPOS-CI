@@ -30,7 +30,7 @@
         }
         
         function count_user(){
-            $this->ci->load->model('user_model');
-            return $this->ci->user_model->get()->num_rows();
+            $this->ci->load->model('sales_model');
+            return $this->ci->sales_model->get()->num_rows();
         }
     }

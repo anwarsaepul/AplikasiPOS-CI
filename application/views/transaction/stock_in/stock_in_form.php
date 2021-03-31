@@ -1,5 +1,5 @@
 <!-- Main content -->
-<section class="content">
+<section class="content bg-light">
     <!-- <div class="jumbotron"> -->
     <div class="box">
         <div class="box-header">
@@ -82,8 +82,8 @@
             <!-- </div> -->
         </div>
     </div>
-    <!-- </div> -->
 </section>
+<?= footerku() ?>
 
 <div class="modal fade" id="modal-item">
     <div class="modal-dialog modal-xl">

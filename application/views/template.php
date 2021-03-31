@@ -50,7 +50,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="<?= base_url() ?>assets/dist/img/default.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block"><?= ucfirst($this->session_id->user_login()->nama_lengkap) ?></a>
@@ -88,6 +88,12 @@
               <a href="<?= base_url('customer') ?>" class="nav-link <?= $this->uri->segment(1) == 'customer' ? 'active' : '' ?>">
                 <i class="nav-icon fa fa-users"></i>
                 <p>Customers</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('sales') ?>" class="nav-link <?= $this->uri->segment(1) == 'sales' ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-user-plus"></i> 
+                <p> Sales</p>
               </a>
             </li>
             <li class="nav-item">
@@ -172,6 +178,7 @@
     <div class="content-wrapper">
       <?= $contents ?>
     </div>
+
     <!-- /.content-wrapper -->
     <!-- <footer class="main-footer">
       <strong>Copyright &copy; 2021 <a href="https://adminlte.io">Saepul Anwar</a>.</strong> All rights reserved.

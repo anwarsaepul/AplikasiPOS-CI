@@ -1,5 +1,5 @@
 <!-- Main content -->
-<section class="content">
+<section class="content bg-light">
     <div class="box">
         <div class="box-header">
             <div class="col-sm pt-3">

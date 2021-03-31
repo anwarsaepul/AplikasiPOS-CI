@@ -142,3 +142,15 @@ function tampil_melebihi_stok($lokasi)
     </script>
 <?php
 }
+
+function footerku()
+{
+?>
+    <footer class="main-footer text-left">
+        <strong>Copyright &copy; <?= date('Y') ?> <a href="https://fb.me/anwar.xyz" target="_blank">Saepul Anwar</a>.</strong> All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 1.0-Beta
+        </div>
+    </footer>
+<?php
+}
