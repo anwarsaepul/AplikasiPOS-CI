@@ -92,7 +92,7 @@
             </li>
             <li class="nav-item">
               <a href="<?= base_url('sales') ?>" class="nav-link <?= $this->uri->segment(1) == 'sales' ? 'active' : '' ?>">
-                <i class="nav-icon fas fa-user-plus"></i> 
+                <i class="nav-icon fas fa-user-plus"></i>
                 <p> Sales</p>
               </a>
             </li>
@@ -162,8 +162,47 @@
               </ul>
             </li>
             <li class="nav-item">
+              <a href="#" class="nav-link 
+              <?= $this->uri->segment(1) == 'report' ||
+                $this->uri->segment(1) == 'report/penjualan/harian' ||
+                $this->uri->segment(1) == 'report/penjualan/mingguan' ||
+                $this->uri->segment(1) == 'report/penjualan/tahunan' ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-file-alt"></i>
+                <p>
+                Report
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= base_url('report/penjualan/harian') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' && 
+                  $this->uri->segment(2) == 'penjualan' && 
+                  $this->uri->segment(3) == 'harian' ? 'active' : '' ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Penjualan Harian</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('report/penjualan/mingguan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' && 
+                  $this->uri->segment(2) == 'penjualan' && 
+                  $this->uri->segment(3) == 'bulanan'  ? 'active' : '' ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Penjualan Bulanan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url('report/penjualan/tahunan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' && 
+                  $this->uri->segment(2) == 'penjualan' && 
+                  $this->uri->segment(3) == 'tahunan'  ? 'active' : '' ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Penjualan Tahunan</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
               <a href="<?= base_url('auth/logout') ?>" class="nav-link">
-                <i class="fas fa-sign-out-alt"></i></i>
+                <i class="nav-icon fas fa-sign-out-alt"></i></i>
                 <p>Logout</p>
               </a>
             </li>

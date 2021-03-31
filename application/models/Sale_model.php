@@ -30,6 +30,16 @@ class Sale_model extends CI_Model
         return $invoice = "ID" . date('ymd') . $no;
     }
 
+    function get_data()
+    {
+        $this->db->select('t_sale.*, nama_customer');
+        $this->db->from('t_sale');
+        // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
+        $this->db->join('customer', 't_sale.customer_id = customer.customer_id');
+        // $this->db->join('t_order', 't_order.invoice = t_sale.invoice', 'left');
+        return $query = $this->db->get();
+    }
+
     function add_transaksi($post)
     {
         $params = [
@@ -38,6 +48,7 @@ class Sale_model extends CI_Model
             'customer_id'   => $post['customer'] == '' ? null : $post['customer'],
             'sales_id'      => $post['sales'] == '' ? null : $post['sales'],
             'cash'          => $post['cash'],
+            'total_harga'   => $post['grand_total'],
             'kembalian'     => $post['kembalian'],
             'catatan'       => $post['catatan'] == '' ? null : $post['catatan'],
             'date'          => $post['date'],

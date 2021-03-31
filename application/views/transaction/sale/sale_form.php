@@ -143,7 +143,7 @@
                                     <td>
                                         <div class="form-group">
                                             <select name="customer" class="form-control" id="customer">
-                                                <option value="">Umum</option>
+                                                <!-- <option value="">Umum</option> -->
                                                 <?php foreach ($customer as $cust => $data) { ?>
                                                     <option value="<?= $data->customer_id ?>"><?= $data->nama_customer ?></option>
                                                 <?php } ?>

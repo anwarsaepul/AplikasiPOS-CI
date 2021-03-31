@@ -26,7 +26,6 @@ class Sale extends CI_Controller
             'invoice'       => $this->sale_model->invoice_no(),
         );
         $this->template->load('template', 'transaction/sale/sale_form', $data);
-        $this->cart->insert($data);
     }
 
     function process()
@@ -55,7 +54,8 @@ class Sale extends CI_Controller
         } else if (isset($_POST['process-payment'])) {
             $this->sale_model->add_transaksi($post);
             $this->db->empty_table('t_keranjang');
-            redirect('sale');
+            // redirect('sale');
+            tampil_simpan('report/penjualan/harian');
         }
     }
 
