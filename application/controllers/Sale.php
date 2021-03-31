@@ -6,20 +6,22 @@ class Sale extends CI_Controller
         parent::__construct();
         flashData();
         checklogin();
-        $this->load->model(['sale_model', 'item_model', 'customer_model', 'stock_model', 'keranjang_model', 'order_model']);
+        $this->load->model(['sale_model', 'item_model', 'customer_model', 'sales_model', 'stock_model', 'keranjang_model', 'order_model']);
     }
 
     function index()
     {
-        $item  = $this->item_model->get()->result();
-        $keranjang = $this->keranjang_model->get_keranjang()->result();
-        $hitung_total = $this->keranjang_model->hitung_total();
-        $customer = $this->customer_model->get()->result();
+        $item           = $this->item_model->get()->result();
+        $keranjang      = $this->keranjang_model->get_keranjang()->result();
+        $hitung_total   = $this->keranjang_model->hitung_total();
+        $customer       = $this->customer_model->get()->result();
+        $sales          = $this->sales_model->get()->result();
 
         $data = array(
             'item'          => $item,
             'keranjang'     => $keranjang,
             'customer'      => $customer,
+            'sales'         => $sales,
             'hitung_total'  => $hitung_total,
             'invoice'       => $this->sale_model->invoice_no(),
         );

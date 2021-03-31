@@ -124,12 +124,16 @@
                                 </tr>
                                 <tr>
                                     <td style="vertical-align: top;">
-                                    <label for="kasir">Sales</label>
+                                        <label for="sales">Sales</label>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="text" id="kasir" value="<?= $this->session->userdata('nama_lengkap') ?>" class="form-control">
-                                        </div>
+                                            <select name="sales" class="form-control" id="sales">
+                                                <option value="">--Pilih Sales--</option>
+                                                <?php foreach ($sales as $sls => $data) { ?>
+                                                    <option value="<?= $data->sales_id ?>"><?= $data->nama_sales ?></option>
+                                                <?php } ?>
+                                            </select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -139,11 +143,10 @@
                                     <td>
                                         <div class="form-group">
                                             <select name="customer" class="form-control" id="customer">
-                                                <option>Umum</option>
+                                                <option value="">Umum</option>
                                                 <?php foreach ($customer as $cust => $data) { ?>
                                                     <option value="<?= $data->customer_id ?>"><?= $data->nama_customer ?></option>
                                                 <?php } ?>
-
                                             </select>
                                         </div>
                                     </td>

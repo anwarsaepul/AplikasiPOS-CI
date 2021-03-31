@@ -35,7 +35,8 @@ class Sale_model extends CI_Model
         $params = [
             // nama d db    => nama di inputan
             'invoice'       => $post['invoice2'],
-            'customer_id'   => $post['customer'],
+            'customer_id'   => $post['customer'] == '' ? null : $post['customer'],
+            'sales_id'      => $post['sales'] == '' ? null : $post['sales'],
             'cash'          => $post['cash'],
             'kembalian'     => $post['kembalian'],
             'catatan'       => $post['catatan'] == '' ? null : $post['catatan'],
