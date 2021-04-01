@@ -1,7 +1,8 @@
 <!-- Main content -->
 <section class="container-fluid bg-light p-2">
     <div class="row p-2">
-        <div class="col-md-6 mx-auto">
+        
+        <div class="col-md-8 mx-auto">
             <div class="box box-widget">
                 <div class="box-body mx-auto info-box p-4">
                     <div class="col-md mt-2 mb-1">
@@ -96,75 +97,59 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 mx-auto">
+        <div class="col-md-4 mx-auto">
             <div class="box box-widget">
-                <div class="box-body info-box pt-4 pl-4 pr-4">
                     <div class="col-md mx-auto">
-                        <form action="<?= base_url('sale/process') ?>" method="POST">
-                            <table width="100%">
-                                <tr>
-                                    <td style="vertical-align: top; width: 30%;">
-                                        <label for="date">Date</label>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="date" name="date" id="date" value="<?= date('Y-m-d') ?>" class="form-control">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <div class="col-md">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-success elevation-1">
+                                                <i class="fas fa-file-invoice-dollar"></i>
+                                            </span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Invoice</span>
+                                                <span class="info-box-number"><?= $invoice ?></span>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="vertical-align: top;">
-                                        <label for="user">Kasir</label>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" id="user" value="<?= $this->session->userdata('nama_lengkap') ?>" class="form-control" readonly>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-md">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-info elevation-1">
+                                                <i class="fas fa-dollar-sign"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Belanja</span>
+                                                <span class="info-box-number"><?= indo_currency($hitung_total->jumlah) ?></span>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="vertical-align: top;">
-                                        <label for="sales">Sales</label>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select name="sales" class="form-control" id="sales">
-                                                <option value="">--Pilih Sales--</option>
-                                                <?php foreach ($sales as $sls => $data) { ?>
-                                                    <option value="<?= $data->sales_id ?>"><?= $data->nama_sales ?></option>
-                                                <?php } ?>
-                                            </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="vertical-align: top;">
-                                        <label for="user">Customer</label>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select name="customer" class="form-control" id="customer">
-                                                <!-- <option value="">Umum</option> -->
-                                                <?php foreach ($customer as $cust => $data) { ?>
-                                                    <option value="<?= $data->customer_id ?>"><?= $data->nama_customer ?></option>
-                                                <?php } ?>
-                                            </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-md">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-danger elevation-1">
+                                                <i class="fas fa-user-tie"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Petugas</span>
+                                                <span class="info-box-number"><?= $this->session->userdata('nama_lengkap') ?></span>
+                                            </div>
                                         </div>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                            </tr>
 
-                            </table>
+                        </table>
                     </div>
-                </div>
-                <div class="box-body info-box p-4">
-                    <div class="col-md">
-                        <div class="col-md-6 text-center mx-auto">
-                            <h4>Invoice <b><br><span><?= $invoice ?></span></b></h4>
-                            <h2><b><span id="grand_total2"><?= indo_currency($hitung_total->jumlah) ?></span></b></h2>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+
     </div>
 
     <div class="row p-2">
@@ -240,64 +225,104 @@
                 <div class="box-body">
                     <div class="info-box p-4 col-md-6 mx-auto">
                         <table width="100%">
-                            <tr>
-                                <td style="vertical-align: top; width: 30%;">
-                                    <label for="grand_total_v">Grand Total</label>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <!-- <input name="stock" id="stock"> -->
-                                        <input type="hidden" id="grand_total" name="grand_total" value="<?= $hitung_total->jumlah ?>" readonly class="form-control">
-                                        <input id="grand_total_v" value="<?= indo_currency($hitung_total->jumlah) ?>" class="form-control">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td style="vertical-align: top; width: 30%;">
-                                    <label for="cash">Cash</label>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" name="cash" id="cash" min="0" class="form-control" required>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;">
-                                    <label for="kembalian">Kembalian</label>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" id="kembalian_v" readonly class="form-control">
-                                        <input type="hidden" name="kembalian" id="kembalian" readonly class="form-control">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align: top;">
-                                    <label for="note">Note</label>
-                                </td>
-                                <td>
-                                    <div class="form-group mx-auto">
-                                        <div>
-                                            <textarea name="catatan" id="note" rows="3" class="form-control"></textarea>
+                            <form action="<?= base_url('sale/process') ?>" method="POST">
+                                <tr>
+                                    <td style="vertical-align: top; width: 30%;">
+                                        <label for="date">Date</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="date" name="date" id="date" value="<?= date('Y-m-d') ?>" class="form-control">
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <div class="mx-auto col-md-8">
-                                        <input type="hidden" name="invoice2" value="<?= $invoice ?>">
-                                        <button id="process-payment" type="submit" name="process-payment" class="btn btn-block btn-success">
-                                            <i class="fas fa-cart-arrow-down"></i> Process Payment
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <label for="sales">Sales</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select name="sales" class="form-control" id="sales">
+                                                <option value="">--Pilih Sales--</option>
+                                                <?php foreach ($sales as $sls => $data) { ?>
+                                                    <option value="<?= $data->sales_id ?>"><?= $data->nama_sales ?></option>
+                                                <?php } ?>
+                                            </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <label for="user">Customer</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select name="customer" class="form-control" id="customer">
+                                                <!-- <option value="">Umum</option> -->
+                                                <?php foreach ($customer as $cust => $data) { ?>
+                                                    <option value="<?= $data->customer_id ?>"><?= $data->nama_customer ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top; width: 30%;">
+                                        <label for="grand_total_v">Grand Total</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <!-- <input name="stock" id="stock"> -->
+                                            <input type="hidden" id="grand_total" name="grand_total" value="<?= $hitung_total->jumlah ?>" readonly class="form-control">
+                                            <input id="grand_total_v" value="<?= indo_currency($hitung_total->jumlah) ?>" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="vertical-align: top; width: 30%;">
+                                        <label for="cash">Cash</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="number" name="cash" id="cash" min="0" class="form-control" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <label for="kembalian">Kembalian</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="number" id="kembalian_v" readonly class="form-control">
+                                            <input type="hidden" name="kembalian" id="kembalian" readonly class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <label for="note">Note</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group mx-auto">
+                                            <div>
+                                                <textarea name="catatan" id="note" rows="3" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <div class="mx-auto col-md-8">
+                                            <input type="hidden" name="invoice2" value="<?= $invoice ?>">
+                                            <button id="process-payment" type="submit" name="process-payment" class="btn btn-block btn-success">
+                                                <i class="fas fa-cart-arrow-down"></i> Process Payment
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                         </table>
                         </form>
                     </div>

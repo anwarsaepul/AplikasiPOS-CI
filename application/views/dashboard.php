@@ -26,8 +26,8 @@
 			<div class="info-box">
 				<span class="info-box-icon bg-warning elevation-1"> <i class="nav-icon fas fa-shopping-cart"></i></span>
 				<div class="info-box-content">
-					<span class="info-box-text">Items</span>
-					<span class="info-box-number"><?= $this->session_id->count_item() ?></span>
+					<span class="info-box-text">Transaksi</span>
+					<span class="info-box-number"><?= $this->session_id->count_sale() ?></span>
 				</div>
 			</div>
 		</div>

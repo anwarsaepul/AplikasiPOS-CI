@@ -69,7 +69,6 @@ $route['stock/out'] = 'stock/stock_out_data';
 $route['stock/out/add'] = 'stock/stock_out_add';
 $route['stock/out/del/(:num)/(:num)'] = 'stock/stock_out_del'; 
 
-
 $route['report/penjualan/harian'] = 'report_penjualan/harian';
 $route['report/penjualan/harian/detail/(:num)'] = 'report_penjualan/detail/$1';
-$route['report/penjualan/harian/edit/(:num)'] = 'report_penjualan/edit/$1';
+$route['report/penjualan/harian/print/(:num)'] = 'report_penjualan/print/$1';

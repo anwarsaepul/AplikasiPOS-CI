@@ -33,4 +33,9 @@
             $this->ci->load->model('sales_model');
             return $this->ci->sales_model->get()->num_rows();
         }
+
+        function count_sale(){
+            $this->ci->load->model('sale_model');
+            return $this->ci->sale_model->get_data()->num_rows();
+        }
     }

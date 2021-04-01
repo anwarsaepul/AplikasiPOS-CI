@@ -56,11 +56,11 @@
                                 <div class="box-header">
                                     <div class="mt-2">
                                         <ol class="float-sm-right">
-                                            <a href="<?= base_url('report/penjualan/harian/print/' . $row->sale_id) ?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Print
+                                            <a href="<?= base_url('report/penjualan/harian/print/' . $row->sale_id) ?>" class="btn btn-primary btn-block "><i class="fa fa-plus"></i> Print
                                             </a>
                                         </ol>
                                         <span class="info-box-text">Tanggal Transaksi</span>
-                                        <span class="info-box-text"><?= indo_date($row->date) ?></span>
+                                        <span class="info-box-number pb-1"><?= indo_date($row->date) ?></span>
                                     </div>
                                 </div>
                                 <div class="box-body text-center table-responsive">
