@@ -15,9 +15,9 @@ class Sales_model extends CI_Model
     {
         $params = [
             // nama d db    => nama di inputan
-            'nama_sales'  => $post['nama_sales'],
-            'phone'          => $post['phone'],
-            'alamat'         => $post['alamat'],
+            'nama_sales'    => $post['nama_sales'],
+            'phone'         => $post['phone'],
+            'alamat'        => $post['alamat'],
         ];
         $this->db->insert('sales', $params);
     }
@@ -26,10 +26,10 @@ class Sales_model extends CI_Model
     {
         $params = [
             // nama d db    => nama di inputan
-            'nama_sales'  => $post['nama_sales'],
-            'phone'          => $post['phone'],
-            'alamat'         => $post['alamat'],
-            'updated'          => date('Y-m-d H:i:s'),
+            'nama_sales'    => $post['nama_sales'],
+            'phone'         => $post['phone'],
+            'alamat'        => $post['alamat'],
+            'updated'       => date('Y-m-d H:i:s'),
         ];
         $this->db->where('sales_id', $post['id']);
         $this->db->update('sales', $params);

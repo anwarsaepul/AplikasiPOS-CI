@@ -4,7 +4,6 @@ class item_model extends CI_Model
 {
     function get($id = null)
     {
-        // $this->db->select('p_item.*, harga_beli , nama_category, p_unit.nama_unit as nama_unit');
         $this->db->select('p_item.*, nama_category, p_unit.nama_unit as nama_unit');
         $this->db->from('p_item');
         // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'

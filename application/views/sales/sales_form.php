@@ -7,7 +7,7 @@
                     <a href="<?= base_url('sales') ?>" class="btn btn-warning btn-flat"><i class="nav-icon fa fa-undo"></i> Back
                     </a>
                 </ol>
-                <h3><i class="nav-icon fa fa-users"></i> Custumers</h3>
+                <h3><i class="nav-icon fa fa-users"></i> Sales</h3>
             </div>
         </div>
         <div class="box-body">
@@ -15,7 +15,7 @@
                 <div class="col-md-6 mx-auto col-md-offset-2">
                     <form action="<?= base_url('sales/process') ?>" method="POST">
                         <div class="form-group">
-                            <h3 class="box-title text-center"><?= ucfirst($page) ?> Data sales</h3>
+                            <h3 class="box-title text-center"><?= ucfirst($page) ?> Data Sales</h3>
                         </div>
                         <div class="form-group">
                             <label for="">Nama sales *</label>

@@ -23,20 +23,26 @@
                     </tr>
                 </thead>
                 <tbody>
-					<?php $no = 1;
-					foreach ($sale as $i => $data) { ?>
-						<tr>
-							<td style="width: 5%;"><?= $no++ ?>.</td>
-							<td><?= $data->invoice ?></td>
-							<td><?= indo_date($data->date) ?></td>
-							<td><?= $data->nama_customer?></td>
-							<td><?= indo_currency($data->total_harga) ?></td>
-							<td class="text-center">
-								<a href="<?= base_url('report/penjualan/harian/del/' . $data->sale_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
-							</td>
-						</tr>
-					<?php } ?>
-				</tbody>
+                    <?php $no = 1;
+                    foreach ($row->result() as $key => $data) { ?>
+                        <tr>
+                            <td style="width: 5%;"><?= $no++ ?>.</td>
+                            <td>
+                                <?= $data->invoice ?>
+                                <input type="hidden" name="invoice" value="<?= $data->invoice ?>>">
+                            </td>
+                            <td><?= indo_date($data->date) ?></td>
+                            <td><?= $data->nama_customer ?></td>
+                            <td><?= indo_currency($data->total_harga) ?></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('report/penjualan/harian/detail/' . $data->sale_id) ?>" class="btn btn-default btn-xs">
+                                    <i class="fa fa-eye"></i> Detail
+                                </a>
+                                <a href="<?= base_url('report/penjualan/harian/del/' . $data->sale_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
             </table>
         </div>
     </div>

@@ -40,6 +40,7 @@ class Sale extends CI_Controller
                 if ($this->keranjang_model->check_id_product($post['item_id'])->num_rows() > 0) {
                     $this->keranjang_model->update_stock_keranjang($post);
                     $this->order_model->update_stock_order($post);
+                    $this->item_model->update_stock_out($post);
                     // menghitung total
                     $data['total'] = $this->keranjang_model->hitung_total();
                     // tampil_simpan('sale');

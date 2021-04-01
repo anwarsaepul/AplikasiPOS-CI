@@ -7,41 +7,37 @@ class Report_penjualan extends CI_Controller
         parent::__construct();
         flashData();
         checklogin();
-        $this->load->model(['order_model','sale_model', 'keranjang_model', 'customer_model', 'sales_model']);
+        $this->load->model(['sale_model', 'order_model']);
     }
 
     function harian()
     {
-        // $item           = $this->item_model->get()->result();
-        $keranjang      = $this->keranjang_model->get_keranjang()->result();
-        $hitung_total   = $this->keranjang_model->hitung_total();
-        $customer       = $this->customer_model->get()->result();
-        $sales          = $this->sales_model->get()->result();
-        $sale          = $this->sale_model->get_data()->result();
-        
-
-        $data = array(
-            // 'item'          => $item,
-            'keranjang'     => $keranjang,
-            'customer'      => $customer,
-            'sales'         => $sales,
-            'sale'         => $sale,
-            'hitung_total'  => $hitung_total,
-            'invoice'       => $this->sale_model->invoice_no(),
-        );
+        $data['row'] = $this->sale_model->get_data();
         $this->template->load('template', 'report/penjualan/harian', $data);
     }
 
-    function del($id)
+    public function detail($id)
     {
-        $keranjang_id = $this->uri->segment(4);
-        $item_id = $this->uri->segment(5);
-        $qty = $this->keranjang_model->get($keranjang_id)->row()->qty;
-        $data = ['qty' => $qty, 'item_id' => $item_id];
-        $this->item_model->update_stock_in($data);
-        $this->keranjang_model->del($id);
-        if ($this->db->affected_rows() > 0) {
-            tampil_hapus($lokasi = 'sale');
+        $query              = $this->sale_model->get($id);
+        $saledata           = $this->sale_model->get($id);
+        $qty                = $this->sale_model->hitung_total($id, $hitung = 'qty');
+        $sub_total          = $this->sale_model->hitung_total($id, $hitung = 'sub_total');
+        $potongan_diskon    = $this->sale_model->hitung_total($id, $hitung = 'potongan_diskon');
+        $total_akhir        = $this->sale_model->hitung_total($id, $hitung = 'total_akhir');
+        if ($query->num_rows() > 0) {
+            $sale = $query->row();
+            $data = array(
+                'row'               => $sale,
+                'saledata'          => $saledata,
+                'sub_total'         => $sub_total,
+                'qty'               => $qty,
+                'potongan_diskon'   => $potongan_diskon,
+                'total_akhir'       => $total_akhir,
+            );
+            // var_dump($sale);
+            $this->template->load('template', 'report/penjualan/detail', $data);
+        } else {
+            tampil_error($lokasi = 'report/penjualan/harian');
         }
     }
 }

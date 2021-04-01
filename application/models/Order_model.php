@@ -43,4 +43,14 @@ class Order_model extends CI_Model
                 WHERE item_id = '$id'";
         $this->db->query($sql);
     }
+
+    function get_detail_order($id)
+    {
+        $this->db->select('t_order.*, nama_item');
+        $this->db->from('t_order');
+        // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
+        $this->db->join('p_item', 't_order.item_id = p_item.item_id');
+        $this->db->order_by('order_id', 'desc');
+        return $query = $this->db->get();
+    }
 }

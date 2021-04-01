@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="kode_product">Kode Product *</label>
                             <input type="hidden" name="id" value="<?= $row->item_id ?>">
-                            <input type="text" value="<?= $row->kode_product ?>" class="form-control" id="kode_product" name="kode_product" required placeholder="Input Kode Product">
+                            <input type="text" value="<?= $row->kode_product ?>" class="form-control" id="kode_product" name="kode_product" required placeholder="Input Kode Product"> 
                         </div>
                         <div class="form-group">
                             <label for="nama_item">Nama Product *</label>

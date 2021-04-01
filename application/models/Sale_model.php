@@ -3,15 +3,29 @@ class Sale_model extends CI_Model
 {
     function get($id = null)
     {
-      
-        // $this->db->select('t_sale.*, nama_customer');
+        $this->db->select('t_sale.*, t_order.*, p_item.*, nama_customer, alamat, username, nama_lengkap');
         $this->db->from('t_sale');
-        // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
-        // $this->db->join('customer', 'customer.customer_id = t_sale.customer_id');
+        $this->db->join('customer', 't_sale.customer_id = customer.customer_id');
+        $this->db->join('t_order', 't_sale.invoice = t_order.invoice');
+        $this->db->join('users',  'users.user_id = t_sale.user_id');
+        $this->db->join('p_item', 't_order.item_id = p_item.item_id');
         if ($id != null) {
             $this->db->where('sale_id', $id);
         }
         return $query = $this->db->get();
+    }
+
+    function hitung_total($id = null, $hitung = null)
+    {
+        // menghitung jumlah nilai pada table
+        $this->db->select('sale_id', $hitung);
+        $this->db->select_sum($hitung, 'jumlah');
+        $this->db->from('t_sale');
+        $this->db->join('t_order', 't_sale.invoice = t_order.invoice');
+        if ($id != null) {
+            $this->db->where('sale_id', $id);
+        }
+        return $this->db->get('')->row();
     }
 
     function invoice_no()
@@ -30,13 +44,15 @@ class Sale_model extends CI_Model
         return $invoice = "ID" . date('ymd') . $no;
     }
 
-    function get_data()
+    function get_data($id = null)
     {
-        $this->db->select('t_sale.*, nama_customer');
+        $this->db->select('t_sale.*, nama_customer, alamat, username, nama_lengkap');
         $this->db->from('t_sale');
-        // 'table yg ingin di joinkan', 'tabel yang sama = tabel yang sama'
         $this->db->join('customer', 't_sale.customer_id = customer.customer_id');
-        // $this->db->join('t_order', 't_order.invoice = t_sale.invoice', 'left');
+        $this->db->join('users',  'users.user_id = t_sale.user_id');
+        if ($id != null) {
+            $this->db->where('sale_id', $id);
+        }
         return $query = $this->db->get();
     }
 

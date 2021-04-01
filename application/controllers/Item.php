@@ -54,7 +54,8 @@ class Item extends CI_Controller
                 'unit'      => $query_unit,
             );
             $this->template->load('template', 'product/item/item_form', $data);
-        } else {
+        } 
+        else {
             tampil_error($lokasi = 'item');
         }
     }
