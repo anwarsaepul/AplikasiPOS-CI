@@ -5,47 +5,62 @@
             <div class="col-sm pt-3">
                 <h3><i class="nav-icon fa fa-users"></i>Transaksi</h3>
             </div>
-        </div>
-        <div class="row p-2">
-
-            <div class="col-md-3 pl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <ul class="list-group text-center list-group-flush">
-                            <li class="list-group-item">
-                                <p class="font-weight-bolder h5">Petugas</p>
-                                <?= $row->nama_lengkap ?>
-                            </li>
-                            <li class="list-group-item">
-                                <p class="font-weight-bolder h5">Uang Bayar</p>
-                                <?= indo_currency($row->cash) ?>
-                            </li>
-                            <li class="list-group-item">
-                                <p class="font-weight-bolder h5">Kembalian</p>
-                                <p class="font-weight-bolder h5"></p>
-                                <?= indo_currency($row->kembalian) ?>
-                            </li>
-                            <li class="list-group-item">
-                                <p class="font-weight-bolder h5">Nama Customer</p>
-                                <?= $row->nama_customer ?>
-                            </li>
-                        </ul>
+            <!-- <div class="row p-2"> -->
+            <div class="row p-2 pt-2">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-warning elevation-1">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Invoice</span>
+                            <span class="info-box-number"><?= $row->invoice ?></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-9 mx-auto">
-                <div class="box box-widget">
-                    <div class="box-body info-box">
-                        <div class="col-md">
-                            <div class="col-md  mx-auto">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"> <i class="nav-icon fa fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Nama Customers</span>
+                            <span class="info-box-number"><?= $row->nama_customer ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1">
+                            <i class="fas fa-dollar-sign"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Belanja</span>
+                            <span class="info-box-number"><?= indo_currency($total_akhir->jumlah) ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1">
+                            <i class="fas fa-user-tie"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Petugas</span>
+                            <span class="info-box-number"><?= $row->nama_lengkap ?></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md mx-auto">
+                    <div class="box box-widget">
+                        <div class="box-body info-box">
+                            <div class="col-md">
                                 <div class="box-header">
-                                    <div class="mt-3">
+                                    <div class="mt-2">
                                         <ol class="float-sm-right">
                                             <a href="<?= base_url('report/penjualan/harian/print/' . $row->sale_id) ?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Print
                                             </a>
                                         </ol>
+                                        <span class="info-box-text">Tanggal Transaksi</span>
                                         <span class="info-box-text"><?= indo_date($row->date) ?></span>
-                                        <span class="info-box-text"><?= $row->invoice ?></span>
                                     </div>
                                 </div>
                                 <div class="box-body text-center table-responsive">
@@ -95,5 +110,4 @@
                     </div>
                 </div>
             </div>
-        </div>
 </section>

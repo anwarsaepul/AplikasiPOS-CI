@@ -27,6 +27,7 @@ class Report_penjualan extends CI_Controller
         if ($query->num_rows() > 0) {
             $sale = $query->row();
             $data = array(
+                'query'             => $query,
                 'row'               => $sale,
                 'saledata'          => $saledata,
                 'sub_total'         => $sub_total,
@@ -39,5 +40,6 @@ class Report_penjualan extends CI_Controller
         } else {
             tampil_error($lokasi = 'report/penjualan/harian');
         }
+        
     }
 }
