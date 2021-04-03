@@ -63,11 +63,17 @@ class Sale extends CI_Controller
 
     function del($id)
     {
+        // menggambil keranjang_id dgn url ke 3
         $keranjang_id = $this->uri->segment(3);
+        // menggambil item_id dgn url ke 4
         $item_id = $this->uri->segment(4);
+        // mengambil nilai qty berdasarkan keranjang_id pada table qty
         $qty = $this->keranjang_model->get($keranjang_id)->row()->qty;
+        // 
         $data = ['qty' => $qty, 'item_id' => $item_id];
+        // jumlahkan nilai qty
         $this->item_model->update_stock_in($data);
+        // hapus id keranjang
         $this->keranjang_model->del($id);
         if ($this->db->affected_rows() > 0) {
             tampil_hapus($lokasi = 'sale');

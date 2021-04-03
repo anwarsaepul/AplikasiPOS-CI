@@ -200,7 +200,7 @@
                         ?>
 
                         <tr style="font-weight: bold;">
-                            <td class="text-left table-borderless">Jumlah</td>
+                            <td class="text-left">Jumlah</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -243,7 +243,7 @@
                                     <td>
                                         <div class="form-group">
                                             <select name="sales" class="form-control" id="sales">
-                                                <option value="">--Pilih Sales--</option>
+                                                <option value="1">--Pilih Sales--</option>
                                                 <?php foreach ($sales as $sls => $data) { ?>
                                                     <option value="<?= $data->sales_id ?>"><?= $data->nama_sales ?></option>
                                                 <?php } ?>

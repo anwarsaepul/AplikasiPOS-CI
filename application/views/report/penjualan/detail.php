@@ -3,7 +3,7 @@
     <div class="box">
         <div class="box-header">
             <div class="col-sm pt-3">
-                <h3><i class="nav-icon fa fa-users"></i>Transaksi</h3>
+                <h3><i class="nav-icon fas fa-file-alt"></i> Transaksi</h3>
             </div>
             <!-- <div class="row p-2"> -->
             <div class="row p-2 pt-2">
@@ -68,13 +68,13 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Item</th>
+                                                <th>Nama Item</th>
                                                 <th>Harga Satuan</th>
                                                 <th>Qty</th>
                                                 <th>Diskon</th>
                                                 <th>SubTotal</th>
                                                 <th>Potongan</th>
-                                                <th>Harga Akhir</th>
+                                                <th>Total Harga</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -93,9 +93,7 @@
                                             <?php } ?>
 
                                             <tr style="font-weight: bold;">
-                                                <td class="text-left table-borderless">Jumlah</td>
-                                                <td></td>
-                                                <td></td>
+                                                <td class="text-left" colspan="3">Jumlah</td>
                                                 <td><?= $qty->jumlah ?></td>
                                                 <td></td>
                                                 <td><?= indo_currency($sub_total->jumlah) ?></td>

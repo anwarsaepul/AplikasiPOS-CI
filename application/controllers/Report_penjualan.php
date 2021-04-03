@@ -7,13 +7,20 @@ class Report_penjualan extends CI_Controller
         parent::__construct();
         flashData();
         checklogin();
-        $this->load->model(['sale_model', 'order_model']);
+        $this->load->model(['sale_model', 'order_model', 'item_model']);
     }
 
-    function harian()
+    function harian($id = null)
     {
-        $data['row'] = $this->sale_model->get_data();
-        $this->template->load('template', 'report/penjualan/harian', $data);
+        $query  = $this->sale_model->get_data();
+        if ($query->num_rows() > 0) {
+            $sale = $query->row();
+            $data = array(
+                'row'   => $query,
+                'sale'  => $sale,
+            );
+            $this->template->load('template', 'report/penjualan/harian', $data);
+        }
     }
 
     public function detail($id)
@@ -35,11 +42,45 @@ class Report_penjualan extends CI_Controller
                 'potongan_diskon'   => $potongan_diskon,
                 'total_akhir'       => $total_akhir,
             );
-            // var_dump($sale);
+            // var_dump($tampil);
             $this->template->load('template', 'report/penjualan/detail', $data);
         } else {
             tampil_error($lokasi = 'report/penjualan/harian');
         }
-        
+    }
+    
+    function del($id)
+    {
+        $this->sale_model->delete($id);
+        $this->order_model->del($id);
+        tampil_hapus($lokasi = 'report/penjualan/harian');
+    }
+
+    function print_penjualan($id)
+    {
+        $query              = $this->sale_model->getp($id);
+        $saledata           = $this->sale_model->get($id);
+        $qty                = $this->sale_model->hitung_total($id, $hitung = 'qty');
+        $sub_total          = $this->sale_model->hitung_total($id, $hitung = 'sub_total');
+        $potongan_diskon    = $this->sale_model->hitung_total($id, $hitung = 'potongan_diskon');
+        $total_akhir        = $this->sale_model->hitung_total($id, $hitung = 'total_akhir');
+        if ($query->num_rows() > 0) {
+            $sale = $query->row();
+            $data = array(
+                'query'             => $query,
+                'row'               => $sale,
+                'saledata'          => $saledata,
+                'sub_total'         => $sub_total,
+                'qty'               => $qty,
+                'potongan_diskon'   => $potongan_diskon,
+                'total_akhir'       => $total_akhir,
+            );
+            // var_dump($sale);
+            $this->template->load('template', 'report/penjualan/print_penjualan', $data);
+            print_data();
+        } 
+        else {
+            tampil_error($lokasi = 'report/penjualan/harian');
+        }
     }
 }

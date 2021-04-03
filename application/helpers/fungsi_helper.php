@@ -143,6 +143,16 @@ function tampil_melebihi_stok($lokasi)
 <?php
 }
 
+
+function print_data()
+{
+?>
+    <script>
+        window.addEventListener("load", window.print());
+    </script>
+<?php
+}
+
 function footerku()
 {
 ?>

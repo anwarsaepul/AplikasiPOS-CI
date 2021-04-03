@@ -10,6 +10,15 @@ class Order_model extends CI_Model
         return $query = $this->db->get();
     }
 
+    function getinv($id = null)
+    {
+        $this->db->from('t_order');
+        if ($id != null) {
+            $this->db->where('invoice', $id);
+        }
+        return $query = $this->db->get();
+    }
+
     function add_order($post)
     {
         $params = [
@@ -52,5 +61,11 @@ class Order_model extends CI_Model
         $this->db->join('p_item', 't_order.item_id = p_item.item_id');
         $this->db->order_by('order_id', 'desc');
         return $query = $this->db->get();
+    }
+
+    function del($id)
+    {
+        $this->db->where('order_id', $id);
+        $this->db->delete('t_order');
     }
 }
