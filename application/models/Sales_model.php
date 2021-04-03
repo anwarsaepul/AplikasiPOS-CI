@@ -38,7 +38,7 @@ class Sales_model extends CI_Model
 
     function del($id)
     {
-        $this->db->where('sales_id', $id);
+        $this->db->where('invoice', $id);
         $this->db->delete('sales');
     }
 }

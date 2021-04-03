@@ -56,7 +56,7 @@ class Sale extends CI_Controller
             $this->sale_model->add_transaksi($post);
             $this->db->empty_table('t_keranjang');
             // redirect('sale');
-            tampil_simpan('report/penjualan/harian');
+            tampil_simpan('report/penjualan');
         }
     }
 

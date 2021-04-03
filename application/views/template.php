@@ -164,35 +164,34 @@
             <li class="nav-item">
               <a href="#" class="nav-link 
               <?= $this->uri->segment(1) == 'report' ||
-                $this->uri->segment(1) == 'report/penjualan/harian' ||
+                $this->uri->segment(1) == 'report/penjualan' ||
                 $this->uri->segment(1) == 'report/penjualan/mingguan' ||
                 $this->uri->segment(1) == 'report/penjualan/tahunan' ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>
-                Report
+                  Report
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?= base_url('report/penjualan/harian') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' && 
-                  $this->uri->segment(2) == 'penjualan' && 
-                  $this->uri->segment(3) == 'harian' ? 'active' : '' ?>">
+                  <a href="<?= base_url('report/penjualan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' && 
+                  $this->uri->segment(2) == 'penjualan' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Penjualan Harian</p>
+                    <p>Penjualan</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="<?= base_url('report/penjualan/mingguan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' && 
-                  $this->uri->segment(2) == 'penjualan' && 
+                  <a href="<?= base_url('report/penjualan/mingguan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' &&
+                  $this->uri->segment(2) == 'penjualan' &&
                   $this->uri->segment(3) == 'bulanan'  ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Penjualan Bulanan</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="<?= base_url('report/penjualan/tahunan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' && 
-                  $this->uri->segment(2) == 'penjualan' && 
+                  <a href="<?= base_url('report/penjualan/tahunan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' &&
+                  $this->uri->segment(2) == 'penjualan' &&
                   $this->uri->segment(3) == 'tahunan'  ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Penjualan Tahunan</p>
@@ -244,14 +243,14 @@
   <script src="<?= base_url() ?>assets/dist/js/adminlte.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
   <script>
     $(document).ready(function() {
       $('#table1').DataTable({
-        "lengthChange": false
       });
 
-      $(document).on('click', '#tmblhps', function(e) {
+      $(document).on('click', '#pil', function(e) {
         e.preventDefault();
         $(this).parent('tr').remove();
       });
@@ -338,10 +337,22 @@
         $('#kembalian_v').val(total);
       });
 
+      // $('#tanggal').daterangepicker({
+      //   startDate: start,
+      //   endDate: end,
+      //   ranges: {
+      //     'Hari ini': [moment(), moment()],
+      //     'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      //     '7 hari terakhir': [moment().subtract(6, 'days'), moment()],
+      //     '30 hari terakhir': [moment().subtract(29, 'days'), moment()],
+      //     'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+      //     'Bulan lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+      //     'Tahun ini': [moment().startOf('year'), moment().endOf('year')],
+      //     'Tahun lalu': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+      //   }
+      // }, cb);
 
-
-
-
+      // cb(start, end);
 
       $(document).on('click', '#set_detail', function() {
         const kodeproduct = $(this).data('kodeproduct');

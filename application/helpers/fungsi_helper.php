@@ -148,7 +148,7 @@ function print_data()
 {
 ?>
     <script>
-        window.addEventListener("load", window.print());
+        window.print();
     </script>
 <?php
 }

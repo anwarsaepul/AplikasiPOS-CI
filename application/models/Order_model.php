@@ -65,7 +65,7 @@ class Order_model extends CI_Model
 
     function del($id)
     {
-        $this->db->where('order_id', $id);
+        $this->db->where('invoice', $id);
         $this->db->delete('t_order');
     }
 }

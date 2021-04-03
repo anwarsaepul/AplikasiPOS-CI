@@ -92,6 +92,7 @@ class Sale_model extends CI_Model
         $this->db->from('t_sale');
         $this->db->join('customer', 't_sale.customer_id = customer.customer_id');
         $this->db->join('users',  'users.user_id = t_sale.user_id');
+        // $this->db->where('date', '2021-04-02');
         if ($id != null) {
             $this->db->where('sale_id', $id);
         }
@@ -110,6 +111,9 @@ class Sale_model extends CI_Model
             'kembalian'     => $post['kembalian'],
             'catatan'       => $post['catatan'] == '' ? null : $post['catatan'],
             'date'          => $post['date'],
+            'pembayaran'    => $post['pembayaran'],
+            'status'        => $post['pembayaran'] == 'kredit' ? 'Belum Lunas' : 'Lunas',
+            'jatuh_tempo'   => $post['date_jatuh_tempo'],
             'user_id'       => $this->session->userdata('user_id'),
         ];
         $this->db->insert('t_sale', $params);

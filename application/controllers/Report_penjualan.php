@@ -45,15 +45,15 @@ class Report_penjualan extends CI_Controller
             // var_dump($tampil);
             $this->template->load('template', 'report/penjualan/detail', $data);
         } else {
-            tampil_error($lokasi = 'report/penjualan/harian');
+            tampil_error($lokasi = 'report/penjualan');
         }
     }
     
     function del($id)
     {
-        $this->sale_model->delete($id);
+        $this->sale_model->del($id);
         $this->order_model->del($id);
-        tampil_hapus($lokasi = 'report/penjualan/harian');
+        tampil_hapus($lokasi = 'report/penjualan');
     }
 
     function print_penjualan($id)
@@ -80,7 +80,7 @@ class Report_penjualan extends CI_Controller
             print_data();
         } 
         else {
-            tampil_error($lokasi = 'report/penjualan/harian');
+            tampil_error($lokasi = 'report/penjualan');
         }
     }
 }

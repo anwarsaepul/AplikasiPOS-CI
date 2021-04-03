@@ -69,9 +69,9 @@ $route['stock/out'] = 'stock/stock_out_data';
 $route['stock/out/add'] = 'stock/stock_out_add';
 $route['stock/out/del/(:num)/(:num)'] = 'stock/stock_out_del'; 
 
-$route['report/penjualan/harian']                   = 'report_penjualan/harian';
-$route['report/penjualan/harian/detail/(:num)']     = 'report_penjualan/detail/$1';
-$route['report/penjualan/harian/del/(:any)']        = 'report_penjualan/del/$1';
-$route['report/penjualan/harian/del/item/(:any)']   = 'report_penjualan/del_item/$1';
-$route['report/penjualan/harian/del/(:any)/(:any)']   = 'report_penjualan/delitem/$1';
-$route['report/penjualan/harian/print/(:num)']      = 'report_penjualan/print_penjualan/$1';
+$route['report/penjualan']                   = 'report_penjualan/harian';
+$route['report/penjualan/detail/(:num)']     = 'report_penjualan/detail/$1';
+$route['report/penjualan/del/(:any)']        = 'report_penjualan/del/$1';
+$route['report/penjualan/del/item/(:any)']   = 'report_penjualan/del_item/$1';
+$route['report/penjualan/del/(:any)/(:any)']   = 'report_penjualan/delitem/$1';
+$route['report/penjualan/print/(:num)']      = 'report_penjualan/print_penjualan/$1';

@@ -10,7 +10,7 @@
                 <h3><i class="nav-icon fas fa-file-alt"></i> Report Penjualan</h3>
             </div>
         </div>
-        <div class="box-body table-responsive">
+        <div class="box-body table-responsive p-2">
             <form action="<?= base_url('report_penjualan/del') ?>" method="POST">
                 <table class="table table-sm table-bordered border text-center table-striped" id="table1">
                     <thead class="thead-dark">
@@ -36,10 +36,13 @@
                                 <td><?= $data->nama_customer ?></td>
                                 <td><?= indo_currency($data->total_harga) ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url('report/penjualan/harian/detail/' . $data->sale_id) ?>" class="btn btn-default btn-xs">
+                                    <a href="<?= base_url('report/penjualan/detail/' . $data->sale_id) ?>" class="btn btn-default btn-xs">
                                         <i class="fa fa-eye"></i> Detail
                                     </a>
-                                    <a href="<?= base_url('report/penjualan/harian/del/' . $data->sale_id) ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+                                    <a href="<?= base_url('report/penjualan/print/' . $data->sale_id) ?>" class="btn btn-primary btn-xs">
+                                    <i class="fas fa-print"></i> Print
+                                    </a>
+                                    <a href="<?= base_url('report/penjualan/del/' . $data->invoice) ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
                                 </td>
                             </tr>
                         <?php } ?>

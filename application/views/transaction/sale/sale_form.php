@@ -1,7 +1,7 @@
 <!-- Main content -->
 <section class="container-fluid bg-light p-2">
     <div class="row p-2">
-        
+
         <div class="col-md-8 mx-auto">
             <div class="box box-widget">
                 <div class="box-body mx-auto info-box p-4">
@@ -99,54 +99,54 @@
         </div>
         <div class="col-md-4 mx-auto">
             <div class="box box-widget">
-                    <div class="col-md mx-auto">
-                        <table width="100%">
-                            <tr>
-                                <td>
-                                    <div class="col-md">
-                                        <div class="info-box">
-                                            <span class="info-box-icon bg-success elevation-1">
-                                                <i class="fas fa-file-invoice-dollar"></i>
-                                            </span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">Invoice</span>
-                                                <span class="info-box-number"><?= $invoice ?></span>
-                                            </div>
+                <div class="col-md mx-auto">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <div class="col-md">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-success elevation-1">
+                                            <i class="fas fa-file-invoice-dollar"></i>
+                                        </span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Invoice</span>
+                                            <span class="info-box-number"><?= $invoice ?></span>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="col-md">
-                                        <div class="info-box">
-                                            <span class="info-box-icon bg-info elevation-1">
-                                                <i class="fas fa-dollar-sign"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">Total Belanja</span>
-                                                <span class="info-box-number"><?= indo_currency($hitung_total->jumlah) ?></span>
-                                            </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col-md">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-info elevation-1">
+                                            <i class="fas fa-dollar-sign"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total Belanja</span>
+                                            <span class="info-box-number"><?= indo_currency($hitung_total->jumlah) ?></span>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="col-md">
-                                        <div class="info-box">
-                                            <span class="info-box-icon bg-danger elevation-1">
-                                                <i class="fas fa-user-tie"></i></span>
-                                            <div class="info-box-content">
-                                                <span class="info-box-text">Petugas</span>
-                                                <span class="info-box-number"><?= $this->session->userdata('nama_lengkap') ?></span>
-                                            </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col-md">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-danger elevation-1">
+                                            <i class="fas fa-user-tie"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Petugas</span>
+                                            <span class="info-box-number"><?= $this->session->userdata('nama_lengkap') ?></span>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
 
-                        </table>
-                    </div>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -242,8 +242,8 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <select name="sales" class="form-control" id="sales">
-                                                <option value="1">--Pilih Sales--</option>
+                                            <select name="sales" class="form-control" required id="sales">
+                                                <option value="">--Pilih Sales--</option>
                                                 <?php foreach ($sales as $sls => $data) { ?>
                                                     <option value="<?= $data->sales_id ?>"><?= $data->nama_sales ?></option>
                                                 <?php } ?>
@@ -272,12 +272,34 @@
                                     <td>
                                         <div class="form-group">
                                             <!-- <input name="stock" id="stock"> -->
-                                            <input type="hidden" id="grand_total" name="grand_total" value="<?= $hitung_total->jumlah ?>" readonly class="form-control">
-                                            <input id="grand_total_v" value="<?= indo_currency($hitung_total->jumlah) ?>" class="form-control">
+                                            <input type="hidden" id="grand_total" name="grand_total" value="<?= $hitung_total->jumlah ?>" class="form-control">
+                                            <input id="grand_total_v" value="<?= indo_currency($hitung_total->jumlah) ?>" class="form-control" readonly>
                                         </div>
                                     </td>
                                 </tr>
-
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <label for="pembayaran">Pembayaran</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select id="pil" name="pembayaran" class="form-control" id="pembayaran">
+                                                <option value="cash">Cash</option>
+                                                <option value="kredit">Kredit</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top; width: 30%;">
+                                        <label for="date">Jatuh Tempo</label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="date" name="date_jatuh_tempo" id="date_jatuh_tempo" value="<?= date('Y-m-d', strtotime('+14 days', strtotime(date('Y-m-d')))) ?>" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td style="vertical-align: top; width: 30%;">
                                         <label for="cash">Cash</label>

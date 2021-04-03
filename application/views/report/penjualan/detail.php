@@ -56,7 +56,7 @@
                                 <div class="box-header">
                                     <div class="mt-2">
                                         <ol class="float-sm-right">
-                                            <a href="<?= base_url('report/penjualan/harian/print/' . $row->sale_id) ?>" class="btn btn-primary btn-block "><i class="fa fa-plus"></i> Print
+                                            <a href="<?= base_url('report/penjualan/print/' . $row->sale_id) ?>" class="btn btn-primary btn-block "><i class="fas fa-print"></i> Print
                                             </a>
                                         </ol>
                                         <span class="info-box-text">Tanggal Transaksi</span>
