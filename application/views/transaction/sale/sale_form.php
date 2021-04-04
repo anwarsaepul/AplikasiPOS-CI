@@ -284,8 +284,8 @@
                                     <td>
                                         <div class="form-group">
                                             <select id="pil" name="pembayaran" class="form-control" id="pembayaran">
-                                                <option value="cash">Cash</option>
                                                 <option value="kredit">Kredit</option>
+                                                <option value="cash">Cash</option>
                                             </select>
                                         </div>
                                     </td>
@@ -306,7 +306,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <input type="number" name="cash" id="cash" min="0" class="form-control" required>
+                                            <input type="number" name="cash" id="cash" min="0" class="form-control">
                                         </div>
                                     </td>
                                 </tr>

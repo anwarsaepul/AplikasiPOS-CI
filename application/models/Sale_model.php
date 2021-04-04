@@ -93,6 +93,7 @@ class Sale_model extends CI_Model
         $this->db->join('customer', 't_sale.customer_id = customer.customer_id');
         $this->db->join('users',  'users.user_id = t_sale.user_id');
         // $this->db->where('date', '2021-04-02');
+        $this->db->order_by('sale_id', 'desc');
         if ($id != null) {
             $this->db->where('sale_id', $id);
         }
@@ -101,20 +102,22 @@ class Sale_model extends CI_Model
 
     function add_transaksi($post)
     {
+        $sisa = ((int)$post['grand_total']) - ((int)$post['cash']);
         $params = [
-            // nama d db    => nama di inputan
-            'invoice'       => $post['invoice2'],
-            'customer_id'   => $post['customer'] == '' ? null : $post['customer'],
-            'sales_id'      => $post['sales'] == '' ? null : $post['sales'],
-            'cash'          => $post['cash'],
-            'total_harga'   => $post['grand_total'],
-            'kembalian'     => $post['kembalian'],
-            'catatan'       => $post['catatan'] == '' ? null : $post['catatan'],
-            'date'          => $post['date'],
-            'pembayaran'    => $post['pembayaran'],
-            'status'        => $post['pembayaran'] == 'kredit' ? 'Belum Lunas' : 'Lunas',
-            'jatuh_tempo'   => $post['date_jatuh_tempo'],
-            'user_id'       => $this->session->userdata('user_id'),
+            // nama d db        => nama di inputan
+            'invoice'           => $post['invoice2'],
+            'customer_id'       => $post['customer'] == '' ? null : $post['customer'],
+            'sales_id'          => $post['sales'] == '' ? null : $post['sales'],
+            'cash'              => $post['cash'],
+            'total_harga'       => $post['grand_total'],
+            'kembalian'         => $post['kembalian'],
+            'catatan'           => $post['catatan'] == '' ? null : $post['catatan'],
+            'date'              => $post['date'],
+            'pembayaran'        => $post['pembayaran'],
+            'sisa_pembayaran'   => $post['cash'] == '0' ? $post['grand_total'] : $sisa,
+            'status_pesanan'    => $post['pembayaran'] == 'kredit' ? 'Belum Lunas' : 'Lunas',
+            'jatuh_tempo'       => $post['date_jatuh_tempo'],
+            'user_id'           => $this->session->userdata('user_id'),
         ];
         $this->db->insert('t_sale', $params);
     }
@@ -125,4 +128,27 @@ class Sale_model extends CI_Model
         $this->db->delete('t_sale');
     }
 
+    function update_pembayaran($post)
+    {
+        $cash               = $post['cash'];
+        $sisa_pembayaran    = ((int)$post['grand_total']) - ((int)$post['cash']);
+        $kembalian          = $post['kembalian'];
+        $updated            = date('Y-m-d H:i:s');
+        $id                 = $post['sale_id'];
+        $status             = 'Lunas';
+        
+        $sql = "UPDATE t_sale SET cash = cash + '$cash', 
+                sisa_pembayaran = '$sisa_pembayaran',
+                updated = '$updated' WHERE sale_id = '$id'";
+        $this->db->query($sql);
+        if ($kembalian > 0) {
+            $sql = "UPDATE t_sale SET status_pesanan = '$status',
+                    sisa_pembayaran = '0', 
+                    updated = '$updated'
+                    WHERE sale_id = '$id'";
+            $this->db->query($sql);
+        }
+
+
+    }
 }

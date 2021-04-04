@@ -20,6 +20,7 @@
                             <th>Tanggal</th>
                             <th>Nama Customer</th>
                             <th>Total Belanja</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                 <td><?= indo_date($data->date) ?></td>
                                 <td><?= $data->nama_customer ?></td>
                                 <td><?= indo_currency($data->total_harga) ?></td>
+                                <td><?= $data->status_pesanan ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url('report/penjualan/detail/' . $data->sale_id) ?>" class="btn btn-default btn-xs">
                                         <i class="fa fa-eye"></i> Detail

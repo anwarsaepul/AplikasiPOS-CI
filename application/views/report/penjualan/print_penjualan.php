@@ -1,5 +1,5 @@
 <div class="row pl-3 pr-3 pt-3">
-    <div class="col-5">
+    <div class="col-4">
         <table width="100%">
             <tr>
                 <td>
@@ -14,34 +14,17 @@
         </table>
         <table width="100%">
             <tr>
-                <td style="vertical-align: top; width: 40%;">
+                <td style="vertical-align: top; width: 30%;">
                     <span>TELP</span>
                 </td>
                 <td>
                     <div>
-                        <span>: 085794190990 /087811605800</span>
+                        <span>: 085794190990/087811605800</span>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <span>TANGGAL TRANSAKSI </span>
-                </td>
-                <td>
-                    <div>
-                        <span>: <?= indo_date($row->date) ?></span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>JATUH TEMPO</span>
-                </td>
-                <td>
-                    <div>
-                        <span>: 18/03/2021</span>
-                    </div>
-                </td>
+
             </tr>
             <tr>
                 <td>
@@ -76,7 +59,63 @@
         </table>
     </div>
 
-    <div class="col-5">
+    <div class="col-4">
+        <div class="col-md mx-auto">
+            <table width="100%">
+                <tr>
+                    <td><br></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 50%;">
+                        <span>PEMBAYARAN</span>
+                    </td>
+                    <td>
+                        <div>
+                            <span>: <?= $row->pembayaran ?></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>TANGGAL TRANSAKSI </span>
+                    </td>
+                    <td>
+                        <div>
+                            <span>: <?= indo_date($row->date) ?></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>JATUH TEMPO</span>
+                    </td>
+                    <td>
+                        <div>
+                            <span>: <?= indo_date($row->jatuh_tempo) ?></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>STATUS</span>
+                    </td>
+                    <td>
+                        <span>: <?= $row->status_pesanan ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>SISA PEMBAYARAN</span>
+                    </td>
+                    <td>
+                        <span>: <?= indo_currency($row->sisa_pembayaran) ?></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-4">
         <div class="col-md mx-auto">
             <table width="100%">
                 <tr>
@@ -93,7 +132,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="vertical-align: top; width: 30%;">
+                    <td>
                         <span>ALAMAT</span>
                     </td>
                     <td>
@@ -101,7 +140,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="vertical-align: top; width: 30%;">
+                    <td>
                         <span>NO HP</span>
                     </td>
                     <td>

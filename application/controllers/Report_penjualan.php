@@ -7,7 +7,7 @@ class Report_penjualan extends CI_Controller
         parent::__construct();
         flashData();
         checklogin();
-        $this->load->model(['sale_model', 'order_model', 'item_model']);
+        $this->load->model(['sale_model', 'order_model', 'item_model', 'kredit_model']);
     }
 
     function harian($id = null)
@@ -77,10 +77,49 @@ class Report_penjualan extends CI_Controller
             );
             // var_dump($sale);
             $this->template->load('template', 'report/penjualan/print_penjualan', $data);
-            print_data();
+            // print_data();
         } 
         else {
             tampil_error($lokasi = 'report/penjualan');
         }
+    }
+
+    function kredit($id)
+    {
+        $query              = $this->sale_model->get($id);
+        $saledata           = $this->sale_model->get($id);
+        $qty                = $this->sale_model->hitung_total($id, $hitung = 'qty');
+        $sub_total          = $this->sale_model->hitung_total($id, $hitung = 'sub_total');
+        $potongan_diskon    = $this->sale_model->hitung_total($id, $hitung = 'potongan_diskon');
+        $total_akhir        = $this->sale_model->hitung_total($id, $hitung = 'total_akhir');
+        if ($query->num_rows() > 0) {
+            $sale = $query->row();
+            $data = array(
+                'query'             => $query,
+                'row'               => $sale,
+                'saledata'          => $saledata,
+                'sub_total'         => $sub_total,
+                'qty'               => $qty,
+                'potongan_diskon'   => $potongan_diskon,
+                'total_akhir'       => $total_akhir,
+            );
+            // var_dump($tampil);
+            $this->template->load('template', 'report/penjualan/kredit', $data);
+        } else {
+            tampil_error($lokasi = 'report/penjualan');
+        }
+    }
+
+    function process()
+    {
+        $post = $this->input->post(null, TRUE);
+        if (isset($_POST['pembayaran-kredit'])) {
+            $this->kredit_model->add_transaksi($post);
+            $this->sale_model->update_pembayaran($post);
+            // $this->db->empty_table('t_keranjang');
+            // redirect('sale');
+            tampil_simpan('report/penjualan/detail/' . $post['sale_id']);
+        }
+
     }
 }

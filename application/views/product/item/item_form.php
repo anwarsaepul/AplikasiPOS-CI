@@ -54,9 +54,7 @@
                             </button>
                             <button type="reset" class="btn btn-flat btn-warning"><i class="fas fa-sync-alt"></i> Reset</button>
                         </div>
-
                     </form>
-
                 </div>
             </div>
 
