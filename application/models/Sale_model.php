@@ -23,11 +23,28 @@ class Sale_model extends CI_Model
         $this->db->join('customer', 't_sale.customer_id = customer.customer_id');
         $this->db->join('users',  'users.user_id = t_sale.user_id');
         $this->db->join('sales',  't_sale.sales_id = sales.sales_id');
+        // $this->db->join('p_item', 't_order.item_id = p_item.item_id');
+        $this->db->order_by('sale_id', 'desc');
         if ($id != null) {
             $this->db->where('sale_id', $id);
         }
         return $query = $this->db->get();
     }
+
+    function getdetailpenjualan($id)
+    {
+        $this->db->select('t_sale.*, t_order.*, users.*, nama_item, customer.*');
+        $this->db->from('t_sale');
+        $this->db->join('t_order', 't_order.invoice = t_sale.invoice', 'left');
+        $this->db->join('users',  'users.user_id = t_sale.user_id');
+        $this->db->join('customer', 't_sale.customer_id = customer.customer_id');
+        $this->db->join('p_item', 't_order.item_id = p_item.item_id');
+        if ($id != null) {
+            $this->db->where('sale_id', $id);
+        }
+        return $query = $this->db->get();
+    }
+
 
     function getsale($id = null)
     {

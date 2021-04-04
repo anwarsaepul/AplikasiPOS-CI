@@ -22,6 +22,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="col-12 col-sm-6 col-md-3">
 			<div class="info-box">
 				<span class="info-box-icon bg-warning elevation-1"> <i class="nav-icon fas fa-shopping-cart"></i></span>

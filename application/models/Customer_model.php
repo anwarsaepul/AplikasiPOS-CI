@@ -14,10 +14,10 @@ class Customer_model extends CI_Model
     function add($post)
     {
         $params = [
-            // nama d db    => nama di inputan
-            'nama_customer'  => $post['nama_customer'],
-            'phone'          => $post['phone'],
-            'alamat'         => $post['alamat'],
+            // nama d db        => nama di inputan
+            'nama_customer'     => $post['nama_customer'],
+            'phone'             => $post['phone'],
+            'alamat_customer'   => $post['alamat'],
         ];
         $this->db->insert('customer', $params);
     }
@@ -25,11 +25,11 @@ class Customer_model extends CI_Model
     function edit($post)
     {
         $params = [
-            // nama d db    => nama di inputan
-            'nama_customer'  => $post['nama_customer'],
-            'phone'          => $post['phone'],
-            'alamat'         => $post['alamat'],
-            'updated'          => date('Y-m-d H:i:s'),
+            // nama d db        => nama di inputan
+            'nama_customer'     => $post['nama_customer'],
+            'phone'             => $post['phone'],
+            'alamat_customer'   => $post['alamat'],
+            'updated'           => date('Y-m-d H:i:s'),
         ];
         $this->db->where('customer_id', $post['id']);
         $this->db->update('customer', $params);

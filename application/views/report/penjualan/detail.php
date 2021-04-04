@@ -104,7 +104,7 @@
                                     <span>ALAMAT</span>
                                 </td>
                                 <td>
-                                    <span>: <?= $row->alamat ?></span>
+                                    <span>: <?= $row->alamat_customer ?></span>
                                 </td>
                             </tr>
                             <tr>

@@ -41,8 +41,9 @@ class Session_id
     function count_sale()
     {
         $this->ci->load->model('sale_model');
-        return $this->ci->sale_model->get_data()->num_rows();
+        return $this->ci->sale_model->getp()->num_rows();
     }
+
 
     function PdfGenerator($html, $filename, $paper, $orientation)
     {

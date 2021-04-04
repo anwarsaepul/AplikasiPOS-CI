@@ -42,7 +42,7 @@
                                         <i class="fa fa-eye"></i> Detail
                                     </a>
                                     <a href="<?= base_url('report/penjualan/print/' . $data->sale_id) ?>" class="btn btn-primary btn-xs">
-                                    <i class="fas fa-print"></i> Print
+                                        <i class="fas fa-print"></i> Print
                                     </a>
                                     <a href="<?= base_url('report/penjualan/del/' . $data->invoice) ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
                                 </td>

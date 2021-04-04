@@ -28,7 +28,7 @@
 							<td style="width: 5%;"><?= $no++ ?>.</td>
 							<td><?= $data->nama_customer ?></td>
 							<td><?= $data->phone ?></td>
-							<td><?= $data->alamat ?></td>
+							<td><?= $data->alamat_customer ?></td>
 							<td class="text-center" width="150px">
 								<a href="<?= base_url('customer/edit/' . $data->customer_id) ?>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Update</a>
 								<a href="<?= base_url('customer/del/' . $data->customer_id) ?>" id="tmblhps" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>

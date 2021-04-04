@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Alamat customer *</label>
-                            <textarea class="form-control" name="alamat" placeholder="Input alamat customer"><?= $row->alamat ?></textarea>
+                            <textarea class="form-control" name="alamat" placeholder="Input alamat customer"><?= $row->alamat_customer ?></textarea>
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
