@@ -6,7 +6,7 @@ class Sale extends CI_Controller
         parent::__construct();
         flashData();
         checklogin();
-        $this->load->model(['sale_model', 'item_model', 'customer_model', 'sales_model', 'stock_model', 'keranjang_model', 'order_model']);
+        $this->load->model(['sale_model', 'item_model', 'customer_model', 'sales_model', 'stock_model', 'keranjang_model', 'kredit_model', 'order_model']);
     }
 
     function index()
@@ -54,6 +54,7 @@ class Sale extends CI_Controller
             }
         } else if (isset($_POST['process-payment'])) {
             $this->sale_model->add_transaksi($post);
+            $this->kredit_model->add_transaksik($post);
             $this->db->empty_table('t_keranjang');
             // redirect('sale');
             tampil_simpan('report/penjualan');

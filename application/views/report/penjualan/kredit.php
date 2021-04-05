@@ -6,16 +6,24 @@
                     <table width="100%">
                         <form action="<?= base_url('report/penjualan/process') ?>" method="POST">
                             <tr>
-                                <td style="vertical-align: top;">
-                                    <label for="invoice">Invoice</label>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input id="grand_total_v" value="<?= $row->invoice ?>" class="form-control" name="invoice" readonly>
+                                <!-- <td></td> -->
+                                <td class="pb-3" colspan="2">
+                                    <div class="card-header text-center bg-success">
+                                        INVOICE
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="vertical-align: top;">
+                                <td  style="vertical-align: top; width: 35%;">
+                                    <label for="invoice">No Invoice</label>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <input id="grand_total_v" value="<?= $row->invoiced ?>" class="form-control" name="invoice" readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <label for="user">Customer</label>
                                 </td>
                                 <td>
@@ -25,7 +33,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="vertical-align: top; width: 30%;">
+                                <td>
                                     <label for="date">Tanggal Pembayaran</label>
                                 </td>
                                 <td>
@@ -91,13 +99,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                </td>
-                                <td>
+                                <td></td>
+                                <td colspan="2">
                                     <div class="mx-auto text-center">
-                                        <input type="hidden" name="invoice2" value="">
                                         <a href="" id="set_detail" data-toggle="modal" data-target="#modal-detail" class="btn mr-2 btn-default btn-flat">
-                                            <i class="fa fa-eye"></i> Detail
+                                            <i class="fa fa-eye"></i> History
                                         </a>
                                         <button id="pembayaran-kredit" type="submit" name="pembayaran-kredit" class="btn btn-flat btn-success">
                                             <i class="fas fa-cart-arrow-down"></i> Bayar
@@ -113,7 +119,7 @@
     </div>
 
     <div class="modal fade" id="modal-detail">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title text-center">Detail Pembayaran</h4>
@@ -130,7 +136,7 @@
                                 <th>Tanggal Pembayaran</th>
                                 <th>Jumlah Pembayaran</th>
                                 <th>Catatan</th>
-                                <th>Petugas</th>
+                                <!-- <th>Petugas</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -138,11 +144,11 @@
                             foreach ($query->result() as $key => $data) { ?>
                                 <tr>
                                     <td style="width: 5%;"><?= $no++ ?>.</td>
-                                    <td><?= indo_date($data->createdkredit) ?> <?= indo_jam($data->createdkredit) ?></td>
+                                    <td><?= indo_date($data->created) ?> <?= indo_jam($data->created) ?></td>
                                     <td><?= indo_date($data->tanggal_bayar) ?></td>
                                     <td><?= indo_currency($data->pembayaran) ?></td>
-                                    <td><?= $data->catatan ?></td> 
-                                    <td><?= $row->nama_lengkap ?></td>
+                                    <td><?= $data->catatan ?></td>
+                                    <!-- <td><?= $row->nama_lengkap ?></td> -->
                                 </tr>
                             <?php } ?>
                         </tbody>

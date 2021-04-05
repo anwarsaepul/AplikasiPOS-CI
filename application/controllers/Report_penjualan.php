@@ -75,17 +75,17 @@ class Report_penjualan extends CI_Controller
 
     function kredit($id)
     {
-        $query  = $this->sale_model->getdetailpenjualan($id);
+        $query  = $this->sale_model->getdetailkredit($id);
         if ($query->num_rows() > 0) {
             $sale = $query->row();
             $data = array(
                 'query'             => $query,
                 'row'               => $sale,
             );
-            // var_dump($tampil);
+            // var_dump($sale);
             $this->template->load('template', 'report/penjualan/kredit', $data);
         } else {
-            tampil_error($lokasi = 'report/penjualan/kredit');
+            tampil_error($lokasi = 'report/penjualan');
         }
     }
 
@@ -93,11 +93,26 @@ class Report_penjualan extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['pembayaran-kredit'])) {
-            $this->kredit_model->add_transaksi($post);
-            $this->sale_model->update_pembayaran($post);
-            // $this->db->empty_table('t_keranjang');
-            // redirect('sale');
-            tampil_simpan('report/penjualan/kredit/' . $post['sale_id']);
+            if ($post['grand_total'] == 0) {
+                ?>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        title: 'Anda tidak mempunyai sisa pembayaran'
+                    }).then((result) => {
+                    window.location='<?= site_url('report/penjualan/detail/' . $post['sale_id']) ?>';
+                    })
+                </script>
+                <?php
+            } else {
+                $this->kredit_model->add_transaksi($post);
+                $this->sale_model->update_pembayaran($post);
+                // $this->db->empty_table('t_keranjang');
+                // redirect('sale');
+                tampil_simpan('report/penjualan/detail/' . $post['sale_id']);
+            }
         }
     }
 }

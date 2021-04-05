@@ -25,6 +25,20 @@ class Kredit_model extends CI_Model
         $this->db->insert('t_kredit', $params);
     }
 
+    function add_transaksik($post)
+    {
+        // $sisa = ((int)$post['grand_total']) - ((int)$post['cash']);
+        $params = [
+            // nama d db        => nama di inputan
+            'invoice'           => $post['invoice2'],
+            'tanggal_bayar'     => $post['date'],
+            'pembayaran'        => $post['cash'],
+            'catatan'           => $post['catatan'] == '' ? null : $post['catatan'],
+            'user_id'           => $this->session->userdata('user_id'),
+        ];
+        $this->db->insert('t_kredit', $params);
+    }
+
     function del($id)
     {
         $this->db->where('invoice', $id);

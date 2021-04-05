@@ -3,7 +3,7 @@
     <!-- <div class="jumbotron"> -->
     <div class="box">
         <div class="box-header">
-            <div class="col-sm">
+            <div class="col-sm pt-3">
                 <ol class="float-sm-right">
                     <a href="<?= base_url('stock/in') ?>" class="btn btn-warning btn-flat"><i class="nav-icon fa fa-undo"></i> Back
                     </a>

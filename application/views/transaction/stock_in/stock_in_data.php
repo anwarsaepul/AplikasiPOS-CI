@@ -10,7 +10,7 @@
 				<h3><i class="nav-icon fa fa-object-group"></i> Stock Barang</h3>
 			</div>
 		</div>
-		<div class="box-body table-responsive">
+		<div class="box-body table-responsive p-2">
 			<table class="table table-bordered text-center table-striped" id="table1">
 				<thead class="thead-dark">
 					<tr>
