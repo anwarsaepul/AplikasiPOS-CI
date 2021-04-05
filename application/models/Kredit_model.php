@@ -25,4 +25,10 @@ class Kredit_model extends CI_Model
         $this->db->insert('t_kredit', $params);
     }
 
+    function del($id)
+    {
+        $this->db->where('invoice', $id);
+        $this->db->delete('t_kredit');
+    }
+
 }

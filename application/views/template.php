@@ -164,9 +164,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link 
               <?= $this->uri->segment(1) == 'report' ||
-                $this->uri->segment(1) == 'report/penjualan' ||
-                $this->uri->segment(1) == 'report/penjualan/mingguan' ||
-                $this->uri->segment(1) == 'report/penjualan/tahunan' ? 'active' : '' ?>">
+                $this->uri->segment(1) == 'report/penjualan' ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>
                   Report
@@ -179,22 +177,6 @@
                   $this->uri->segment(2) == 'penjualan' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Penjualan</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="<?= base_url('report/penjualan/mingguan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' &&
-                  $this->uri->segment(2) == 'penjualan' &&
-                  $this->uri->segment(3) == 'bulanan'  ? 'active' : '' ?>">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Penjualan Bulanan</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="<?= base_url('report/penjualan/tahunan') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' &&
-                  $this->uri->segment(2) == 'penjualan' &&
-                  $this->uri->segment(3) == 'tahunan'  ? 'active' : '' ?>">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Penjualan Tahunan</p>
                   </a>
                 </li>
               </ul>

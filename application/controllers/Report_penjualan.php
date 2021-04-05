@@ -10,33 +10,24 @@ class Report_penjualan extends CI_Controller
         $this->load->model(['sale_model', 'order_model', 'item_model', 'kredit_model']);
     }
 
-    function harian($id = null)
+    function harian()
     {
-        $query  = $this->sale_model->getp();
-        if ($query->num_rows() > 0) {
-            $sale = $query->row();
-            $data = array(
-                'row'   => $query,
-                'sale'  => $sale,
-            );
-            $this->template->load('template', 'report/penjualan/harian', $data);
-        }
+        $data['row'] = $this->sale_model->get();
+        $this->template->load('template', 'report/penjualan/harian', $data);
     }
 
     function detail($id)
     {
-        $query              = $this->sale_model->getp($id);
-        $saledata           = $this->sale_model->getdetailpenjualan($id);
+        $query              = $this->sale_model->getdetailpenjualan($id);
         $qty                = $this->sale_model->hitung_total($id, $hitung = 'qty');
         $sub_total          = $this->sale_model->hitung_total($id, $hitung = 'sub_total');
         $potongan_diskon    = $this->sale_model->hitung_total($id, $hitung = 'potongan_diskon');
         $total_akhir        = $this->sale_model->hitung_total($id, $hitung = 'total_akhir');
-        if ($saledata->num_rows() > 0) {
-            $sale = $saledata->row();
+        if ($query->num_rows() > 0) {
+            $sale = $query->row();
             $data = array(
                 'query'             => $query,
                 'row'               => $sale,
-                'saledata'          => $saledata,
                 'sub_total'         => $sub_total,
                 'qty'               => $qty,
                 'potongan_diskon'   => $potongan_diskon,
@@ -48,18 +39,18 @@ class Report_penjualan extends CI_Controller
             tampil_error($lokasi = 'report/penjualan');
         }
     }
-    
+
     function del($id)
     {
         $this->sale_model->del($id);
         $this->order_model->del($id);
+        $this->kredit_model->del($id);
         tampil_hapus($lokasi = 'report/penjualan');
     }
 
     function print_penjualan($id)
     {
-        $query              = $this->sale_model->getp($id);
-        $saledata           = $this->sale_model->getdetailpenjualan($id);
+        $query              = $this->sale_model->getdetailpenjualan($id);
         $qty                = $this->sale_model->hitung_total($id, $hitung = 'qty');
         $sub_total          = $this->sale_model->hitung_total($id, $hitung = 'sub_total');
         $potongan_diskon    = $this->sale_model->hitung_total($id, $hitung = 'potongan_diskon');
@@ -69,7 +60,6 @@ class Report_penjualan extends CI_Controller
             $data = array(
                 'query'             => $query,
                 'row'               => $sale,
-                'saledata'          => $saledata,
                 'sub_total'         => $sub_total,
                 'qty'               => $qty,
                 'potongan_diskon'   => $potongan_diskon,
@@ -77,36 +67,25 @@ class Report_penjualan extends CI_Controller
             );
             // var_dump($sale);
             $this->template->load('template', 'report/penjualan/print_penjualan', $data);
-            // print_data();
-        } 
-        else {
+            print_data();
+        } else {
             tampil_error($lokasi = 'report/penjualan');
         }
     }
 
     function kredit($id)
     {
-        $query              = $this->sale_model->get($id);
-        $saledata           = $this->sale_model->getdetailpenjualan($id);
-        $qty                = $this->sale_model->hitung_total($id, $hitung = 'qty');
-        $sub_total          = $this->sale_model->hitung_total($id, $hitung = 'sub_total');
-        $potongan_diskon    = $this->sale_model->hitung_total($id, $hitung = 'potongan_diskon');
-        $total_akhir        = $this->sale_model->hitung_total($id, $hitung = 'total_akhir');
-        if ($saledata->num_rows() > 0) {
-            $sale = $saledata->row();
+        $query  = $this->sale_model->getdetailpenjualan($id);
+        if ($query->num_rows() > 0) {
+            $sale = $query->row();
             $data = array(
                 'query'             => $query,
                 'row'               => $sale,
-                'saledata'          => $saledata,
-                'sub_total'         => $sub_total,
-                'qty'               => $qty,
-                'potongan_diskon'   => $potongan_diskon,
-                'total_akhir'       => $total_akhir,
             );
             // var_dump($tampil);
             $this->template->load('template', 'report/penjualan/kredit', $data);
         } else {
-            tampil_error($lokasi = 'report/penjualan');
+            tampil_error($lokasi = 'report/penjualan/kredit');
         }
     }
 
@@ -118,8 +97,7 @@ class Report_penjualan extends CI_Controller
             $this->sale_model->update_pembayaran($post);
             // $this->db->empty_table('t_keranjang');
             // redirect('sale');
-            tampil_simpan('report/penjualan/detail/' . $post['sale_id']);
+            tampil_simpan('report/penjualan/kredit/' . $post['sale_id']);
         }
-
     }
 }

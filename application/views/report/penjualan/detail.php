@@ -15,7 +15,7 @@
                         <table width="100%">
                             <tr>
                                 <td>
-                                    <span>INVOICE</span>
+                                    <span>No Invoice</span>
                                 </td>
                                 <td>
                                     <div>
@@ -35,7 +35,7 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top; width: 50%;">
-                                    <span>PEMBAYARAN</span>
+                                    <span>Pembayaran</span>
                                 </td>
                                 <td>
                                     <div>
@@ -45,7 +45,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span>TANGGAL TRANSAKSI </span>
+                                    <span>Tanggal Transaksi</span>
                                 </td>
                                 <td>
                                     <div>
@@ -55,7 +55,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span>JATUH TEMPO</span>
+                                    <span>Jatuh Tempo</span>
                                 </td>
                                 <td>
                                     <div>
@@ -65,7 +65,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span>STATUS</span>
+                                    <span>Status</span>
                                 </td>
                                 <td>
                                     <span>: <?= $row->status_pesanan ?></span>
@@ -73,7 +73,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span>SISA PEMBAYARAN</span>
+                                    <span>Sisa Pembayaran</span>
                                 </td>
                                 <td>
                                     <span>: <?= indo_currency($row->sisa_pembayaran) ?></span>
@@ -91,7 +91,7 @@
                         <table width="100%">
                             <tr>
                                 <td style="vertical-align: top; width: 35%;">
-                                    <span>NAMA </span>
+                                    <span>Nama </span>
                                 </td>
                                 <td>
                                     <div>
@@ -101,7 +101,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span>ALAMAT</span>
+                                    <span>Alamat</span>
                                 </td>
                                 <td>
                                     <span>: <?= $row->alamat_customer ?></span>
@@ -109,10 +109,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span>NO HP</span>
+                                    <span>No HP</span>
                                 </td>
                                 <td>
-                                    <span>: </span>
+                                    <span>: <?= $row->phone ?></span>
                                 </td>
                             </tr>
                         </table>
@@ -127,7 +127,7 @@
                         <table width="100%">
                             <tr>
                                 <td style="vertical-align: top; width: 35%;">
-                                    <span>ADMIN</span>
+                                    <span>Admin</span>
                                 </td>
                                 <td>
                                     <div>
@@ -137,11 +137,11 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <span>SALES</span>
+                                    <span>Sales</span>
                                 </td>
                                 <td>
                                     <div>
-                                        <span>: </span>
+                                        <span>: <?= $row->nama_sales ?></span>
                                     </div>
                                 </td>
                             </tr>
@@ -169,7 +169,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $no = 1;
-                                            foreach ($saledata->result() as $key => $data) { ?>
+                                            foreach ($query->result() as $key => $data) { ?>
                                                 <tr>
                                                     <td style="width: 5%;"><?= $no++ ?>.</td>
                                                     <td><?= $data->nama_item ?></td>

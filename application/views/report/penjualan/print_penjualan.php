@@ -166,7 +166,7 @@
             </thead>
             <tbody>
                 <?php $no = 1;
-                foreach ($saledata->result() as $key => $data) { ?>
+                foreach ($query->result() as $key => $data) { ?>
                     <tr>
                         <td style="width: 5%;"><?= $no++ ?>.</td>
                         <td><?= $data->nama_item ?></td>

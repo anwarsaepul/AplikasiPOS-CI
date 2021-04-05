@@ -17,7 +17,8 @@
                         <tr>
                             <th>#</th>
                             <th>No Invoice</th>
-                            <th>Tanggal</th>
+                            <th>Tanggal Transaksi</th>
+                            <th>Jatuh Tempo</th>
                             <th>Nama Customer</th>
                             <th>Total Belanja</th>
                             <th>Status</th>
@@ -34,6 +35,7 @@
                                     <input type="hidden" name="invoice" value="<?= $data->invoice ?>">
                                 </td>
                                 <td><?= indo_date($data->date) ?></td>
+                                <td><?= indo_date($data->jatuh_tempo) ?></td>
                                 <td><?= $data->nama_customer ?></td>
                                 <td><?= indo_currency($data->total_harga) ?></td>
                                 <td><?= $data->status_pesanan ?></td>
@@ -44,7 +46,7 @@
                                     <a href="<?= base_url('report/penjualan/print/' . $data->sale_id) ?>" class="btn btn-primary btn-xs">
                                         <i class="fas fa-print"></i> Print
                                     </a>
-                                    <a href="<?= base_url('report/penjualan/del/' . $data->invoice) ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Delete</a>
+                                    <a href="<?= base_url('report/penjualan/del/' . $data->invoice) ?>" class="btn btn-danger btn-xs" id="tmblhps"><i class="fa fa-trash"></i>Delete</a>
                                 </td>
                             </tr>
                         <?php } ?>

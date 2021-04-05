@@ -17,13 +17,15 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <h2>Aplikasi Stok Barang</h2>
-        </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <div class="form-group text-center">
+                    <div class="image">
+                        <img src="<?= base_url() ?>assets/dist/img/logo.ico" class="img-circle" style="height: 100px;" alt="User Image">
+                    </div>
+                    <h3 class="">Aplikasi Stok Barang</h3>
+                </div>
 
                 <form action="<?= base_url() ?>auth/process" method="post">
                     <div class="input-group mb-3">

@@ -20,7 +20,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                    <input id="grand_total_v" value="<?= $row->nama_customer ?>" class="form-control" readonly>
+                                        <input id="grand_total_v" value="<?= $row->nama_customer ?>" class="form-control" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -40,8 +40,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="date" name="date_jatuh_tempo" id="date_jatuh_tempo" value="<?= $row->jatuh_tempo ?>" 
-                                        class="form-control" readonly>
+                                        <input type="date" name="date_jatuh_tempo" id="date_jatuh_tempo" value="<?= $row->jatuh_tempo ?>" class="form-control" readonly>
                                     </div>
                                 </td>
                             </tr>
@@ -64,7 +63,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" name="cash" id="cash" min="0" class="form-control">
+                                        <input type="number" name="cash" id="cash" min="0" class="form-control" required>
                                     </div>
                                 </td>
                             </tr>
@@ -95,10 +94,13 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <div class="mx-auto col-md-8">
+                                    <div class="mx-auto text-center">
                                         <input type="hidden" name="invoice2" value="">
-                                        <button id="pembayaran-kredit" type="submit" name="pembayaran-kredit" class="btn btn-block btn-success">
-                                            <i class="fas fa-cart-arrow-down"></i> Process Payment
+                                        <a href="" id="set_detail" data-toggle="modal" data-target="#modal-detail" class="btn mr-2 btn-default btn-flat">
+                                            <i class="fa fa-eye"></i> Detail
+                                        </a>
+                                        <button id="pembayaran-kredit" type="submit" name="pembayaran-kredit" class="btn btn-flat btn-success">
+                                            <i class="fas fa-cart-arrow-down"></i> Bayar
                                         </button>
                                     </div>
                                 </td>
@@ -109,3 +111,44 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal-detail">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">Detail Pembayaran</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table class="table table-bordered text-center table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Waktu Pembayaran</th>
+                                <th>Tanggal Pembayaran</th>
+                                <th>Jumlah Pembayaran</th>
+                                <th>Catatan</th>
+                                <th>Petugas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1;
+                            foreach ($query->result() as $key => $data) { ?>
+                                <tr>
+                                    <td style="width: 5%;"><?= $no++ ?>.</td>
+                                    <td><?= indo_date($data->createdkredit) ?> <?= indo_jam($data->createdkredit) ?></td>
+                                    <td><?= indo_date($data->tanggal_bayar) ?></td>
+                                    <td><?= indo_currency($data->pembayaran) ?></td>
+                                    <td><?= $data->catatan ?></td> 
+                                    <td><?= $row->nama_lengkap ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

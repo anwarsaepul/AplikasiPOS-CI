@@ -40,8 +40,16 @@ class Session_id
 
     function count_sale()
     {
+        $id = date('Y-m-d');
         $this->ci->load->model('sale_model');
-        return $this->ci->sale_model->getp()->num_rows();
+        return $this->ci->sale_model->get($id)->num_rows();
+    }
+    
+    function count_sale_day()
+    {
+        $id = date('Y-m-d');
+        $this->ci->load->model('sale_model');
+        return $this->ci->sale_model->gettransaksihariini($id)->num_rows();
     }
 
 

@@ -23,6 +23,12 @@ function indo_currency($nominal)
     return $result = "Rp " . number_format($nominal, 2, ',', '.');
 }
 
+function indo_jam($waktu)
+{
+    $w = substr($waktu, 11, 5);
+    return $w;
+}
+
 function indo_date($date)
 {
     $d = substr($date, 8, 2);
